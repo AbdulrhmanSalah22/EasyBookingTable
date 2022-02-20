@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Option extends Model
 {
     use HasFactory;
+
+    protected $hidden = ['created_at','updated_at', 'pivot'];
+
+
+    // option table 
+    public function meal()
+    {
+        return $this->belongsToMany(Meal::class , 'meal_options' , 'meal_id' , 'option_id');
+    }
 }

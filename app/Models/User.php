@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone'
     ];
 
     /**
@@ -31,6 +32,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'created_at',
+        'updated_at',
+        'email_verified_at',
+        'is_admin'
     ];
 
     /**
@@ -41,4 +46,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    // favorites table 
+    public function meal()
+    {
+        return $this->belongsToMany(Meal::class , 'favourites' , 'user_id' , 'meal_id');
+    }
+
+
+    // option reservations 
+    public function order()
+    {
+        return $this->belongsToMany(Order::class , 'reservations' , 'user_id' , 'order_id');
+    }
+
+
+    // option reservations 
+    public function table()
+    {
+        return $this->belongsToMany(Table::class , 'reservations' , 'user_id' , 'table_id');
+    }
 }
