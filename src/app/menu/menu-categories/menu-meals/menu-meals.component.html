@@ -1,0 +1,17 @@
+<div class="card" width="100%">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <h4 routerLink="/menu/{{meal.name}}" (click)="ShowMeal(meal)" style="cursor: pointer;">{{ meal.name }}</h4>
+      <h4>${{ meal.price }}</h4>
+    </div>
+
+    <p class="card-text">
+      {{ meal.des }}
+    </p>
+  </div>
+  <img src="{{ meal.img }}" class="card-img-top" alt="..." />
+  <div class="d-flex justify-content-center" id="fav">
+    <span><i class="fa-solid fa-heart" id="love"></i></span>
+    <span><i class="fa-solid fa-cart-shopping" id="cart"></i></span>
+  </div>
+</div>

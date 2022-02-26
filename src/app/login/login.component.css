@@ -1,0 +1,182 @@
+body {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #222;
+  background: #f8f8f8;
+  font-weight: 400;
+  font-family: Poppins;
+}
+/* .row{
+    display: flex; 
+   } */
+.row {
+  -bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+}
+.container {
+  width: 80%;
+  background: #fff;
+  margin: 0 auto;
+  box-shadow: 0 15px 16.83px 0.17px rgb(0 0 0 / 5%);
+  border-radius: 20px;
+}
+.main {
+  background: #f8f8f8;
+  padding: 5%;
+}
+div {
+  display: block;
+}
+.signup-content {
+  padding: 70px 0;
+  display: -webkit-flex;
+}
+.signup-form {
+  padding-left: 15%;
+}
+.form-title {
+  text-align: center;
+  padding-top: 10px;
+  font-weight: 1000;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+h2 {
+  line-height: 1.66;
+  margin: 0;
+  padding: 0;
+  font-weight: 700;
+  color: #222;
+  font-family: Poppins;
+  font-size: 36px;
+}
+.register-form {
+  width: 50%;
+}
+.form-group {
+  position: relative;
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+.image {
+  width: 50%;
+}
+input {
+  width: 100%;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #999;
+  padding: 6px 30px;
+  box-sizing: border-box;
+  padding-bottom: 10px;
+  text-rendering: auto;
+  color: -internal-light-dark(black, white);
+  line-height: normal;
+  text-transform: none;
+  text-indent: 10px;
+  text-shadow: none;
+  cursor: text;
+  background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+  margin: 0em;
+  text-align: start;
+}
+input,
+select,
+textarea {
+  outline: none;
+}
+input[type="email" i] {
+  padding: 1px 2px;
+  padding-bottom: 10px;
+}
+.name {
+  padding-left: 0px;
+  padding-bottom: 10px;
+}
+
+div {
+  display: block;
+}
+input[type="password" i] {
+  -webkit-text-security: disc !important;
+  padding: 1px 2px;
+  padding-bottom: 10px;
+}
+input[type="checkbox" i] {
+  background-color: initial;
+  cursor: default;
+  appearance: auto;
+  box-sizing: border-box;
+}
+input[type="checkbox"]:not(old) + label {
+  display: inline-block;
+  line-height: 1.5em;
+  margin-top: 6px;
+}
+.agree-term {
+  display: inline-block;
+  width: auto;
+}
+.label-agree-term {
+  position: relative;
+  top: 0%;
+  transform: translateY(0);
+}
+.term-service {
+  font-size: 13px;
+  color: #222;
+}
+a:-webkit-any-link {
+  color: -webkit-link;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.form-group:last-child {
+  margin-bottom: 0;
+}
+.form-group {
+  position: relative;
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+display-flex,
+.display-flex,
+.display-flex-center,
+.signup-content,
+.signin-content,
+.social-login,
+.socials {
+  display: flex;
+  display: -webkit-flex;
+}
+div {
+  display: block;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+input[type="checkbox"]:not(old) + label > span {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  margin-right: 15px;
+  margin-bottom: 3px;
+  border: 1px solid #999;
+  border-radius: 2px;
+  background: #fff;
+  vertical-align: bottom;
+}
+.button {
+  text-align: center;
+}

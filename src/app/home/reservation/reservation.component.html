@@ -1,0 +1,101 @@
+<section
+  id="gtco-reservation"
+  class="bg-fixed bg-white section-padding overlay"
+  style="background-image: url(../../../assets/img/reservation-bg.jpg)"
+  data-stellar-background-ratio="0.8"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="section-content bg-white p-5 shadow">
+          <div class="heading-section text-center">
+            <span class="subheading"> Reservation </span>
+            <h2>Book Now</h2>
+          </div>
+          <form method="post" name="contact-us" action="">
+            <div class="row p-4">
+              <div class="col-md-12 form-group">
+                <div
+                  class="input-group date"
+                  id="datetimepicker4"
+                  data-target-input="nearest"
+                >
+                  <input
+                    type="date"
+                    class="form-control datetimepicker-input"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6 form-group m-0">
+                <label for="start">Time in</label>
+              </div>
+              <div class="col-md-6 form-group m-0">
+                <label for="end">Time aout</label>
+              </div>
+              <div class="col-md-6 form-group">
+                <div
+                  class="input-group date"
+                  id="datetimepicker3"
+                  data-target-input="nearest"
+                >
+                  <input
+                    type="time"
+                    class="form-control datetimepicker-input"
+                    id="start"
+                    placeholder="start time"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-6 form-group">
+                <div
+                  class="input-group date"
+                  id="datetimepicker3"
+                  data-target-input="nearest"
+                >
+                  <input
+                    type="time"
+                    class="form-control datetimepicker-input"
+                    id="end"
+                    placeholder="Time"
+                  />
+                </div>
+              </div>
+              <div class="col-md-12 form-group">
+                <select
+                  name="person"
+                  class="form-control custom-select"
+                  id="person"
+                >
+                  <option selected disabled>person</option>
+                  <option value="1">2 Persons</option>
+                  <option value="2">4 Persons</option>
+                  <option value="3">6 Persons</option>
+                  <option value="4">8 Persons</option>
+                </select>
+              </div>
+              <div *ngIf="auth" class="col-md-12 text-center mt-5">
+                <button
+                  class="btn btn-primary btn-shadow btn-lg "
+                  type="submit"
+                  name="submit"
+                >
+                  reserve now
+                </button>
+              </div>
+              <div *ngIf="!auth" class="col-md-12 text-center mt-5">
+                <button
+                  class="btn btn-primary btn-shadow btn-lg "
+                  type="submit"
+                  name="submit"
+                >
+                  Register
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
