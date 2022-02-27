@@ -17,7 +17,7 @@ Route::controller(CategoryController::class)->prefix('cat')->group(function (){
 
     Route::get('/add','create');
     Route::post('/store','store')->name('StoreCategory');
-    Route::get('/show' ,'show')->name('ShowCategories');
+    Route::get('/show' ,'show')->middleware('admin')->name('ShowCategories');
 });
 
 

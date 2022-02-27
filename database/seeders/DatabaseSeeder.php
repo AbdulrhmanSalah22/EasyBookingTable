@@ -14,14 +14,19 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $products = factory('App\Product', 25)->create();
 
-        $faker = Faker::create();
-        $imageUrl = $faker->imageUrl(640,480, null, false);
+        \App\Models\Order::factory(3)->create();
 
-        foreach($products as $product){
-            $gift->addMediaFromUrl($imageUrl)->toMediaCollection('images');
-        }
+
+        //*************************************************** */
+        // $products = factory('App\Product', 25)->create();
+
+        // $faker = Faker::create();
+        // $imageUrl = $faker->imageUrl(640,480, null, false);
+
+        // foreach($products as $product){
+        //     $gift->addMediaFromUrl($imageUrl)->toMediaCollection('images');
+        // }
 
     }
 }

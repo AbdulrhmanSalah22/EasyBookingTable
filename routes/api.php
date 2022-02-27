@@ -29,6 +29,7 @@ Route::controller(ApiController::class)->group(function (){
     Route::get('get-fav/{user_id}','getUserFavorites');
     Route::get('get-option/{meal_id}','getMealOptions');
     Route::get('get-reservation/{user_id}','getUserReservation');
+    Route::post('get-table','searchForTableStatus');
 
 });
 
