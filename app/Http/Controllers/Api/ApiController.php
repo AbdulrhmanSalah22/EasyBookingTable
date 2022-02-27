@@ -18,8 +18,9 @@ class ApiController extends Controller
     public function getMeals(){
 //         $meals = Meal::with('category')->get();
         $meals = Meal::all();
-
-//        $meals = Meal::first()->getMedia();
+//       $meals = Meal::find(4);
+//        dd( $meals -> getFirstMediaUrl() ) ;
+//        $meals = Meal::first()->getFirstMediaUrl();
 //        dd($meals) ;
         return response()->json($meals);
     }

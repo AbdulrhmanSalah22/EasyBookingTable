@@ -69,5 +69,17 @@
       <i class="fas fa-th-large"></i>
     </a>
   </li>
+        @if(\Illuminate\Support\Facades\Auth::user())
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="btn btn-outline-light border-0">
+                    <a class="nav-link">
+                        <i class="fad fa-arrow-circle-right"></i>
+                        <p class="d-inline">Logout</p>
+                    </a>
+                </button>
+            </form>
+        @endif
+
 </ul>
 </nav>

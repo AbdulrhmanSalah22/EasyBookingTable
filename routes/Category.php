@@ -15,9 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 Route::controller(CategoryController::class)->prefix('cat')->group(function (){
 
-    Route::get('/add','create');
+    Route::get('/add','create')->name('CreateCategory');
     Route::post('/store','store')->name('StoreCategory');
     Route::get('/show' ,'show')->name('ShowCategories');
+    Route::delete('/delete/{id}','delete')->name('DeleteCategory');
+    Route::get('/edit/{id}','edit')->name('EditCategory');
+    Route::post('/update/{id}','update')->name('UpdateCategory');
+    Route::get('/cat-meals/{id}','showMeals')->name('Cat_Meals');
 });
 
 
