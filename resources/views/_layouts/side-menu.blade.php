@@ -47,6 +47,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="  {{route('ShowOptions')}}" class="nav-link">
+                <i class="nav-icon fad fa-arrow-circle-right"></i>
+                <p>
+                    Meal Options
+                </p>
+            </a>
+        </li>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
