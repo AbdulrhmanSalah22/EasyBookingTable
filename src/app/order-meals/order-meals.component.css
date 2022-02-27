@@ -1,0 +1,30 @@
+.m{
+    padding-top: 160px;
+}
+.card {
+    border: 0;
+      
+  }
+  img {
+    border-radius: 4%;
+    height: 50vh;
+  }
+  .divCard{   
+    border-radius: 5%;   
+    margin-bottom: 40px;   
+      border-radius: 5%;
+      border: 1px solid #9794908a;
+      padding: 12px;
+      margin-right: 65px;
+  }
+  .card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+  }
+ .body{
+  border: 1px solid;  
+  padding: 50px;
+  text-align: center;
+  border-color: #52555530;
+ } 
+ 

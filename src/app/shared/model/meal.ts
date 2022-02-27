@@ -6,4 +6,6 @@ export interface Meal {
     des:string,
     cat_id:number,
     category?:any
+    count:number,
+    // option?:string[],
 }

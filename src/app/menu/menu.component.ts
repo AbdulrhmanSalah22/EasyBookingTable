@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../shared/model/category';
-import { Meal } from '../shared/model/meal';
 import { CategoryService } from '../shared/service/category.service';
 import { MealService } from '../shared/service/meal.service';
 

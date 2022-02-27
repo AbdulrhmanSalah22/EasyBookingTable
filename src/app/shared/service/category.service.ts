@@ -8,15 +8,17 @@ import { MealService } from './meal.service';
   providedIn: 'root',
 })
 export class CategoryService {
-  cat!:any
-  constructor(private Http:HttpClient,private MealService:MealService) {}
+  cat!: any;
+  constructor(private Http: HttpClient, private MealService: MealService) {}
 
   getAll() {
-  return this.Http.get<Category>('http://localhost:8000/api/category',{
-    headers:new HttpHeaders({token:'hello'})
-  })
-   }
-   getById() {
-    return this.Http.get<Category>(`http://localhost:8000/api/category/${this.MealService.SelectedMeal.cat_id}`)
+    return this.Http.get<Category>('http://localhost:8000/api/category', {
+      headers: new HttpHeaders({ token: 'hello' }),
+    });
+  }
+  getById() {
+    return this.Http.get<Category>(
+      `http://localhost:8000/api/category/${this.MealService.SelectedMeal.cat_id}`
+    );
   }
 }

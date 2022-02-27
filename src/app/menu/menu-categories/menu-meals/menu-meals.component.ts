@@ -18,4 +18,8 @@ export class MenuMealsComponent implements OnInit {
     this.MealService.display(meal)
   }
 
+  addorder(mymeal:any){
+    this.MealService.addorder(mymeal);
+    console.log(mymeal)
+  }
 }

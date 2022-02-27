@@ -4,32 +4,35 @@
       <h2 class="form-title">Sign In</h2>
       <div class="signup-content">
         <div class="row signup-form">
-          <form class="register-form col-lg-6 .col-md-6 col-12">
+          <form class="col-lg-6 .col-md-6 col-12" #signin=ngForm [formGroup]="loginForm" (ngSubmit)="onSubmit(signin)" >
             <div class="form-group col-12">
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Your Email"
-              />
+              <input type="email" name="email" id="email" placeholder="Your Email"
+                [ngClass]="{'invalid': loginForm.get('email')!.invalid && loginForm.get('email')!.touched}"
+                formControlName="email" email="true" />
+
+              <div
+                *ngIf="loginForm.get('email')!.invalid && loginForm.get('email')!.touched && loginForm.get('email')!.errors?.['required'] ">
+                <span style="color: red;">*This field is required </span>
+              </div>
+
+              <div *ngIf="loginForm.get('email')!.errors?.['email'] ">
+                <span style="color: red;">* Email Not Valid </span>
+              </div>
             </div>
 
             <div class="form-group col-12">
-              <input
-                type="password"
-                name="pass"
-                id="pass"
-                placeholder="Password"
-              />
+              <input type="password" name="password" id="pass" placeholder="Password"
+                [ngClass]="{'invalid': loginForm.get('password')!.invalid && loginForm.get('password')!.touched}"  formControlName="password"/>
+
+                <div *ngIf="loginForm.get('password')!.invalid && loginForm.get('password')!.touched && loginForm.get('password')!.errors?.['required'] ">
+                  <span style="color: red;">*This field is required </span>
+                </div>
+
             </div>
+
+
             <div class="form-group form-button col-12">
-              <input
-                type="submit"
-                name="signup"
-                id="signup"
-                class="btn btn-primary button"
-                value="Login"
-              />
+              <input type="submit" name="signup" id="signup" class="btn btn-primary button" value="Login" [disabled]="signin.invalid" />
             </div>
           </form>
           <div class="col-lg-6 .col-md-6 col-sm-12 image">
@@ -39,4 +42,4 @@
       </div>
     </div>
   </section>
-</div>
+

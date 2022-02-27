@@ -18,6 +18,7 @@ export class SpecialDishesComponent implements OnInit {
       console.log(this.SpecialMeal)
       });
       this.SpecialMeal.slice(0,2)
+
   }
 
 }

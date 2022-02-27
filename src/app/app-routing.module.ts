@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { HomeComponent } from './home/home.component';
@@ -7,6 +7,8 @@ import { MealPageComponent } from './meal-page/meal-page.component';
 import { MenuComponent } from './menu/menu.component';
 import { RegisterationComponent } from './registeration/registeration.component';
 import { TeamPageComponent } from './team-page/team-page.component';
+import { OrderMealsComponent } from './order-meals/order-meals.component';
+
 
 const routes: Routes = [
   {path:"home",component:HomeComponent},
@@ -17,10 +19,8 @@ const routes: Routes = [
   {path:"signup",component:RegisterationComponent},
   {path:"signin",component:LoginComponent},
   {path:"menu/:name",component:MealPageComponent},
-
+  {path:"order",component:OrderMealsComponent},
   {path:"**",component:HomeComponent},
-
-
 ];
 const routerOptions:ExtraOptions={
   scrollPositionRestoration:'enabled',

@@ -12,6 +12,6 @@
   <img src="{{ meal.img }}" class="card-img-top" alt="..." />
   <div class="d-flex justify-content-center" id="fav">
     <span><i class="fa-solid fa-heart" id="love"></i></span>
-    <span><i class="fa-solid fa-cart-shopping" id="cart"></i></span>
+    <span><i class="fa-solid fa-cart-shopping" id="cart" (click)="addorder(meal)"></i></span>
   </div>
 </div>

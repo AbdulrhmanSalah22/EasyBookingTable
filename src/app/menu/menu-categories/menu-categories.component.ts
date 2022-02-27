@@ -1,7 +1,6 @@
 import { Component, OnInit ,Input} from '@angular/core';
 import { Category } from 'src/app/shared/model/category';
 import { Meal } from 'src/app/shared/model/meal';
-import { CategoryService } from 'src/app/shared/service/category.service';
 import { MealService } from 'src/app/shared/service/meal.service';
 
 @Component({
@@ -21,6 +20,6 @@ export class MenuCategoriesComponent implements OnInit {
  return meal.cat_id==this.category.id
 })      
 });
-  }
+}
 
 }

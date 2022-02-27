@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from '../shared/service/category.service';
 
 @Component({
   selector: 'app-home',

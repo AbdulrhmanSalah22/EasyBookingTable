@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/shared/service/category.service';
 
+
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
@@ -13,6 +14,7 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit(): void {
     
+
   }
 
 }

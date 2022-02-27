@@ -16,8 +16,8 @@ export class CategoriesComponent implements OnInit {
     this.categories=categories
     });
  
-
   }
+
 
 
 }

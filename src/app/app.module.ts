@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './Layouts/header/header.component';
@@ -19,10 +18,12 @@ import { ReservationComponent } from './home/reservation/reservation.component';
 import { TeamPageComponent } from './team-page/team-page.component';
 import { RegisterationComponent } from './registeration/registeration.component';
 import { LoginComponent } from './login/login.component';
-import {HttpClientModule} from '@angular/common/http'
-import { FormsModule } from '@angular/forms';
 import { MealPageComponent } from './meal-page/meal-page.component';
 import { SelectedMealComponent } from './meal-page/selected-meal/selected-meal.component';
+import { MealDetailsComponent } from './menu/menu-categories/menu-meals/meal-details/meal-details.component';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OrderMealsComponent } from './order-meals/order-meals.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -45,8 +46,15 @@ import { SelectedMealComponent } from './meal-page/selected-meal/selected-meal.c
     LoginComponent,
     MealPageComponent,
     SelectedMealComponent,
+    OrderMealsComponent
   ],
-  imports: [BrowserModule, AppRoutingModule,HttpClientModule,FormsModule],
+  imports:
+   [BrowserModule,
+     AppRoutingModule,
+     HttpClientModule,
+     FormsModule,
+     ReactiveFormsModule,
+    ],
   providers: [],
   bootstrap: [AppComponent],
 })
