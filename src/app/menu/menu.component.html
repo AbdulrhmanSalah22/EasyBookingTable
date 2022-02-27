@@ -1,0 +1,20 @@
+<section id="gtco-menu" class="section-padding">
+    <div class="container">
+        <div class="section-content">
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <div class="heading-section text-center">
+                        <!-- <span class="subheading">
+                            Specialties
+                        </span> -->
+                        <h2>
+                            Our Menu
+                        </h2>
+                        
+                    </div>  
+                </div>
+            </div>
+            <app-menu-categories *ngFor="let cat of categories" [category]="cat"></app-menu-categories>
+        </div>
+    </div>
+</section>

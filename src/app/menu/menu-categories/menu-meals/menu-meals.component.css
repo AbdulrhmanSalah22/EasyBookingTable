@@ -1,0 +1,28 @@
+.card {
+  border: 0;
+    
+}
+img {
+  border-radius: 4%;
+  height: 50vh;
+}
+/* media query n3mlo  */
+i{
+    font-size: 40px;
+    color: #595656;
+}
+#love:hover{
+  color: #bd4646;
+}
+#cart:hover{
+  color: #1414decf
+}
+#fav
+{
+    border: 1px solid black;
+    border-radius: 30px;
+    width: 30%;
+    padding: 10px 0px;
+    margin-top: 77px;
+    margin: 10px auto;
+}

@@ -1,0 +1,26 @@
+nav{
+    position: fixed;
+    width: 96.5%;
+    z-index: 100;
+    bottom: px;
+    background-color: white;
+    top: 0;
+}
+.shoping{
+    font-size: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.ciircle{
+        width: 15px;
+        background-color: red;        
+        height: 15px;
+        border-radius: 100%;
+        position: absolute;
+        top: -7px;
+        left: 10px;
+        text-align: center;
+        color: white;
+        font-size: 10px;
+        padding: 2px;
+}
