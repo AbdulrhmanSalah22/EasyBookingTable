@@ -4,179 +4,123 @@
       <div class="rwo">
         <h2 class="form-title">Sign UP</h2>
       </div>
-        <div class="row signup-form d-flex justify-content-between">
-          <!-- register-form -->
-          <form
-            class="col-lg-6 .col-md-6 col-sm-12 col-12"
-            #signup="ngForm"
-            [formGroup]="registeForm"
-            (ngSubmit)="onSubmit(signup)"
-          >
-            <div class="form-group col-12">
-              <div class="d-flex field-container">
-                <i class="fa-solid fa-user"></i>
-                <input
-                  type="text"
-                  [ngClass]="{
+      <div class="row signup-form d-flex justify-content-between">
+        <!-- register-form -->
+        <form class="col-lg-6 .col-md-6 col-sm-12 col-12" #signup="ngForm" [formGroup]="registeForm"
+          (ngSubmit)="onSubmit(signup)">
+          <div class="form-group col-12">
+            <div class="d-flex field-container">
+              <i class="fa-solid fa-user"></i>
+              <input type="text" [ngClass]="{
                     invalid:
                       registeForm.get('name')!.invalid &&
                       registeForm.get('name')!.touched
-                  }"
-                  name="name"
-                  id="name"
-                  placeholder="Your Name"
-                  class="name"
-                  #textname
-                  formControlName="name"
-                />
-              </div>
-              <div
-                *ngIf="registeForm.get('name')?.invalid && registeForm.get('name')!.touched && registeForm.get('name')!.errors?.['required'] "
-              >
-                <span style="color: red">* This field is require </span>
-              </div>
-
-              <div *ngIf="registeForm.get('name')?.errors?.['minlength'] ">
-                <span style="color: red">* must be more two character </span>
-              </div>
-              <div *ngIf="registeForm.get('name')?.errors?.['pattern'] ">
-                <span style="color: red">* Name must be characters </span>
-              </div>
+                  }" name="name" id="name" placeholder="Your Name" class="name" #textname formControlName="name" />
+            </div>
+            <div
+              *ngIf="registeForm.get('name')?.invalid && registeForm.get('name')!.touched && registeForm.get('name')!.errors?.['required'] ">
+              <span style="color: red">* This field is require </span>
             </div>
 
-            <div class="form-group col-12">
-              <div class="d-flex field-container">
-                <i class="fa-solid fa-envelope"></i>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Your Email"
-                  [ngClass]="{
+            <div *ngIf="registeForm.get('name')?.errors?.['minlength'] ">
+              <span style="color: red">* must be more two character </span>
+            </div>
+            <div *ngIf="registeForm.get('name')?.errors?.['pattern'] ">
+              <span style="color: red">* Name must be characters </span>
+            </div>
+          </div>
+
+          <div class="form-group col-12">
+            <div class="d-flex field-container">
+              <i class="fa-solid fa-envelope"></i>
+              <input type="email" name="email" id="email" placeholder="Your Email" [ngClass]="{
                     invalid:
                       registeForm.get('email')?.invalid &&
                       registeForm.get('email')!.touched
-                  }"
-                  formControlName="email"
-                  email="true"
-                />
-              </div>
-              <div
-                *ngIf="registeForm.get('email')?.invalid && registeForm.get('email')!.touched && registeForm.get('email')!.errors?.['required'] "
-              >
-                <span style="color: red">*This field is required </span>
-              </div>
-
-              <div *ngIf="registeForm.get('email')?.errors?.['email'] ">
-                <span style="color: red">* Email Not Valid </span>
-              </div>
+                  }" formControlName="email" email="true" />
+            </div>
+            <div
+              *ngIf="registeForm.get('email')?.invalid && registeForm.get('email')!.touched && registeForm.get('email')!.errors?.['required'] ">
+              <span style="color: red">*This field is required </span>
             </div>
 
-            <div class="form-group col-12">
-              <div class="d-flex field-container">
-                <i class="fa-solid fa-phone"></i>
-                <input
-                  type="text"
-                  name="phone"
-                  id="phone"
-                  placeholder="Enter Your Phone Number"
-                  formControlName="phone"
-                  style="padding-left: 0"
-                />
-              </div>
+            <div *ngIf="registeForm.get('email')?.errors?.['email'] ">
+              <span style="color: red">* Email Not Valid </span>
+            </div>
+          </div>
 
-              <div
-                *ngIf="registeForm.get('phone')?.invalid && registeForm.get('phone')!.touched && registeForm.get('phone')!.errors?.['required'] "
-              >
-                <span style="color: red">*This field is required </span>
-              </div>
-
-              <div *ngIf="registeForm.get('phone')?.errors?.['pattern'] ">
-                <span style="color: red">* phone Not Valid </span>
-              </div>
+          <div class="form-group col-12">
+            <div class="d-flex field-container">
+              <i class="fa-solid fa-phone"></i>
+              <input type="text" name="phone" id="phone" placeholder="Enter Your Phone Number" formControlName="phone"
+                style="padding-left: 0" />
             </div>
 
-            <div class="form-group col-12">
-              <div class="d-flex field-container">
-                <i class="fa-solid fa-lock"></i>
-                <input
-                  type="password"
-                  name="password"
-                  id="pass"
-                  placeholder="Enter Password"
-                  [ngClass]="{
+            <div
+              *ngIf="registeForm.get('phone')?.invalid && registeForm.get('phone')!.touched && registeForm.get('phone')!.errors?.['required'] ">
+              <span style="color: red">*This field is required </span>
+            </div>
+
+            <div *ngIf="registeForm.get('phone')?.errors?.['pattern'] ">
+              <span style="color: red">* phone Not Valid </span>
+            </div>
+          </div>
+
+          <div class="form-group col-12">
+            <div class="d-flex field-container">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" name="password" id="pass" placeholder="Enter Password" [ngClass]="{
                     invalid:
                       registeForm.get('password')?.invalid &&
                       registeForm.get('password')!.touched
-                  }"
-                  #pass
-                  formControlName="password"
-                />
-              </div>
-              <div
-                *ngIf="registeForm.get('password')?.invalid && registeForm.get('password')!.touched && registeForm.get('password')!.errors?.['required'] "
-              >
-                <span style="color: red">*This field is required </span>
-              </div>
+                  }" #pass formControlName="password" />
             </div>
+            <div
+              *ngIf="registeForm.get('password')?.invalid && registeForm.get('password')!.touched && registeForm.get('password')!.errors?.['required'] ">
+              <span style="color: red">*This field is required </span>
+            </div>
+          </div>
 
-            <div class="form-group col-12">
-              <div class="d-flex field-container">
-                <i class="fa-solid fa-lock"></i>
-                <input
-                  type="password"
-                  name="ConPass"
-                  id="re_pass"
-                  placeholder="Repeat your password"
-                  [ngClass]="{
+          <div class="form-group col-12">
+            <div class="d-flex field-container">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" name="ConPass" id="re_pass" placeholder="Repeat your password" [ngClass]="{
                     invalid:
                       registeForm.get('ConPass')!.invalid &&
                       registeForm.get('ConPass')!.touched
-                  }"
-                  formControlName="ConPass"
-                />
-              </div>
+                  }" formControlName="ConPass" />
+            </div>
 
-              <div
-                *ngIf="registeForm.get('ConPass')!.invalid && registeForm.get('ConPass')!.touched && registeForm.get('ConPass')!.errors?.['required'] "
-              >
-                <span style="color: red">*This field is required </span>
-              </div>
-              <div
-                *ngIf="
+            <div
+              *ngIf="registeForm.get('ConPass')!.invalid && registeForm.get('ConPass')!.touched && registeForm.get('ConPass')!.errors?.['required'] ">
+              <span style="color: red">*This field is required </span>
+            </div>
+            <div *ngIf="
                   !(
                     registeForm.get('password')!.value ==
                     registeForm.get('ConPass')!.value
                   ) &&
                   registeForm.get('ConPass')!.valid &&
                   registeForm.get('ConPass')!.touched
-                "
-              >
-                <span style="color: red">*This field is misMatch </span>
-              </div>
+                ">
+              <span style="color: red">*This field is misMatch </span>
             </div>
+          </div>
 
-            <div class="form-group form-button col-12">
-              <div style='border:0px'class="d-flex field-container">
-                <input
-                  type="submit"
-                  name="signup"
-                  id="signup"
-                  class="btn btn-primary button"
-                  value="Register"
-                  [disabled]="
+          <div class="form-group form-button col-12">
+            <div style='border:0px' class="d-flex field-container">
+              <input type="submit" name="signup" id="signup" class="btn btn-primary button" value="Register" [disabled]="
                     signup.invalid ||
                     registeForm.get('password')!.value !=
                       registeForm.get('ConPass')!.value
-                  "
-                />
-              </div>
+                  " />
             </div>
-          </form>
-          <div class="col-lg-6 .col-md-6 col-sm-12 col-12 image">
-            <img src="../../assets/img/signup.jpg" alt="sing up image" />
           </div>
+        </form>
+        <div class="col-lg-6 .col-md-6 col-sm-12 col-12 image">
+          <img src="../../assets/img/signup.jpg" alt="sing up image" />
         </div>
+      </div>
     </div>
   </section>
 </div>

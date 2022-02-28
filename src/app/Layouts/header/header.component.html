@@ -37,6 +37,9 @@
           <li class="nav-item active">
             <a class="nav-link" routerLink="/menu">Menu</a>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" id="love" routerLink="/favourite">favourites</a>
+          </li>
         </div>
       </ul>
 
@@ -59,21 +62,23 @@
           <li class="nav-item dropdown">
             <a class="nav-link" routerLink="/signup">Sign Up</a>
           </li>
-           <li class="nav-item dropdown">
+           <!-- <li class="nav-item dropdown">
             <span>
               <i class="fa-solid fa-cart-shopping shoping" id="cart" routerLink="/order" style="position: relative;">
               <div class="ciircle">{{number()}}</div>
             </i></span>
+          </li> -->
+          <li class="nav-item dropdown">
+            <a class="nav-link" routerLink="/order" >make order</a>
           </li>
+
         </div>
         <li class="nav-item">
           <a id="side-search-open" class="nav-link" href="#">
             <span class="lnr lnr-magnifier"></span>
           </a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" id="love" routerLink="/favourite">favourites</a>
-        </li>
+       
       </ul>
     </div>
   </div>

@@ -25,21 +25,21 @@ export class OrderMealsComponent implements OnInit {
   }
 
   delateMeal(order: Meal) {
-    let index = this.listOrder!.findIndex((ele) => ele.id == order.id);
-    if (this.listOrder![index].count == 1) {
-      this.listOrder!.splice(index, 1);
-    } else if (this.listOrder![index].count > 1) {
-      this.listOrder![index]!.count--;
-    }
-    if (this.listOrder.length == 0) {
-      this.display = true;
-    }
+    // let index = this.uniqueOrder!.findIndex((ele) => ele.id == order.id);
+    // // if (this.listOrder![index].count == 1) {
+    //   this.uniqueOrder!.splice(index, 1);
+    // // } else if (this.listOrder![index].count > 1) {
+    // //   this.listOrder![index]!.count--;
+    // // }
+    // if (this.uniqueOrder.length == 0) {
+    //   this.display = true;
+    // }
   }
 
   checkout() {
     let total = 0;
-    for (let i = 0; i < this.listOrder.length; i++) {
-      total = total + this.listOrder[i].price;
+    for (let i = 0; i < this.uniqueOrder.length; i++) {
+      total = total + this.uniqueOrder[i].price*this.uniqueOrder[i].count;
     }
     return total;
   }
@@ -48,9 +48,10 @@ export class OrderMealsComponent implements OnInit {
   }
   decQty(meal: Meal) {
     if (meal.count == 1) {
-      this.uniqueOrder.splice(
-      this.uniqueOrder.findIndex((element) => element.id == meal.id),1
-      );
+      // this.uniqueOrder.splice(
+      // this.uniqueOrder.findIndex((element) => element.id == meal.id),1
+      // );
+      meal.count=1;
     } else {
       meal.count--;
     }

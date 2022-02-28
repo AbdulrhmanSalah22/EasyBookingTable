@@ -1,7 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-// import {confirmPassword1} from '../shared/confirmPassword'
 import { MealService } from '../shared/service/meal.service';
 @Component({
   selector: 'app-registeration',

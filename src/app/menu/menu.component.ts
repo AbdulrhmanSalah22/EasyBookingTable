@@ -12,9 +12,10 @@ categories!:any
   constructor(private CategoryService:CategoryService,private MealService:MealService) { }
 
   ngOnInit(): void {
-    this.CategoryService.getAll().subscribe(categories=>{
-      this.categories=categories
-      });
+    // this.CategoryService.getAll().subscribe(categories=>{
+    //   this.categories=categories
+    //   });
+    this.categories=this.CategoryService.getAll();
   }
 
 }

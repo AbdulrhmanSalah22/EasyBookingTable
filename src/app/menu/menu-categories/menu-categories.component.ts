@@ -14,12 +14,17 @@ export class MenuCategoriesComponent implements OnInit {
   constructor(private MealService:MealService) { }
 
   ngOnInit(): void {
-    this.MealService.getAll().subscribe((meals)=>{
-      this.meals=meals
-      this.meals=this.meals.filter((meal:Meal)=>{
- return meal.cat_id==this.category.id
-})      
-});
+//     this.MealService.getAll().subscribe((meals)=>{
+//       this.meals=meals
+//       this.meals=this.meals.filter((meal:Meal)=>{
+//  return meal.cat_id==this.category.id
+// })      
+// });
+this.meals=this.MealService.getAll();
+console.log(this.meals);
+this.meals=this.meals.filter((meal:Meal)=>{
+   return meal.cat_id==this.category.id;
+})
+  
 }
-
 }

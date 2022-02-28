@@ -13,11 +13,12 @@ export class SpecialDishesComponent implements OnInit {
   constructor(private MealService:MealService) { }
 
   ngOnInit(): void {
-    this.MealService.getAll().subscribe(meals=>{
-      this.SpecialMeal=meals
-      console.log(this.SpecialMeal)
-      });
-      this.SpecialMeal.slice(0,2)
+    // this.MealService.getAll().subscribe(meals=>{
+    //   this.SpecialMeal=meals
+    //   console.log(this.SpecialMeal)
+    //   });
+    this.SpecialMeal=this.MealService.getAll();
+      // this.SpecialMeal.slice(0,2)
 
   }
 
