@@ -14,13 +14,13 @@
             <p class="py-2">
               {{ order.des }}
             </p>
-            <div>
-              <input type="radio" name="option" />
-              <label for="option1">Option1</label>
-            </div>
-            <div>
-              <input type="radio" name="option" />
-              <label for="radio">Option1</label>
+            <div *ngFor="let option of order.options">
+              <input
+                (click)="Option(order, option.id)"
+                type="radio"
+                name="{{ order.id }}"
+              />
+              <label for="radio">{{ option.name }}</label>
             </div>
             <h4>${{ order.price }}</h4>
             <div class="d-flex justify-content-between">
@@ -39,17 +39,15 @@
         </div>
       </div>
     </div>
-    <!-- <div class="container">
+    <div class="container">
       <div class="row justify-content-center" *ngIf="!display">
         <div class="col-5 d-flex justify-content-center">
-            <h5 class="card-title">Total</h5>
-            <p class="card-text">{{ checkout() }}</p>
-            <a class="btn btn-primary" (click)="makeorder()">Checkout</a>
+          <h5 class="card-title">Total</h5>
+          <p class="card-text">{{ CalcPrice() }}</p>
+          <a class="btn btn-primary" (click)="CalcPrice()">Checkout</a>
         </div>
-       
       </div>
-    </div> -->
-   
+    </div>
   </div>
 
   <div *ngIf="display">
@@ -67,3 +65,4 @@
     </div>
   </div>
 </div>
+<!-- <button (click)="CalcPrice()">calc</button> -->

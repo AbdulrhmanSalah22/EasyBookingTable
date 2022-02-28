@@ -7,5 +7,6 @@ export interface Meal {
     cat_id:number,
     category?:any
     count:number,
-    // option?:string[],
+    options?:any,
+    selectedOption?:number
 }

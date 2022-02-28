@@ -29,12 +29,12 @@
  } 
  .special{
   position: relative;
-  font-size: 60px;
+  font-size: 40px;
   color: #f34949;
     /* font-weight: 500   !important;   */
 }
 .orderContainer{
-  height: 30vh;
+  height: 40vh;
 }
 .counter{
   border: 0;

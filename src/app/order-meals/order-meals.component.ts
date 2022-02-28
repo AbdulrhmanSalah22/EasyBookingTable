@@ -9,7 +9,7 @@ import { MealService } from '../shared/service/meal.service';
 })
 export class OrderMealsComponent implements OnInit {
   constructor(private orderservice: MealService) {}
-
+price!:number
   display = true;
   listOrder!: Array<Meal>;
   uniqueOrder!: Meal[];
@@ -36,15 +36,9 @@ export class OrderMealsComponent implements OnInit {
     }
   }
 
-  checkout() {
-    let total = 0;
-    for (let i = 0; i < this.listOrder.length; i++) {
-      total = total + this.listOrder[i].price;
-    }
-    return total;
-  }
   addQty(meal: Meal) {
-    meal.count++;
+    // meal.count++;
+    this.uniqueOrder.push(meal)
   }
   decQty(meal: Meal) {
     if (meal.count == 1) {
@@ -52,14 +46,19 @@ export class OrderMealsComponent implements OnInit {
       this.uniqueOrder.findIndex((element) => element.id == meal.id),1
       );
     } else {
-      meal.count--;
+      meal.count--
     }
   }
-  makeorder() {
-    // console.log(this.listOrder);
-    // for(let i=0;i<this.listOrder.length;i++){
-    //     this.arrIDS[i]=(this.listOrder[i].id);
-    // }
-    // console.log(this.arrIDS);
+  Option(meal:any,id:any){
+    meal.selectedOption=id
+  } 
+  CalcPrice(){
+    this.price=0
+    this.uniqueOrder.forEach(meal=>{
+     this.price=this.price+(meal.count*meal.price)
+    })
+    console.log(this.uniqueOrder)
+    return this.price
   }
+ 
 }
