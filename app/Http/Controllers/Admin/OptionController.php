@@ -8,6 +8,8 @@ use App\Http\Requests\Admin\OptionRequest;
 use App\Models\Meal;
 use App\Models\Meal_Options;
 use App\Models\Option;
+use App\Models\Reservation;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 
@@ -63,9 +65,30 @@ class OptionController extends Controller
 
     // try to get options of each meal to show it it meal dataTable
     public function s(){
-       $x =  Meal::with('option')->get();
+      $res =   new Reservation();
+    //    return Reservation::with('order_meals')->get();
+    //  dd($res -> getmeal() )   ;
 
-       return $x ; 
+   return $res -> getmeal();
+    //    dd($x );
+    // foreach($x as $s){
+
+    //     echo $s;
+    //    echo '<br>';
+    // }
+    //    return $y ; 
+    }
+
+
+    public function join(){
+        $res = DB::table('reservations')
+        ->join('order_meals', 'reservations.order_id', '=', 'order_meals.order_id')
+        ->join('meals', 'order_meals.meal_id', '=', 'meals.id')
+        ->join('users', 'reservations.user_id', '=', 'users.id')
+        ->select( 'meals.name' , 'users.name')
+        ->get();
+
+        dd($res)  ;
     }
     
 

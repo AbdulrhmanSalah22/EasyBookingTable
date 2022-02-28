@@ -14,7 +14,8 @@ class CreateMealOptionsTable extends Migration
     public function up()
     {
         Schema::create('meal_options', function (Blueprint $table) {
-            $table->id();
+            // Add two foreign keys as a primary key
+            // $table->id();
             $table->unsignedBigInteger('meal_id');
             $table->unsignedBigInteger('option_id');
             $table->foreign('meal_id')
@@ -27,6 +28,7 @@ class CreateMealOptionsTable extends Migration
                 ->on('options')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            $table->primary(['meal_id', 'option_id']);
             $table->timestamps();
         });
     }

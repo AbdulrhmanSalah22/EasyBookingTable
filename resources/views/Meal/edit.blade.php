@@ -26,9 +26,9 @@
                 @endforeach
             </select>
 
-{{--            @error('name')--}}
-{{--            <small class="form-text text-danger">{{$message}}</small>--}}
-{{--            @enderror--}}
+           {{-- @error('name')
+           <small class="form-text text-danger">{{$message}}</small>
+           @enderror --}}
             <label class="fs-3 my-2">Upload Meal Image :: </label>
             <input type="file" class="form-control" name="meal_img" >
         </div>

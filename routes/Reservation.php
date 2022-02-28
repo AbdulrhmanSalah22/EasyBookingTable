@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::controller(ReservationController::class)->prefix('reservation')->group(function (){
 
     Route::get('/show' ,'showReservations')->name('ShowReservations');
+    Route::get('/show-order/{id}' ,'showOrderDetails')->name('ShowOrderDetails');
 });
 
 

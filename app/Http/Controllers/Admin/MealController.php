@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Meal\MealRequest;
 use App\Models\Category;
 use App\Models\Meal;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class MealController extends Controller
         $cats = Category::all();
        return view('Meal.create',compact('cats'));
     }
-    public function store(Request $request){
+    public function store(MealRequest $request){
 //        return $request->all() ;
 //    $meal = new  Meal ;
 //    $meal -> name = $request -> name ;
@@ -32,7 +33,10 @@ class MealController extends Controller
     }
 
     public function show(){
-       $meals = Meal::with('category')->get();
+       $meals = Meal::with([
+        'category',
+        'option'
+       ])->get();
        return view('Meal.show',compact('meals'));
     }
 

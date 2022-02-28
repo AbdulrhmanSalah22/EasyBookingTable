@@ -46,21 +46,29 @@
                                     <th scope="col">Price</th>
                                     <th scope="col">Description</th>
                                     <th scope="col">Category</th>
-                                    {{-- <th scope="col">Options of meal</th> --}}
+                                    <th scope="col">Options of meal</th>
                                     <th scope="col">Image</th>
                                     <th scope="col">Actions</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($meals as $meal)
+                                   
+                                    @foreach ($meals as $meal)
                                     <tr>
                                         <th scope="row">{{ $meal -> id }}</th>
                                         <td>{{ $meal -> name }}</td>
                                         <td>{{ $meal -> price }}</td>
                                         <td>{{ $meal -> description }}</td>
                                         <td>{{ $meal -> category -> name }}</td>
-                                        {{-- <td>{{ $meal -> option -> name }}</td> --}}
+                                        <td>
+                                            @foreach ($meal -> option as $item) 
+                                                @if($item)
+                                                      {{ $item-> name  }},
+                                                @else No Option attached to this meal
+                                                @endif
+                                             @endforeach
+                                        </td>
 
                                         <td><img src="{{$meal->getFirstMediaUrl('meal_img')}}"  width="200px" height="80px" ></td>
                                         <td>
@@ -73,7 +81,7 @@
                                             </form>
                                         </td>
                                     </tr>
-                                @endforeach
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

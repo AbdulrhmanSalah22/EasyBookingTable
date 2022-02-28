@@ -49,13 +49,14 @@ class User extends Authenticatable
 
 
     // favorites table 
-    public function meal()
+    public function favoriteMeal()
     {
         return $this->belongsToMany(Meal::class , 'favourites' , 'user_id' , 'meal_id');
     }
 
 
     // option reservations 
+    //////// Why???
     public function order()
     {
         return $this->belongsToMany(Order::class , 'reservations' , 'user_id' , 'order_id');

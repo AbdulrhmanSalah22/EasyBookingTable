@@ -43,7 +43,6 @@
                                         <th scope="col">#</th>
                                         <th scope="col">Date</th>
                                         <th scope="col">Total Paid Price</th>
-                                        <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -52,13 +51,6 @@
                                             <th scope="row">{{ $order->id }}</th>
                                             <td>{{$order->date}}</td>
                                             <td>{{$order->total}} EGP</td>
-                                            <td>   
-                                                 <form method="post" action="" class="d-inline">
-                                                     @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger"> Delete </button> 
-                                             </form>  
-                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

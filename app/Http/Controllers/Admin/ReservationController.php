@@ -12,4 +12,14 @@ class ReservationController extends Controller
         $reservations = Reservation::all();
        return view('Reservation.show' , compact('reservations'));
     }
+
+    public function showOrderDetails(){
+         
+        return view('Reservation.orderData');
+    }
+
+    public function getOrderDetails(){
+         
+        
+    }
 }

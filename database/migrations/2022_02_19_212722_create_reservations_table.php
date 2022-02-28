@@ -14,7 +14,8 @@ class CreateReservationsTable extends Migration
     public function up()
     {
         Schema::create('reservations', function (Blueprint $table) {
-            $table->id();
+            // Add three foreign keys as a primary key
+            // $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
                 ->references('id')
@@ -36,6 +37,7 @@ class CreateReservationsTable extends Migration
             $table->string('comment');
             $table->dateTime('time_in');
             $table->dateTime('time_out');
+            $table->primary(['user_id', 'order_id' , 'table_id']);
             $table->timestamps();
         });
     }

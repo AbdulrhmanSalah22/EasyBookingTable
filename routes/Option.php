@@ -25,6 +25,7 @@ Route::controller(OptionController::class)->prefix('option')->group(function (){
     Route::post('/store-to-meal' ,'storeOptionsToMeal')->name('StoreMealOptions');
 
     Route::get('/try' ,'s')->name('a');
+    Route::get('/join' ,'join')->name('join');
 });
 
 
