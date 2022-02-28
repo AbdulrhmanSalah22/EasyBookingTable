@@ -66,7 +66,8 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="text-center mb-3">
-                        <a class="btn btn-primary" href="{{route('EditOption')}}"> Add New Option </a>
+                        <a class="btn btn-primary" href="{{route('CreateOptions')}}"> Add New Option </a>
+                        <a class="btn btn-info" href="{{route('AddMealOptions')}}"> Add options to meal </a>
                         </div>
                     </div>
                     <!-- /.card -->

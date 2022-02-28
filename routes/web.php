@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\User\ApiUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('img',[\App\Http\Controllers\Api\ApiController::class,'getmeals']);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';

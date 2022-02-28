@@ -53,22 +53,24 @@
                                             <td>{{ $cat->name }}</td>
                                             <td><img src="{{ $cat->getFirstMediaUrl('category_img') }}" width="200px"
                                                     height="80px"></td>
-                                            <td> <a class="btn btn-success" href="#"> Update 
-                                                </a>  ::  
+                                            <td> <a class="btn btn-success" href="{{route('EditCategory', $cat -> id)}}"> Edit
+                                                </a>  ::
                                                 {{-- <a class="btn btn-danger" href="#"> Delete </a> --}}
-                                                 {{-- /cat/edit/{{ $cat->id }}  --}}
-                                             
-                                                 <form method="post" action="#" class="d-inline">
-                                                     {{-- {{ route('deleteCategory', $cat->id) }}  --}}
+
+                                                 <form method="post" action="{{route('DeleteCategory', $cat->id) }}" class="d-inline">
                                                      @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger"> Delete </button> 
-                                             </form>  
+                                                    <button type="submit" class="btn btn-danger"> Delete </button>
+                                             </form> ::
+                                              <a class="btn btn-info" href="{{route('Cat_Meals', $cat->id )}}"> Show Meals </a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="text-center mb-3">
+                        <a href="{{route('CreateCategory')}}" class="btn btn-primary"> Create New Category </a>
                         </div>
                         <!-- /.card-body -->
                     </div>

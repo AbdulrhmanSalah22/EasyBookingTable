@@ -16,12 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 Route::controller(MealController::class)->prefix('meal')->group(function (){
 
-    Route::get('/add','create');
+    Route::get('/add','create')->name('CreateMeal');
     Route::post('/store','store')->name('StoreMeal');
     Route::get('/show' ,'show')->name('ShowMeals');
+    Route::delete('/delete/{id}','delete')->name('DeleteMeal');
+    Route::get('/edit/{id}','edit')->name('EditMeal');
+    Route::post('/update/{id}','update')->name('UpdateMeal');
 });
-
-
 
 
 

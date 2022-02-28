@@ -24,7 +24,7 @@ class OptionRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:4'
+            'name' => 'required|min:4' ,
         ];
     }
 
@@ -32,7 +32,7 @@ class OptionRequest extends FormRequest
 {
     return [
         'name.required' => 'Please add option name',
-        'name.min' => 'Please add 4 or more characters',  
+        'name.min' => 'Please add 4 or more characters',
     ];
 }
 

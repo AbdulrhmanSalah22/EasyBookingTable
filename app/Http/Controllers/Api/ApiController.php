@@ -28,6 +28,10 @@ class ApiController extends Controller
 
         //        $meals = Meal::first()->getMedia();
         //        dd($meals) ;
+//       $meals = Meal::find(4);
+//        dd( $meals -> getFirstMediaUrl() ) ;
+//        $meals = Meal::first()->getFirstMediaUrl();
+//        dd($meals) ;
         return response()->json($meals);
     }
 
