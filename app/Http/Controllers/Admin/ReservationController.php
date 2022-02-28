@@ -14,7 +14,14 @@ class ReservationController extends Controller
        return view('Reservation.show' , compact('reservations'));
 
     }
-    public function ss(){
-        $y = DB::table('order_meals')->where('order_id' ,  );
-}
+
+    public function showOrderDetails(){
+         
+        return view('Reservation.orderData');
+    }
+
+    public function getOrderDetails(){
+         
+        
+    }
 }

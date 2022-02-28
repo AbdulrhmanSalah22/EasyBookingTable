@@ -14,4 +14,5 @@ class Order extends Model
     public function meal(){
         return $this->hasMany(Meal_Options::class , 'order_id','id');
     }
+    protected $fillable =['id','date','total'];
 }

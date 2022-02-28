@@ -48,14 +48,24 @@ class User extends Authenticatable
     ];
 
 
+<<<<<<< HEAD
     // favorites table
     public function meal()
+=======
+    // favorites table 
+    public function favoriteMeal()
+>>>>>>> c1ce3361311ef85f80b92b096425e7547c19a18a
     {
         return $this->belongsToMany(Meal::class , 'favourites' , 'user_id' , 'meal_id');
     }
 
 
+<<<<<<< HEAD
     // option reservations
+=======
+    // option reservations 
+    //////// Why???
+>>>>>>> c1ce3361311ef85f80b92b096425e7547c19a18a
     public function order()
     {
         return $this->belongsToMany(Order::class , 'reservations' , 'user_id' , 'order_id');
