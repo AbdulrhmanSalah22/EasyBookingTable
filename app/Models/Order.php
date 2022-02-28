@@ -10,4 +10,8 @@ class Order extends Model
     use HasFactory;
 
     protected $hidden = ['created_at','updated_at', 'pivot'];
+
+    public function meal(){
+        return $this->hasMany(Meal_Options::class , 'order_id','id');
+    }
 }

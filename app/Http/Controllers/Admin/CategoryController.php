@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class CategoryController extends Controller
 {
@@ -40,9 +41,19 @@ class CategoryController extends Controller
         return view('Category.edit',compact('category'));
     }
     public function update(Request $request , $id){
-       Category::find($id)->update(['name' => $request ->name ]);
+        Category::find($id)->update([
+            'name' => $request->name
+        ]);
+//        Category::find($id)->delete();
+//        Media::where('model_id',$id)-> delete();
+//        $input = $request->all();
+//        $cat = Category::create($input);
+//        if($request->hasFile('cat_img') && $request->file('cat_img')->isValid()){
+//            $cat->addMediaFromRequest('cat_img')->toMediaCollection('category_img');
+
         return redirect()->route("ShowCategories");
     }
+
     public function showMeals ($id){
 
        $cat_meals = Category::with('meal')->find($id);

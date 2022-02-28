@@ -23,12 +23,42 @@ class ApiController extends Controller
     }
     public function getMeals(){
 //         $meals = Meal::with('category')->get();
-        $meals = Meal::with('media')->get();
+        $meals = Meal::with(['media','category'])->get();
+//        $meals = Meal::with(['media'=>function($q){
+             foreach ($meals as $meal)
+          $meal-> media[0] -> makeHidden('model_type','model_id','uuid','collection_name','name','file_name','mime_type','disk','conversions_disk','size','generated_conversions','manipulations','custom_properties','responsive_images','order_column','created_at','updated_at','preview_url');
+//              -> original_url;
+//        }])->get();
+//        $a  = array();
+//        $meals = Meal::all();
+//
+//        foreach ($meals as $meal){
+//          $x =  $meal -> getFirstMediaUrl('meal_img');
+//        } return $x ;
+//        foreach ( $meals as $meal){
+//            foreach ($meal->media as $media){
+//                $a = $a->push($media ->getFullUrl() );
+//            }}
+//        return $a ;
+//       return $meals[0] -> media[0]-> getFullUrl();
+//        foreach ($meals->media as $media)
+//           $a = $a->push( $media -> original_url);
+//       foreach ( $meals as $meal) {
+//           $all = $meal->select('id', 'name', 'price', 'description', 'category_id')->get();
+//           foreach ($meal->media as $media){
+//               $all->push($media ->getFullUrl()) ;
+//       }
+//       }
+//       return $a;
+
+
+//        return $all ;
 //         $img = $meals-> original_url;
-//        return strtolower(str_replace(['#', '/', '\\', ' '], '-', $meals));
-//        return $meals -> media[0] -> original_url;
+//        return strtolower(str_replace(['\\'], '','http:\/\/localhost:8000\/storage\/13\/drinks.jpeg'));
+//        return $meals[0] -> media[0] -> original_url;
         return $meals;
     }
+
 
     public function getUserFavorites($user_id)
     {
@@ -75,8 +105,8 @@ class ApiController extends Controller
 
         // return response()->json(
         //     ['status_code' => 200, 'answer' => $reservations]
-        // );   
-     
+        // );
+
         foreach ($reservations  as $value) {
 
             if ($value->time_in == $request->time_in) {
@@ -94,7 +124,7 @@ class ApiController extends Controller
         //        //         ['status_code' => 200, 'answer' => 'hi']
         //        //         // ['status_code' => 200, 'table availability' => $table]
         //        //     );
-        //        // }  
+        //        // }
         //    }
 
 

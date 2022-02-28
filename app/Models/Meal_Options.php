@@ -11,4 +11,5 @@ class Meal_Options extends Model
 
     protected $table = 'meal_options';
     protected $fillable =['id', 'meal_id' , 'option_id'];
+
 }
