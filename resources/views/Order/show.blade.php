@@ -1,6 +1,6 @@
 @extends('_layouts.master')
 @section('title')
-    <title>Categories</title>
+    <title>Orders</title>
 @endsection
 
 
@@ -16,12 +16,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Categories</h1>
+                    <h1>Orders</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Categories</li>
+                        <li class="breadcrumb-item active">Orders</li>
                     </ol>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Categories DataTable</h3>
+                            <h3 class="card-title">Orders DataTable</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -41,36 +41,28 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Image</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Total Paid Price</th>
                                         <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($cats as $cat)
+                                    @foreach ($orders as $order)
                                         <tr>
-                                            <th scope="row">{{ $cat->id }}</th>
-                                            <td>{{ $cat->name }}</td>
-                                            <td><img src="{{ $cat->getFirstMediaUrl('category_img') }}" width="200px"
-                                                    height="80px"></td>
-                                            <td> <a class="btn btn-success" href="{{route('EditCategory', $cat -> id)}}"> Edit
-                                                </a>  ::
-                                                {{-- <a class="btn btn-danger" href="#"> Delete </a> --}}
-
-                                                 <form method="post" action="{{route('DeleteCategory', $cat->id) }}" class="d-inline">
+                                            <th scope="row">{{ $order->id }}</th>
+                                            <td>{{$order->date}}</td>
+                                            <td>{{$order->total}} EGP</td>
+                                            <td>   
+                                                 <form method="post" action="" class="d-inline">
                                                      @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger"> Delete </button>
-                                             </form> ::
-                                              <a class="btn btn-info" href="{{route('Cat_Meals', $cat->id )}}"> Show Meals </a>
+                                                    <button type="submit" class="btn btn-danger"> Delete </button> 
+                                             </form>  
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
-                        <div class="text-center mb-3">
-                        <a href="{{route('CreateCategory')}}" class="btn btn-primary"> Create New Category </a>
                         </div>
                         <!-- /.card-body -->
                     </div>

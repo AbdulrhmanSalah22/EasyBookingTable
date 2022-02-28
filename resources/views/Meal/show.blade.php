@@ -46,6 +46,7 @@
                                     <th scope="col">Price</th>
                                     <th scope="col">Description</th>
                                     <th scope="col">Category</th>
+                                    {{-- <th scope="col">Options of meal</th> --}}
                                     <th scope="col">Image</th>
                                     <th scope="col">Actions</th>
 
@@ -59,6 +60,7 @@
                                         <td>{{ $meal -> price }}</td>
                                         <td>{{ $meal -> description }}</td>
                                         <td>{{ $meal -> category -> name }}</td>
+                                        {{-- <td>{{ $meal -> option -> name }}</td> --}}
 
                                         <td><img src="{{$meal->getFirstMediaUrl('meal_img')}}"  width="200px" height="80px" ></td>
                                         <td>
@@ -75,7 +77,9 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="text-center mb-3">
                         <a href="{{route('CreateMeal')}}" class="btn btn-primary"> Create New Meal </a>
+                        </div>
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->

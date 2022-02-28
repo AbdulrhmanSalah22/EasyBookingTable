@@ -10,6 +10,7 @@ class Option extends Model
     use HasFactory;
 
     protected $hidden = ['created_at','updated_at', 'pivot'];
+    protected $fillable = ['name'];
 
 
     // option table 

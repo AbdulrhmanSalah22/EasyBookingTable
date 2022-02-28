@@ -1,6 +1,6 @@
 @extends('_layouts.master')
 @section('title')
-    <title>Categories</title>
+    <title>Reservations</title>
 @endsection
 
 
@@ -16,12 +16,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Categories</h1>
+                    <h1>Reservations</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Categories</li>
+                        <li class="breadcrumb-item active">Reservations</li>
                     </ol>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Categories DataTable</h3>
+                            <h3 class="card-title">Reservations DataTable</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -41,36 +41,37 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Image</th>
+                                        <th scope="col">User Id</th>
+                                        <th scope="col">Order Id</th>
+                                        <th scope="col">Table Id</th>
+                                        <th scope="col">Comment</th>
+                                        <th scope="col">Time In</th>
+                                        <th scope="col">Time Out</th>
                                         <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($cats as $cat)
+                                    @foreach ($reservations as $reservation)
                                         <tr>
-                                            <th scope="row">{{ $cat->id }}</th>
-                                            <td>{{ $cat->name }}</td>
-                                            <td><img src="{{ $cat->getFirstMediaUrl('category_img') }}" width="200px"
-                                                    height="80px"></td>
-                                            <td> <a class="btn btn-success" href="{{route('EditCategory', $cat -> id)}}"> Edit
-                                                </a>  ::
-                                                {{-- <a class="btn btn-danger" href="#"> Delete </a> --}}
-
-                                                 <form method="post" action="{{route('DeleteCategory', $cat->id) }}" class="d-inline">
+                                            <th scope="row">{{ $reservation->id }}</th>
+                                            <td> {{$reservation->user_id}} </td>
+                                            <td> {{$reservation->order_id}} </td>
+                                            <td> {{$reservation->table_id}} </td>
+                                            <td> {{$reservation->comment}} </td>
+                                            <td> {{$reservation->time_in}} </td>
+                                            <td> {{$reservation->time_out}} </td>
+                                            {{-- <td> <a class="btn btn-success" href="{{route('EditTable' , $table->id)}}"> Update 
+                                                </a>  ::  
+                                                 <form method="post" action="{{route('DeleteTable' , $table->id)}}" class="d-inline">
                                                      @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger"> Delete </button>
-                                             </form> ::
-                                              <a class="btn btn-info" href="{{route('Cat_Meals', $cat->id )}}"> Show Meals </a>
-                                            </td>
+                                                    <button type="submit" class="btn btn-danger"> Delete </button> 
+                                             </form>  
+                                            </td> --}}
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
-                        <div class="text-center mb-3">
-                        <a href="{{route('CreateCategory')}}" class="btn btn-primary"> Create New Category </a>
                         </div>
                         <!-- /.card-body -->
                     </div>

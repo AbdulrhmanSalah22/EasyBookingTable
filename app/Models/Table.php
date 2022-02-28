@@ -9,5 +9,7 @@ class Table extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['id','status'];
+
     protected $hidden = ['created_at','updated_at', 'pivot'];
 }
