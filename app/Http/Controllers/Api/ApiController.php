@@ -17,12 +17,16 @@ class ApiController extends Controller
     }
     public function getMeals(){
 //         $meals = Meal::with('category')->get();
-        $meals = Meal::all();
+        $meals = Meal::with('media')->get();
+//         $img = $meals-> original_url;
+//        return strtolower(str_replace(['#', '/', '\\', ' '], '-', $meals));
+//        return $meals -> media[0] -> original_url;
+        return $meals;
 //       $meals = Meal::find(4);
 //        dd( $meals -> getFirstMediaUrl() ) ;
 //        $meals = Meal::first()->getFirstMediaUrl();
 //        dd($meals) ;
-        return response()->json($meals);
+//        return response()->json($meals);
     }
 
     public function getUserFavorites($user_id){
