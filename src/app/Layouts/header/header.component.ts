@@ -10,7 +10,7 @@ import { MealService } from 'src/app/shared/service/meal.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+show:boolean=true
 mealarra!:number;
   reserve:any="reserve";
   constructor(private router:Router,private mealservice:MealService) { }
@@ -26,6 +26,5 @@ mealarra!:number;
 
   number() {
   return  this.mealarra=this.mealservice.orderarray.length;
-    // console.log(this.mealarra);
   }
 }

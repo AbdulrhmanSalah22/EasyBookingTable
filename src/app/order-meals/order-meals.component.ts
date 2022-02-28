@@ -1,63 +1,61 @@
-import { Component, OnInit,OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Meal } from '../shared/model/meal';
 import { MealService } from '../shared/service/meal.service';
 
 @Component({
   selector: 'app-order-meals',
   templateUrl: './order-meals.component.html',
-  styleUrls: ['./order-meals.component.css']
+  styleUrls: ['./order-meals.component.css'],
 })
 export class OrderMealsComponent implements OnInit {
-  constructor(private orderservice:MealService) { }
+  constructor(private orderservice: MealService) {}
 
-  display=true;
-  listOrder!:Array<Meal>;
-  uniqueOrder!:Meal[]
+  display = true;
+  listOrder!: Array<Meal>;
+  uniqueOrder!: Meal[];
 
   ngOnInit(): void {
-    this.listOrder=this.orderservice.orderarray;
-    this.uniqueOrder=this.orderservice.uniqueOrde;
+    this.listOrder = this.orderservice.orderarray;
+    this.uniqueOrder = this.orderservice.uniqueOrde;
+    console.log(this.listOrder);
 
-  //  this.listOrder.forEach(element=>{
-  //   if (!this.uniqueOrder.includes(element)) {
-  //     this.uniqueOrder.push(element);
-  //   }
-  //  })  
-    if(this.listOrder.length>0){
-      this.display=false;
-}
-  }
-
-  displayzft(){
-
-  }
-  // delateMeal(order:Meal){
-  //   let index = this.listOrder!.findIndex(ele => ele.id == order.id); 
-  //   this.listOrder.splice(index, 1);
-  // }
-  delateMeal(order:Meal) {
-
-    let index = this.listOrder!.findIndex(ele => ele.id == order.id);    
-        if (this.listOrder![index].count == 1) {
-      this.listOrder!.splice(index, 1);
-
+    if (this.listOrder.length > 0) {
+      this.display = false;
     }
-    else if (this.listOrder![index].count > 1) {
+  }
+
+  delateMeal(order: Meal) {
+    let index = this.listOrder!.findIndex((ele) => ele.id == order.id);
+    if (this.listOrder![index].count == 1) {
+      this.listOrder!.splice(index, 1);
+    } else if (this.listOrder![index].count > 1) {
       this.listOrder![index]!.count--;
     }
-    if(this.listOrder.length==0){
-      this.display=true;
+    if (this.listOrder.length == 0) {
+      this.display = true;
     }
   }
 
-  checkout(){
-    let total=0;
-    for(let i=0;i<this.listOrder.length;i++){
-         total=total+this.listOrder[i].price*this.listOrder[i].count;
+  checkout() {
+    let total = 0;
+    for (let i = 0; i < this.listOrder.length; i++) {
+      total = total + this.listOrder[i].price;
     }
     return total;
   }
-  makeorder(){
+  addQty(meal: Meal) {
+    meal.count++;
+  }
+  decQty(meal: Meal) {
+    if (meal.count == 1) {
+      this.uniqueOrder.splice(
+      this.uniqueOrder.findIndex((element) => element.id == meal.id),1
+      );
+    } else {
+      meal.count--;
+    }
+  }
+  makeorder() {
     // console.log(this.listOrder);
     // for(let i=0;i<this.listOrder.length;i++){
     //     this.arrIDS[i]=(this.listOrder[i].id);
@@ -65,5 +63,3 @@ export class OrderMealsComponent implements OnInit {
     // console.log(this.arrIDS);
   }
 }
-
-

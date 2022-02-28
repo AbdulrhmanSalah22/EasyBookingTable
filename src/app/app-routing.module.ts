@@ -8,6 +8,7 @@ import { MenuComponent } from './menu/menu.component';
 import { RegisterationComponent } from './registeration/registeration.component';
 import { TeamPageComponent } from './team-page/team-page.component';
 import { OrderMealsComponent } from './order-meals/order-meals.component';
+import { FavouriteComponent } from './favourite/favourite.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path:"signin",component:LoginComponent},
   {path:"menu/:name",component:MealPageComponent},
   {path:"order",component:OrderMealsComponent},
+  {path:"favourite",component:FavouriteComponent},
   {path:"**",component:HomeComponent},
 ];
 const routerOptions:ExtraOptions={

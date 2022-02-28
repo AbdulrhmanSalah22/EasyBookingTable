@@ -20,10 +20,10 @@ import { RegisterationComponent } from './registeration/registeration.component'
 import { LoginComponent } from './login/login.component';
 import { MealPageComponent } from './meal-page/meal-page.component';
 import { SelectedMealComponent } from './meal-page/selected-meal/selected-meal.component';
-import { MealDetailsComponent } from './menu/menu-categories/menu-meals/meal-details/meal-details.component';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderMealsComponent } from './order-meals/order-meals.component';
 import {HttpClientModule} from '@angular/common/http';
+import { FavouriteComponent } from './favourite/favourite.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,8 @@ import {HttpClientModule} from '@angular/common/http';
     LoginComponent,
     MealPageComponent,
     SelectedMealComponent,
-    OrderMealsComponent
+    OrderMealsComponent,
+    FavouriteComponent
   ],
   imports:
    [BrowserModule,

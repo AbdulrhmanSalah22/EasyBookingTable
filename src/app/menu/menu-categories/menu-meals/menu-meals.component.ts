@@ -22,4 +22,8 @@ export class MenuMealsComponent implements OnInit {
     this.MealService.addorder(mymeal);
     console.log(mymeal)
   }
+  getmeal(mymeal:any)
+  {
+   this.MealService.additemtochart(mymeal)
+  }
 }

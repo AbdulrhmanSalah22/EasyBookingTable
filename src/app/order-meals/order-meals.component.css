@@ -7,7 +7,7 @@
   }
   img {
     border-radius: 4%;
-    height: 50vh;
+    height: 30vh;
   }
   .divCard{   
     border-radius: 5%;   
@@ -27,4 +27,40 @@
   text-align: center;
   border-color: #52555530;
  } 
- 
+ .special{
+  position: relative;
+  font-size: 60px;
+  color: #f34949;
+    /* font-weight: 500   !important;   */
+}
+.orderContainer{
+  height: 30vh;
+}
+.counter{
+  border: 0;
+  background-color: transparent;
+}
+.main{
+  padding-top: 140px;
+}
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+
+  border: 2px solid #999;
+  transition: 0.2s all linear;
+  margin-right: 5px;
+
+  position: relative;
+  top: 4px;
+}
+
+input:checked {
+  border: 6px solid black;
+  outline: unset !important /* I added this one for Edge (chromium) support */
+}
