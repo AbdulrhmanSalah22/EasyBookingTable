@@ -29,6 +29,15 @@
               <button class="btn btn-primary" (click)="delateMeal(order)">
                 Delete
               </button>
+              <button class="btn btn-primary" (click)="add(order)">
+                add new order
+              </button>
+              <div *ngIf="df" >
+                <div *ngFor="let item of newArry">
+                  {{item.name}}
+                  {{item.price}}
+                </div>
+             </div>
               <button class="counter" (click)="addQty(order)">
                 <i class="fa-solid fa-circle-plus"></i>
               </button>

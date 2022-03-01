@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MealService } from '../shared/service/meal.service';
+import { UserService } from '../shared/service/user.service';
 @Component({
   selector: 'app-registeration',
   templateUrl: './registeration.component.html',
@@ -17,7 +18,7 @@ registeForm=this.fb.group({
 });
 
 
-  constructor(private fb:FormBuilder,private signUP:MealService) { }
+  constructor(private fb:FormBuilder,private signUP:MealService,private register :UserService) { }
 
   ngOnInit(): void {
     
@@ -28,7 +29,10 @@ registeForm=this.fb.group({
     //   (next)=>{console.log(next)},
     //   (error)=>{console.log(error)}
     // );
-  
+  this.register.addUser(signup.value).subscribe(
+   (next)=>{console.log(next)},
+(error)=>{console.log(error)}
+  )
   }
  
 }

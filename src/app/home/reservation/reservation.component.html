@@ -19,8 +19,9 @@
                             <div class="col-md-12 form-group">
 
                                 <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                                    <input type="date" class="form-control datetimepicker-input" formControlName="date"
+                                    <input type="datetime-local" class="form-control datetimepicker-input" formControlName="date"
                                         [ngClass]="{'invalid': book.get('date')!.invalid && book.get('date')!.touched}">
+                                        {{book.get('date')!}}
 
                                 </div>
                                 <div  *ngIf="book.get('date')!.invalid && book.get('date')!.touched && book.get('date')!.errors?.['required'] ">
@@ -87,5 +88,5 @@
 
     </div>
    
->>>>>>> ayaGamal
+
 </section>

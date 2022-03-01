@@ -9,7 +9,8 @@ import { MealService } from '../shared/service/meal.service';
 })
 export class OrderMealsComponent implements OnInit {
   constructor(private orderservice: MealService) {}
-
+newArry!:Array<Meal>;
+df=false;
   display = true;
   listOrder!: Array<Meal>;
   uniqueOrder!: Meal[];
@@ -62,5 +63,10 @@ export class OrderMealsComponent implements OnInit {
     //     this.arrIDS[i]=(this.listOrder[i].id);
     // }
     // console.log(this.arrIDS);
+  }
+  add(order:Meal){
+    order.count=1;
+this.newArry.push(order);
+this.df=true;
   }
 }

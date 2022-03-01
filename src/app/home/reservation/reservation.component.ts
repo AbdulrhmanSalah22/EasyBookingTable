@@ -18,15 +18,29 @@ export class ReservationComponent implements OnInit {
    end_time:['',[Validators.required]]    
  })
   constructor(private fb:FormBuilder) { }
-
+datetime=formatDate(new Date(), 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530');;
   ngOnInit(): void {
-    // var currentDate = new Date().getDate();
+    // var currentDate = new Date();
     // var currentyear = new Date().getFullYear();
     // var currentmonth = new Date().getUTCMonth();    
-    console.log(formatDate(new Date(),'MM/dd/yyyy', 'en'));
+    // console.log(formatDate(new Date(),'MM/dd/yyyy', 'en'));
+      console.log(formatDate(new Date(), 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530'));
+    // console.log(currentDate);
+    this.check()
   }
   onSubmit(reservation:any){
+
     console.log(reservation.value);
+  }
+  check(){
+   let d="02-03-2022 05:20:29 AM";
+   console.log(d);
+    if(d<this.datetime){
+      console.log("true");
+    }
+    else{
+      console.log("false");
+    }
   }
 }
 // import {formatDate} from '@angular/common';

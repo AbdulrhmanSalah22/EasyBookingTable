@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Login } from '../model/login';
 import { User } from '../model/user';
 
@@ -12,12 +13,12 @@ export class UserService {
 
   }
 
-  addUser(user:User){
+  addUser(user:User):Observable<User>{
     console.log(user)
-   this.Http.post<User>('http://localhost:8000/api/user',user).subscribe()
+  return  this.Http.post<User>('http://127.0.0.1:8000/api/register',user)
   }
-login(data:Login){
-  this.Http.post<Login>('http://localhost:8000/api/user',data).subscribe()
+login(data:Login):Observable<Login>{
+  return this.Http.post<Login>('http://127.0.0.1:8000/api/login',data)
 }
   constructor(private Http:HttpClient) { }
 }
