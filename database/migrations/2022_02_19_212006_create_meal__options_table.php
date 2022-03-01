@@ -17,7 +17,7 @@ class CreateMealOptionsTable extends Migration
             // Add two foreign keys as a primary key
             // $table->id();
             $table->unsignedBigInteger('meal_id');
-            $table->unsignedBigInteger('option_id');
+            $table->unsignedBigInteger('option_id')->nullable()->default(NULL);
             $table->foreign('meal_id')
                 ->references('id')
                 ->on('meals')
@@ -28,6 +28,7 @@ class CreateMealOptionsTable extends Migration
                 ->on('options')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            $table->integer('num')->default(1);
             $table->primary(['meal_id', 'option_id']);
             $table->timestamps();
         });

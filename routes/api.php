@@ -26,6 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::controller(ApiController::class)->group(function (){
     Route::get('get-cat','getCategories');
     Route::get('get-meal','getMeals');
+    Route::get('get-meal/{id}','getMeal');
     Route::get('get-fav/{user_id}','getUserFavorites');
     Route::get('get-option/{meal_id}','getMealOptions');
     Route::get('get-reservation/{user_id}','getUserReservation');
@@ -40,21 +41,4 @@ Route::controller(ApiUserController::class)->group(function (){
 
 });
 
-
-
-
-
-
-
-
-
-
-
-//
-//Route::get('/show',function (){
-//    $ImageUrl = DB::table('media')->select('file_name' , 'model_id')
-//        ->where('model_type','=','App\Models\Category')->get();
-////        return $ImageUrl ;
-//    return response()->json($ImageUrl);
-//});
 

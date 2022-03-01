@@ -40,35 +40,26 @@
                             <table id="category" class="table table-bordered table-striped text-center">
                                 <thead>
                                     <tr>
-                                        {{-- <th scope="col">#</th> --}}
-                                        {{-- <th scope="col">User Id</th> --}}
-                                        <th scope="col">Meal Name</th>
-                                        {{-- <th scope="col">Order Id</th>
-                                        <th scope="col">Table Id</th>
-                                        <th scope="col">Comment</th>
-                                        <th scope="col">Time In</th>
-                                        <th scope="col">Time Out</th>
-                                        <th scope="col">Actions</th> --}}
+                                         <th scope="col">OrderId</th>
+                                         <th scope="col">Meal With Option</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        {{-- <th scope="row">{{ $reservation->id }}</th> --}}
-                                        
-                                        <td> 
-                                                @foreach ($meals as $meal)
-                                                @foreach ($meal->getmeals as $item)
-                                                    
-                                                {{$item  ->name}}, 
-                                                @endforeach
+                                         <th scope="row">{{ $details[0]->order_id }}</th>
+
+                                        <td>
+                                                @foreach ($details as $detail)
+                                                @foreach ($detail->getMeals as $meal)
+                                                {{$meal  ->name}}
+                                                @endforeach >>
+                                                    @foreach ($detail->getoption as $option)
+                                                        {{$option->name}}
+                                                    @endforeach
+                                                    |
                                                 @endforeach
                                             </td>
-                                            {{-- <td> {{$reservation->order_id}} </td>
-                                            <td> {{$reservation->table_id}} </td>
-                                            <td> {{$reservation->comment}} </td>
-                                            <td> {{$reservation->time_in}} </td>
-                                            <td> {{$reservation->time_out}} </td> --}}
-                                           
+
                                         </tr>
                                 </tbody>
                             </table>

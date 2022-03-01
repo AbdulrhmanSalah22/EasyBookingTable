@@ -18,46 +18,25 @@ class ApiController extends Controller
 {
     public function getCategories()
     {
-        //        $categories = Category::with('meal')->get();
-        $categories = Category::all();
+        $categories = Category::with(['media'])->get();
+        foreach ($categories as $category) {
+            $category->media[0]->makeHidden('id','model_type', 'model_id', 'uuid', 'collection_name', 'name', 'file_name', 'mime_type', 'disk', 'conversions_disk', 'size', 'generated_conversions', 'manipulations', 'custom_properties', 'responsive_images', 'order_column', 'created_at', 'updated_at', 'preview_url');
+        }
         return response()->json($categories);
     }
     public function getMeals(){
-//         $meals = Meal::with('category')->get();
-        $meals = Meal::with(['media','category'])->get();
-//        $meals = Meal::with(['media'=>function($q){
-             foreach ($meals as $meal)
-          $meal-> media[0] -> makeHidden('model_type','model_id','uuid','collection_name','name','file_name','mime_type','disk','conversions_disk','size','generated_conversions','manipulations','custom_properties','responsive_images','order_column','created_at','updated_at','preview_url');
-//              -> original_url;
-//        }])->get();
-//        $a  = array();
-//        $meals = Meal::all();
-//
-//        foreach ($meals as $meal){
-//          $x =  $meal -> getFirstMediaUrl('meal_img');
-//        } return $x ;
-//        foreach ( $meals as $meal){
-//            foreach ($meal->media as $media){
-//                $a = $a->push($media ->getFullUrl() );
-//            }}
-//        return $a ;
-//       return $meals[0] -> media[0]-> getFullUrl();
-//        foreach ($meals->media as $media)
-//           $a = $a->push( $media -> original_url);
-//       foreach ( $meals as $meal) {
-//           $all = $meal->select('id', 'name', 'price', 'description', 'category_id')->get();
-//           foreach ($meal->media as $media){
-//               $all->push($media ->getFullUrl()) ;
-//       }
-//       }
-//       return $a;
+        $meals = Meal::with(['media','category','option'])->get();
+             foreach ($meals as $meal){
+          $meal-> media[0] -> makeHidden('id','model_type','model_id','uuid','collection_name','name','file_name','mime_type','disk','conversions_disk','size','generated_conversions','manipulations','custom_properties','responsive_images','order_column','created_at','updated_at','preview_url');
+             }
+        return response()->json($meals);
+    }
+    public function getMeal($id){
+       $meal = Meal::with(['media','category','option'])->find($id);
 
+        $meal-> media[0] -> makeHidden('id','model_type','model_id','uuid','collection_name','name','file_name','mime_type','disk','conversions_disk','size','generated_conversions','manipulations','custom_properties','responsive_images','order_column','created_at','updated_at','preview_url');
 
-//        return $all ;
-//         $img = $meals-> original_url;
-//        return strtolower(str_replace(['\\'], '','http:\/\/localhost:8000\/storage\/13\/drinks.jpeg'));
-//        return $meals[0] -> media[0] -> original_url;
-        return $meals;
+       return response()->json($meal);
     }
 
 
@@ -102,7 +81,7 @@ class ApiController extends Controller
         $reservations =  DB::table('reservations')
             ->orderBy('time_out', 'asc')
             ->get();
-       
+
         foreach ($reservations  as $value) {
 
             if ($value->time_in == $request->time_in) {
@@ -130,11 +109,11 @@ class ApiController extends Controller
                     ['status_code' => 200, 'answer' => $newTime]
                 );
             // }
-              
-           
+
+
         }
 
-      
+
 
 
         //        // else{

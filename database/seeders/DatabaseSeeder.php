@@ -15,9 +15,17 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        \App\Models\Order::factory(3)->create();
+//        \App\Models\Order::factory(3)->create();
 
-
+        \App\Models\User::factory()->create(
+            [
+                'name' => 'Admin',
+                'email' => 'admin@admin.com',
+                'password' => Hash::make('123456'),
+                'phone' => '01045782305',
+                'is_admin' => true
+            ]
+        );
         //*************************************************** */
         // $products = factory('App\Product', 25)->create();
 
@@ -28,5 +36,6 @@ class DatabaseSeeder extends Seeder
         //     $gift->addMediaFromUrl($imageUrl)->toMediaCollection('images');
         // }
 
-    }
+
+}
 }

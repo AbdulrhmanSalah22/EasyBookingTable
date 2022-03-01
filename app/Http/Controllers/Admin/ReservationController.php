@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Meal_Options;
 use App\Models\Order_Meals;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class ReservationController extends Controller
 
     public function showOrderDetails($id){
 
-      $meals=  Order_Meals::with('getMeals')->where('order_id' , $id)->get();
-        return view('Reservation.orderData' , compact('meals'));
+   $details =   Order_Meals::with(['getOption','getMeals'])->where('order_id' , $id)->get();
+        return view('Reservation.orderData' , compact('details'));
     }
 }
