@@ -17,7 +17,7 @@ export class MenuCategoriesComponent implements OnInit {
     this.MealService.getAll().subscribe((meals)=>{
       this.meals=meals
       this.meals=this.meals.filter((meal:Meal)=>{
-      return meal.cat_id==this.category.id
+      return meal.category_id==this.category.id
 })      
 });
 }

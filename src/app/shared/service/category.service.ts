@@ -12,13 +12,13 @@ export class CategoryService {
   constructor(private Http: HttpClient, private MealService: MealService) {}
 
   getAll() {
-    return this.Http.get<Category>('http://localhost:8000/api/category', {
+    return this.Http.get<Category>('http://localhost:8000/api/get-cat', {
       headers: new HttpHeaders({ token: 'hello' }),
     });
   }
   getById() {
     return this.Http.get<Category>(
-      `http://localhost:8000/api/category/${this.MealService.SelectedMeal.cat_id}`
+      `http://localhost:8000/api/category/${this.MealService.SelectedMeal.category_id}`
     );
   }
 }

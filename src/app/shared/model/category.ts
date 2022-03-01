@@ -1,6 +1,6 @@
 export interface Category {
     name:string,
     id:number,
-    image:string,
+    media:any,
 
 }

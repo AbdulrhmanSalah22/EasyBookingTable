@@ -10,7 +10,7 @@ import { UserService } from '../shared/service/user.service';
   styleUrls: ['./registeration.component.css']
 })
 export class RegisterationComponent implements OnInit {  
-  error!:string;
+  error!:any;
 registeForm=this.fb.group({
  name:['',[Validators.required,Validators.minLength(3),Validators.pattern("[A-Za-z]{1,32}")]],
   email:['',[Validators.required,Validators.email]],
@@ -28,8 +28,10 @@ registeForm=this.fb.group({
   onSubmit(signup:any){
     console.log(signup.value);
     this.UserService.addUser(signup.value).subscribe(
-       (next)=>{console.log(next)},
-      (error)=>{this.error=error.error.message
+       (next)=>{console.log(next)
+        signup.reset()
+      },
+      (error)=>{this.error=error.error
       console.log(error)})
   }
  

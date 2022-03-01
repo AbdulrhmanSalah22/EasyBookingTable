@@ -6,21 +6,21 @@
     >
       <div class="col-10 d-flex orderContainer">
         <div class="col-md-4">
-          <img src="{{ order.img }}" class="card-img-top" />
+          <img src="{{ order.media[0].original_url }}" class="card-img-top" />
         </div>
         <div class="col-md-7 ps-5">
           <h4 class="special">{{ order.name }}</h4>
           <div class="ps-5">
             <p class="py-2">
-              {{ order.des }}
+              {{ order.description }}
             </p>
-            <div *ngFor="let option of order.options">
+            <div *ngFor="let opt of order.option">
               <input
-                (click)="Option(order, option.id)"
+                (click)="Option(order, opt.id)"
                 type="radio"
                 name="{{ order.id }}"
               />
-              <label for="radio">{{ option.name }}</label>
+              <label for="radio">{{ opt.name }}</label>
             </div>
             <h4>${{ order.price }}</h4>
             <div class="d-flex justify-content-between">

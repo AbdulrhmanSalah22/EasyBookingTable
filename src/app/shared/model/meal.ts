@@ -1,12 +1,12 @@
 export interface Meal {
     name:string,
     id?:number,
-    img:string,
+    media:any,
     price:number,
-    des:string,
-    cat_id:number,
+    description:string,
+    category_id:number,
     category?:any
     count:number,
-    options?:any,
+    option?:any,
     selectedOption?:number
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MealService } from '../shared/service/meal.service';
+import { UserService } from '../shared/service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { MealService } from '../shared/service/meal.service';
 export class LoginComponent implements OnInit {
 
 
-  constructor(private fb:FormBuilder,private lohin_ser:MealService,private router:Router) { }
+  constructor(private fb:FormBuilder,private lohin_ser:MealService,private router:Router , private UserService:UserService) { }
   loginForm=this.fb.group({
      email:['',[Validators.required,Validators.email]],  
     password:['',[Validators.required]],      
@@ -33,5 +34,13 @@ export class LoginComponent implements OnInit {
     //   }}
     // );
 
+
+    this.UserService.login(signin.value).subscribe(
+      (next)=>{console.log(next)
+        
+        // localStorage.setItem('token' , next.token)
+      },
+      (error)=>{console.log(error)}
+    )
   }
 }

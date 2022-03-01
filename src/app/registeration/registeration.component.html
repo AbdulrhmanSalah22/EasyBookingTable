@@ -172,8 +172,17 @@
               />
             </div>
           </div>
-          <div *ngIf="error">
+          <!-- <div *ngIf="error">
             {{ error }}
+          </div> -->
+
+
+          <div *ngIf="error">
+            {{ error.email }}
+          </div>
+
+          <div *ngIf="error">
+            {{ error.password }}
           </div>
         </form>
         <div class="col-lg-6 .col-md-6 col-sm-12 col-12 image">
