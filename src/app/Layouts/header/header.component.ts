@@ -27,4 +27,10 @@ mealarra!:number;
   number() {
   return  this.mealarra=this.mealservice.orderarray.length;
   }
+  getfev(){
+    this.mealservice.getallfev().subscribe(
+      (next)=>{console.log(next)},
+      (error)=>{console.log(error)}
+    )
+  }
 }

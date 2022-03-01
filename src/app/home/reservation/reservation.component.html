@@ -10,25 +10,13 @@
                             Reservation
                         </span>
                         <h2>
-                            Book Now
+                            Book Now 
                         </h2>
                     </div>
 
                     <form name="contact-us" [formGroup]="book" #reservation=ngForm (ngSubmit)="onSubmit(reservation)">
                         <div class="row">
-                            <div class="col-md-12 form-group">
-
-                                <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                                    <input type="datetime-local" class="form-control datetimepicker-input" formControlName="date"
-                                        [ngClass]="{'invalid': book.get('date')!.invalid && book.get('date')!.touched}">
-                                        {{book.get('date')!}}
-
-                                </div>
-                                <div  *ngIf="book.get('date')!.invalid && book.get('date')!.touched && book.get('date')!.errors?.['required'] ">
-                                    <span style="color: red;">*This field is required </span>
-                                </div>
-
-                            </div>
+                          
                             <div class="col-md-6 form-group">
                                 <label for="start">in time</label>
                             </div>
@@ -37,14 +25,18 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
-                                    <input type="time" class="form-control datetimepicker-input" id="start"
+                                    <input type="datetime-local" class="form-control datetimepicker-input" id="start"
                                         placeholder="start time" formControlName="start_time"
                                         [ngClass]="{'invalid': book.get('start_time')!.invalid && book.get('start_time')!.touched}"
                                         >
 
                                 </div>
+                                {{book.get('start_time')!.value}}
                                 <div  *ngIf="book.get('start_time')!.invalid && book.get('start_time')!.touched && book.get('start_time')!.errors?.['required'] ">
                                     <span style="color: red;">*This field is required </span>
+                                </div>
+                                <div  *ngIf="!(book.get('start_time')!.value >= current) ">
+                                    <span style="color: red;">*please enter valid date  </span>
                                 </div>
                             </div>
 
@@ -52,7 +44,7 @@
                                 <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
 
 
-                                    <input type="time" class="form-control datetimepicker-input" id="end"
+                                    <input type="datetime-local" class="form-control datetimepicker-input" id="end"
                                         placeholder="Time" formControlName="end_time"
                                         [ngClass]="{'invalid': book.get('end_time')!.invalid && book.get('end_time')!.touched}"
                                         >
@@ -61,10 +53,18 @@
                                 <div  *ngIf="book.get('end_time')!.invalid && book.get('end_time')!.touched && book.get('end_time')!.errors?.['required'] ">
                                     <span style="color: red;">*This field is required </span>
                                 </div>
-
+                                <div  *ngIf="!(book.get('end_time')!.value >= current) ">
+                                    <span style="color: red;">*please enter valid date  </span>
+                                </div>
+                                {{book.get('end_time')!.value}}
                             </div>
+{{current}}
+                            <div  *ngIf="(book.get('start_time')!.value > book.get('end_time')!.value )">
+                                <span style="color: red;">*start_time must be less end time </span>
+                            </div>
+
                             <div class="col-md-12 form-group">
-                                <select name="person" class="form-control" id="person">
+                                <select name="comment" class="form-control" id="person" formControlName="comment" >
                                     <option selected disabled>person</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -72,13 +72,11 @@
                                     <option value="4">4</option>
                                 </select>
                             </div>
-                            <div *ngIf="auth" class="col-md-12 text-center">
-                                <button class="btn btn-primary btn-shadow btn-lg" type="submit" name="submit">reserve
+                            <div  class="col-md-12 text-center">
+                                <button class="btn btn-primary btn-shadow btn-lg" type="submit" name="submit"  [disabled]="book.invalid || (book.get('start_time')!.value > book.get('end_time')!.value )">reserve
                                     now</button>
                             </div>
-                            <!-- <div *ngIf="!auth" class="col-md-12 text-center" >
-                                <button class="btn btn-primary btn-shadow btn-lg" type="submit" name="submit">Register</button>
-                            </div> -->
+                          
                         </div>
                     </form>
 

@@ -16,7 +16,12 @@ export class FavouriteComponent implements OnInit {
     
   }
   delete(product:Meal) {
-    this.mealarray.splice(this.mealarray.indexOf(product), 1);
+    // this.mealarray.splice(this.mealarray.indexOf(product), 1);
+  let  data={id:product.id}
+    this.mealservice.deleteFev(data).subscribe(
+      (next)=>{console.log("delete")},
+      (error)=>{console.log(error)}
+    );
   }
 
 }

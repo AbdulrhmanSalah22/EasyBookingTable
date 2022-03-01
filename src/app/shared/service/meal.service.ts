@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
+import { Fev } from '../model/fervoirt';
 import { Login } from '../model/login';
 import { Meal } from '../model/meal';
 import { Resgister } from '../model/register';
+import { Reserve } from '../model/reserve';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +26,20 @@ export class MealService {
       `http://localhost:8000/api/meals/${this.SelectedMeal.id}`
     );
   }
+reserve(data:Reserve):Observable<Reserve>{
+   return this.Http.post<Reserve>('http://localhost:8000/api/meals',data);
+}
+sendfo(id:number):Observable<Fev>{
+  return this.Http.post<Fev>("url",id);
+}
+
+getallfev():Observable<Fev>{
+  return this.Http.get<Fev>('http://localhost:8000/api/meals');
+}
+
+deleteFev(id:any):Observable<Fev>{
+  return this.Http.delete<Fev>('http://localhost:8000/api/meals');
+}
 
   constructor(private Http: HttpClient) {}
   cartArray: Meal[] = [];

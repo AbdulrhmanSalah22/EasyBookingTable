@@ -24,6 +24,11 @@ export class MenuMealsComponent implements OnInit {
   }
   getmeal(mymeal:any)
   {
-   this.MealService.additemtochart(mymeal)
+    console.log(mymeal.id);
+   this.MealService.additemtochart(mymeal);
+   this.MealService.sendfo(mymeal.id).subscribe(
+     (next)=>{console.log(next)},
+     (error)=>{console.log(error)}
+   );
   }
 }
