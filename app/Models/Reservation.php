@@ -19,21 +19,10 @@ class Reservation extends Model
         return $this-> belongsTo(User::class , 'user_id' , 'id');
     }
 
-
     // public function getmeal(){
     //     return Order_Meals::with('getmeals');
     // }
 
-    public function getmeal(){
-        $x = Order_Meals::with('allmeal')->get();
-         $y = Order_Meals::with('getmeals')->get();
-        //  return $x . $y ;
-
-         $array = array(
-            'x' => $x,
-            'y' => $y,
-        );
-    return (object) $array ;
-     }
+//
 }
 

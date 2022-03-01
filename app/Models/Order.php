@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-
+    protected $fillable =['id','date','total'];
     protected $hidden = ['created_at','updated_at', 'pivot'];
 
     public function meal(){
         return $this->hasMany(Meal_Options::class , 'order_id','id');
     }
-    protected $fillable =['id','date','total'];
+
 }

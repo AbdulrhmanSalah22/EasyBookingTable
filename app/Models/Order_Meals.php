@@ -18,9 +18,6 @@ class Order_Meals extends Model
         return $this->hasMany(Meal::class , 'id','id');
     }
 
-    public function allmeal(){
-        return $this->hasMany(Meal::class,'id','meal_id');
-    }
 
     public function order(){
         return $this->hasMany(Order::class , 'order_id' , 'id');

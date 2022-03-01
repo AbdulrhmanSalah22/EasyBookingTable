@@ -38,21 +38,19 @@ class CategoryController extends Controller
     }
     public function edit($id){
         $category =  Category::find($id);
-//        return $category;
         return view('Category.edit',compact('category'));
     }
     public function update(Request $request , $id){
-        Category::find($id)->update([
-            'name' => $request->name
-        ]);
-//        Category::find($id)->delete();
-//        Media::where('model_id',$id)-> delete();
-//        $input = $request->all();
-//        $cat = Category::create($input);
-//        if($request->hasFile('cat_img') && $request->file('cat_img')->isValid()){
-//            $cat->addMediaFromRequest('cat_img')->toMediaCollection('category_img');
+       $cat =  Category::find($id);
+       $cat -> name = $request -> name ;
+       $cat ->save();
+            if ($request->hasFile('cat_img')) {
+                $cat->clearMediaCollection('category_img');
+                $cat->addMediaFromRequest('cat_img')->toMediaCollection('category_img');
+            }
 
         return redirect()->route("ShowCategories");
+
     }
 
     public function showMeals ($id){

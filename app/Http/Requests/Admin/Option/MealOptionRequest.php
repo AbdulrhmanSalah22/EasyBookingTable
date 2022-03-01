@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Admin\Option;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -32,9 +32,9 @@ class MealOptionRequest extends FormRequest
     public function messages()
     {
         return [
-            'meal_id.required' => 'Please select Meal Name',  
+            'meal_id.required' => 'Please select Meal Name',
             'option_id.required' => 'Please select Option Name',
         ];
     }
-    
+
 }

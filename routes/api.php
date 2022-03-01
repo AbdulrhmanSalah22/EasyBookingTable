@@ -50,11 +50,11 @@ Route::controller(ApiUserController::class)->group(function (){
 
 
 
-
-Route::get('/show',function (){
-    $ImageUrl = DB::table('media')->select('file_name' , 'model_id')
-        ->where('model_type','=','App\Models\Category')->get();
-//        return $ImageUrl ;
-    return response()->json($ImageUrl);
-});
+//
+//Route::get('/show',function (){
+//    $ImageUrl = DB::table('media')->select('file_name' , 'model_id')
+//        ->where('model_type','=','App\Models\Category')->get();
+////        return $ImageUrl ;
+//    return response()->json($ImageUrl);
+//});
 

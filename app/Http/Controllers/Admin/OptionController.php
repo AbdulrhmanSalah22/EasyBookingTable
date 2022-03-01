@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\MealOptionRequest;
-use App\Http\Requests\Admin\OptionRequest;
+use App\Http\Requests\Admin\Option\MealOptionRequest;
+use App\Http\Requests\Admin\Option\OptionRequest;
 use App\Models\Meal;
 use App\Models\Meal_Options;
 use App\Models\Option;
 use App\Models\Reservation;
-use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 
@@ -25,7 +24,7 @@ class OptionController extends Controller
     }
 
     public function storeOption(OptionRequest $request){
-       
+
        Option::create(['name' => $request->name]);
        return redirect(route('ShowOptions'));
     }
@@ -75,7 +74,7 @@ class OptionController extends Controller
     //     echo $s;
     //    echo '<br>';
     // }
-    //    return $y ; 
+    //    return $y ;
     }
 
 
@@ -89,6 +88,6 @@ class OptionController extends Controller
 
         dd($res)  ;
     }
-    
+
 
 }
