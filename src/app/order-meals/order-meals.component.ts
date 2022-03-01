@@ -48,6 +48,7 @@ export class OrderMealsComponent implements OnInit {
     this.uniqueOrder.forEach(meal=>{
      this.price=this.price+(meal.count*meal.price)
     })
+    console.log(this.listOrder)
     return this.price
   }
 }
