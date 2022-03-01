@@ -57,6 +57,7 @@
                                         
                                         <td> 
                                                 @foreach ($meals as $meal)
+                                                {{-- @dd($meal) --}}
                                                 @foreach ($meal->getmeals as $item)
                                                     
                                                 {{$item  ->name}}, 

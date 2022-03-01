@@ -24,7 +24,7 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:6|max:20' ,
+            'name' => 'required|min:3|max:20' ,
             'cat_img' => 'required'
         ];
     }
@@ -33,8 +33,8 @@ class CategoryRequest extends FormRequest
     {
         return [
             'name.required' => 'Please fill Category Name',
-            'name.min' => 'The name must be between 6 to 20 character',
-            'name.max' => 'The name must be between 6 to 20 character',  
+            'name.min' => 'The name must be between 3 to 20 character',
+            'name.max' => 'The name must be between 3 to 20 character',  
             'cat_img.required' => 'Please add Category Image',  
         ];
     }

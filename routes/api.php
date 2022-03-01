@@ -26,6 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::controller(ApiController::class)->group(function (){
     Route::get('get-cat','getCategories');
     Route::get('get-meal','getMeals');
+    Route::get('get-meal/{id}','getMeal');
     Route::get('get-fav/{user_id}','getUserFavorites');
     Route::get('get-option/{meal_id}','getMealOptions');
     Route::get('get-reservation/{user_id}','getUserReservation');

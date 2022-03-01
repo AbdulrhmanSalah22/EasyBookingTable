@@ -18,23 +18,27 @@ class ApiController extends Controller
 {
     public function getCategories()
     {
-        //        $categories = Category::with('meal')->get();
-        $categories = Category::all();
+        $categories = Category::with(['media'])->get();
+        foreach ($categories as $category) {
+            $category->media[0]->makeHidden('id','model_type', 'model_id', 'uuid', 'collection_name', 'name', 'file_name', 'mime_type', 'disk', 'conversions_disk', 'size', 'generated_conversions', 'manipulations', 'custom_properties', 'responsive_images', 'order_column', 'created_at', 'updated_at', 'preview_url');
+        }
         return response()->json($categories);
     }
-    public function getMeals()
-    {
-        // $meals = Meal::with('category')->get();
-        $meals = Meal::all();
 
-        //        $meals = Meal::first()->getMedia();
-        //        dd($meals) ;
-//       $meals = Meal::find(4);
-//        dd( $meals -> getFirstMediaUrl() ) ;
-//        $meals = Meal::first()->getFirstMediaUrl();
-//        dd($meals) ;
+    public function getMeals(){
+        $meals = Meal::with(['media','category','option'])->get();
+             foreach ($meals as $meal){
+          $meal-> media[0] -> makeHidden('id','model_type','model_id','uuid','collection_name','name','file_name','mime_type','disk','conversions_disk','size','generated_conversions','manipulations','custom_properties','responsive_images','order_column','created_at','updated_at','preview_url');
+             }
         return response()->json($meals);
     }
+    public function getMeal($id){
+        $meal = Meal::with(['media','category','option'])->find($id);
+ 
+         $meal-> media[0] -> makeHidden('id','model_type','model_id','uuid','collection_name','name','file_name','mime_type','disk','conversions_disk','size','generated_conversions','manipulations','custom_properties','responsive_images','order_column','created_at','updated_at','preview_url');
+ 
+        return response()->json($meal);
+     }
 
     public function getUserFavorites($user_id)
     {
