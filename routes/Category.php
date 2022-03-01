@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::controller(CategoryController::class)->prefix('cat')->group(function (){
+Route::controller(CategoryController::class)->prefix('cat')->middleware(['auth','admin'])->group(function (){
 
     Route::get('/add','create')->name('CreateCategory');
     Route::post('/store','store')->name('StoreCategory');

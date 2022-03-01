@@ -15,9 +15,6 @@ class CategoryController extends Controller
         return view('Category.create');
     }
     public function store(CategoryRequest $request ){
-//        $category = new Category ;
-//        $category-> name = $request-> name ;
-//        $category -> save();
 
         $input = $request->all();
         $cat = Category::create($input);
@@ -40,7 +37,7 @@ class CategoryController extends Controller
         $category =  Category::find($id);
         return view('Category.edit',compact('category'));
     }
-    public function update(Request $request , $id){
+    public function update(CategoryRequest $request , $id){
        $cat =  Category::find($id);
        $cat -> name = $request -> name ;
        $cat ->save();

@@ -34,7 +34,7 @@ class CreateReservationsTable extends Migration
                 ->on('tables')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->string('comment');
+            $table->string('comment')->nullable();
             $table->dateTime('time_in');
             $table->dateTime('time_out');
             $table->primary(['user_id', 'order_id' , 'table_id']);

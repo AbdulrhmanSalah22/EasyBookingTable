@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::controller(TableController::class)->prefix('table')->group(function (){
+Route::controller(TableController::class)->middleware(['auth','admin'])->prefix('table')->group(function (){
 
     Route::get('/show' ,'showTables')->name('ShowTables');
     Route::get('/create' ,'create')->name('CreateTable');

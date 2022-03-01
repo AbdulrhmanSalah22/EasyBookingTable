@@ -10,6 +10,7 @@ use App\Models\Table;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\Foreach_;
 
@@ -101,12 +102,7 @@ class ApiController extends Controller
         $reservations =  DB::table('reservations')
             ->orderBy('time_out', 'asc')
             ->get();
-        //    ->get( ['time_in' , 'time_out' , 'table_id']);
-
-        // return response()->json(
-        //     ['status_code' => 200, 'answer' => $reservations]
-        // );
-
+       
         foreach ($reservations  as $value) {
 
             if ($value->time_in == $request->time_in) {
@@ -118,7 +114,29 @@ class ApiController extends Controller
                     ['status_code' => 200, 'answer' => " The new time is $newTime "]
                 );
             }
+
         }
+
+        /// Time in not = any time in in database
+        if ($value->time_in != $request->time_in) {
+
+           $y = $request->time_in;
+         $z=  Arr::first($reservations, function ($value, $key) {
+            return $value->time_out > "2022-02-09 15:00:00";
+        });
+        $timeAfterAddMinutes = Carbon::Parse($z->time_out)->addMinutes(30);
+        $newTime =  $timeAfterAddMinutes->format('Y-m-d H:i:s');
+                return response()->json(
+                    ['status_code' => 200, 'answer' => $newTime]
+                );
+            // }
+              
+           
+        }
+
+      
+
+
         //        // else{
         //        //     return response()->json(
         //        //         ['status_code' => 200, 'answer' => 'hi']

@@ -24,7 +24,7 @@ class CreateOrderMealsTable extends Migration
                 ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('option_id')->references('id')->on('options')
                 ->onDelete('cascade')->onUpdate('cascade');
-            $table->string('comment');
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }

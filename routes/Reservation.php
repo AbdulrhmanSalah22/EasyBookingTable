@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::controller(ReservationController::class)->prefix('reservation')->group(function (){
+Route::controller(ReservationController::class)->middleware(['auth','admin'])->prefix('reservation')->group(function (){
 
     Route::get('/show' ,'showReservations')->name('ShowReservations');
     Route::get('/show-order/{id}' ,'showOrderDetails')->name('ShowOrderDetails');
