@@ -13,7 +13,7 @@ export class UserService {
 
   addUser(user:User){
     console.log(user)
-   this.Http.post<User>('http://localhost:8000/api/user',user).subscribe()
+ return  this.Http.post<User>('http://localhost:8000/api/user',user)
   }
 
   constructor(private Http:HttpClient) { }

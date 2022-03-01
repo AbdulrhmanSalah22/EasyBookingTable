@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Meal } from 'src/app/shared/model/meal';
 import { MealService } from 'src/app/shared/service/meal.service';
+import { OrderService } from 'src/app/shared/service/order.service';
 
 @Component({
   selector: 'app-menu-meals',
@@ -10,7 +11,7 @@ import { MealService } from 'src/app/shared/service/meal.service';
 export class MenuMealsComponent implements OnInit {
   @Input() id!:number;
   @Input() meal!:Meal;
-  constructor(private MealService:MealService) { }
+  constructor(private MealService:MealService,private OrderService:OrderService) { }
 
   ngOnInit(): void {
   }
@@ -19,11 +20,11 @@ export class MenuMealsComponent implements OnInit {
   }
 
   addorder(mymeal:any){
-    this.MealService.addorder(mymeal);
+    this.OrderService.addorder(mymeal);
     console.log(mymeal)
   }
   getmeal(mymeal:any)
   {
-   this.MealService.additemtochart(mymeal)
+   this.OrderService.additemtochart(mymeal)
   }
 }

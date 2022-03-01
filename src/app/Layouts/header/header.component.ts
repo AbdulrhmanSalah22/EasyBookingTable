@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Meal } from 'src/app/shared/model/meal';
 import { MealService } from 'src/app/shared/service/meal.service';
+import { OrderService } from 'src/app/shared/service/order.service';
 
 
 @Component({
@@ -11,20 +12,17 @@ import { MealService } from 'src/app/shared/service/meal.service';
 })
 export class HeaderComponent implements OnInit {
 show:boolean=true
-mealarra!:number;
   reserve:any="reserve";
-  constructor(private router:Router,private mealservice:MealService) { }
+  constructor(private router:Router,private mealservice:MealService,private OrderService:OrderService) { }
 
   ngOnInit(): void {
-    this.mealarra=this.mealservice.orderarray.length;
-    console.log(this.mealarra);
   }
   freg(reserve:string)
   {
     this.router.navigateByUrl('#'+reserve);
   }
-
   number() {
-  return  this.mealarra=this.mealservice.orderarray.length;
+
+  return     this.OrderService.orderarray.length;
   }
 }

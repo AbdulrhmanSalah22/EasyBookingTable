@@ -1,11 +1,4 @@
-nav{
-    position: fixed;
-    width: 96.5%;
-    z-index: 100;
-    bottom: px;
-    background-color: white;
-    top: 0;
-}
+
 .shoping{
     font-size: 20px;
     margin-top: 10px;
@@ -13,7 +6,7 @@ nav{
 }
 .ciircle{
         width: 15px;
-        background-color: red;        
+        background-color: #bb1d1d;        
         height: 15px;
         border-radius: 100%;
         position: absolute;
@@ -26,4 +19,8 @@ nav{
 }
 .hidden{
     display: none;
+}
+i{
+    color: #6c6969;
+    font-size: 23px;
 }

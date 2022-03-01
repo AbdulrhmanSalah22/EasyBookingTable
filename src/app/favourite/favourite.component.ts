@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Meal } from '../shared/model/meal';
 import { MealService } from '../shared/service/meal.service';
+import { OrderService } from '../shared/service/order.service';
 
 @Component({
   selector: 'app-favourite',
@@ -9,10 +10,10 @@ import { MealService } from '../shared/service/meal.service';
 })
 export class FavouriteComponent implements OnInit {
   mealarray!:Array<Meal>;
-  constructor(private mealservice:MealService) { }
+  constructor(private mealservice:MealService,private OrderService:OrderService) { }
 
   ngOnInit(): void {
-    this.mealarray=this.mealservice.cartArray;
+    this.mealarray=this.OrderService.cartArray;
     
   }
   delete(product:Meal) {

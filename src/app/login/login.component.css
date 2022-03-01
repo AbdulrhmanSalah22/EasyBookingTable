@@ -6,17 +6,8 @@ body {
   font-weight: 400;
   font-family: Poppins;
 }
-/* .row{
-    display: flex; 
-   } */
 .row {
-  -bs-gutter-x: 1.5rem;
-  --bs-gutter-y: 0;
   display: flex;
-  flex-wrap: wrap;
-  margin-top: calc(-1 * var(--bs-gutter-y));
-  margin-right: calc(-0.5 * var(--bs-gutter-x));
-  margin-left: calc(-0.5 * var(--bs-gutter-x));
 }
 .container {
   width: 80%;
@@ -24,20 +15,20 @@ body {
   margin: 0 auto;
   box-shadow: 0 15px 16.83px 0.17px rgb(0 0 0 / 5%);
   border-radius: 20px;
+  /* margin-top: 40px; */
 }
 .main {
   background: #f8f8f8;
-  padding: 5%;
+  /* padding: 5%; */
 }
 div {
   display: block;
 }
 .signup-content {
   padding: 70px 0;
-  display: -webkit-flex;
 }
 .signup-form {
-  padding-left: 15%;
+  padding: 50px;
 }
 .form-title {
   text-align: center;
@@ -63,15 +54,10 @@ h2 {
   margin-bottom: 25px;
   overflow: hidden;
 }
-.image {
-  width: 50%;
-}
-
 input {
   width: 100%;
   display: block;
   border: none;
-  border-bottom: 1px solid #999;
   padding: 6px 30px;
   box-sizing: border-box;
   padding-bottom: 10px;
@@ -144,6 +130,7 @@ a:-webkit-any-link {
   position: relative;
   margin-bottom: 25px;
   overflow: hidden;
+  width: 100%;
 }
 img {
   width: 100%;
@@ -162,11 +149,9 @@ display-flex,
 div {
   display: block;
 }
-
 .form-group:last-child {
   margin-bottom: 0;
 }
-
 input[type="checkbox"]:not(old) + label > span {
   display: inline-block;
   width: 13px;
@@ -180,4 +165,21 @@ input[type="checkbox"]:not(old) + label > span {
 }
 .button {
   text-align: center;
+  margin-top: 15px;
+
+}
+i{
+  color: #757575;
+  padding-top: 4px;
+
+  /* padding-top: 5px; */
+  
+}
+.field-container
+{
+  border-bottom: 1px solid #999;
+  width: 85%;
+}
+.signup{
+  padding: 20px 20px;
 }

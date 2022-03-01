@@ -10,45 +10,18 @@ import { Resgister } from '../model/register';
 })
 export class MealService {
   SelectedMeal!: Meal;
-  getAll() {
+  getAll(): Observable<Meal> {
     return this.Http.get<Meal>('http://localhost:8000/api/meals');
   }
   display(meal: Meal) {
     this.SelectedMeal = meal;
   }
-  getById() {
+  getById(): Observable<Meal> {
     return this.Http.get<Meal>(
       `http://localhost:8000/api/meals/${this.SelectedMeal.id}`
     );
   }
 
   constructor(private Http: HttpClient) {}
-  cartArray: Meal[] = [];
-  orderarray: Meal[] = [];
-  uniqueOrde: Meal[] = [];
-
-  addorder(meal: Meal) {
-    if (this.orderarray.includes(meal)) {
-      this.orderarray.push(meal);
-      meal.count = 0;
-      this.orderarray.forEach((element) => {
-        if (element == meal) {
-          meal.count++;
-        }
-      });
-    } else {
-      meal.count = 1;
-      this.orderarray.push(meal);
-      this.uniqueOrde.push(meal);
-    }
-  }
-  additemtochart(product: Meal): Meal[] {
-    var index = this.cartArray.findIndex((x) => x.id == product.id);
-    if (index === -1) {
-      this.cartArray.push(product);
-    }
-    const res = this.cartArray;
-    console.log(res);
-    return res;
-  }
+  
 }

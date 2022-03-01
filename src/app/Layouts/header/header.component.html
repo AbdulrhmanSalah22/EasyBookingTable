@@ -10,17 +10,20 @@
 
     <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
       <ul class="navbar-nav d-flex justify-content-between">
-        <li class="nav-item only-desktop">
+        <!-- <li class="nav-item only-desktop">
           <a class="nav-link" id="side-nav-open" href="#">
             <span class="lnr lnr-menu"></span>
           </a>
-        </li>
+        </li> -->
         <div class="d-flex flex-lg-row flex-column">
           <li class="nav-item active">
             <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/aboutus">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/ourteam">Team</a>
           </li>
 
           <li class="nav-item dropdown">
@@ -34,9 +37,11 @@
               <a class="dropdown-item" (click)="freg('meal2')">Salmon Zucchini</a>
             </div>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" routerLink="/menu">Menu</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link" id="love" routerLink="/favourite"><img src="../../../assets/img/add-to-favorites.png" alt=""></a>
+            
           </li>
+        
         </div>
       </ul>
 
@@ -45,11 +50,9 @@
       </a>
       <ul class="navbar-nav d-flex justify-content-between">
         <div class="d-flex flex-lg-row flex-column">
-
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/ourteam">Team</a>
+            <li class="nav-item active">
+            <a class="nav-link" routerLink="/menu">Menu</a>
           </li>
-
           <li class="nav-item dropdown">
             <a class="nav-link" (click)="freg('reserve')">Reservation</a>
           </li>
@@ -57,23 +60,17 @@
             <a class="nav-link" routerLink="/signin">Login</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link" routerLink="/signup">Sign Up</a>
+            <a class="nav-link" routerLink="/signup">Register</a>
           </li>
            <li class="nav-item dropdown">
             <span>
               <i class="fa-solid fa-cart-shopping shoping" id="cart" routerLink="/order" style="position: relative;">
-              <div class="ciircle">{{number()}}</div>
+              <div class="ciircle">{{number() }}</div>
             </i></span>
           </li>
+         
         </div>
-        <li class="nav-item">
-          <a id="side-search-open" class="nav-link" href="#">
-            <span class="lnr lnr-magnifier"></span>
-          </a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" id="love" routerLink="/favourite">favourites</a>
-        </li>
+       
       </ul>
     </div>
   </div>

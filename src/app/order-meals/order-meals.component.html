@@ -27,6 +27,7 @@
               <button class="btn btn-primary" (click)="delateMeal(order)">
                 Delete
               </button>
+
               <button class="counter" (click)="addQty(order)">
                 <i class="fa-solid fa-circle-plus"></i>
               </button>
@@ -35,6 +36,9 @@
                 <i class="fa-solid fa-circle-minus"></i>
               </button>
             </div>
+            <!-- <button class="btn btn-primary" (click)="addOthrMeal(order)">
+              Add Meal with Other Option
+            </button> -->
           </div>
         </div>
       </div>
@@ -42,8 +46,12 @@
     <div class="container">
       <div class="row justify-content-center" *ngIf="!display">
         <div class="col-5 d-flex justify-content-center">
-          <h5 class="card-title">Total</h5>
-          <p class="card-text">{{ CalcPrice() }}</p>
+          <h3 class="card-title mx-4">Total</h3>
+          <h3 class="card-text">${{ CalcPrice() }}</h3>
+        </div>
+      </div>
+      <div class="row justify-content-end" *ngIf="!display">
+        <div class="col-5 d-flex justify-content-end">
           <a class="btn btn-primary" (click)="CalcPrice()">Checkout</a>
         </div>
       </div>

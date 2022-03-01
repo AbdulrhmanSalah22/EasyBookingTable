@@ -15,11 +15,11 @@ body {
   margin: 0 auto;
   box-shadow: 0 15px 16.83px 0.17px rgb(0 0 0 / 5%);
   border-radius: 20px;
-  margin-top: 40px;
+  /* margin-top: 40px; */
 }
 .main {
   background: #f8f8f8;
-  padding: 5%;
+  /* padding: 5%; */
 }
 div {
   display: block;
@@ -170,11 +170,16 @@ input[type="checkbox"]:not(old) + label > span {
 }
 i{
   color: #757575;
-  padding-top: 5px;
+  padding-top: 4px;
+
+  /* padding-top: 5px; */
   
 }
 .field-container
 {
   border-bottom: 1px solid #999;
   width: 85%;
+}
+.signup{
+  padding: 20px 20px;
 }
