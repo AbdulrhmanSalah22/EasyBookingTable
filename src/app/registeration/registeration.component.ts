@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 // import {confirmPassword1} from '../shared/confirmPassword'
 import { MealService } from '../shared/service/meal.service';
 import { UserService } from '../shared/service/user.service';
@@ -20,19 +21,16 @@ registeForm=this.fb.group({
 });
 
 
-  constructor(private fb:FormBuilder,private signUP:MealService,private UserService:UserService) { }
+  constructor(private fb:FormBuilder,private signUP:MealService,
+    private UserService:UserService,
+    private router:Router) { }
 
   ngOnInit(): void {
     
   }
   onSubmit(signup:any){
     console.log(signup.value);
-    this.UserService.addUser(signup.value).subscribe(
-       (next)=>{console.log(next)
-        signup.reset()
-      },
-      (error)=>{this.error=error.error
-      console.log(error)})
+    this.UserService.addUser(signup.value)
   }
  
 }

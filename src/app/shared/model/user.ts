@@ -1,6 +1,7 @@
 export interface User {
     name:string,
     email:string,
-    password:string
-    // phone:number
+    password:string,
+    token:string,
+    phone:number
 }

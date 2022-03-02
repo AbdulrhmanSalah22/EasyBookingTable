@@ -14,7 +14,7 @@
                         </h2>
                     </div>
 
-                    <form name="contact-us" [formGroup]="book" #reservation=ngForm (ngSubmit)="onSubmit(reservation)">
+                    <form *ngIf="!Auth" name="contact-us" [formGroup]="book" #reservation=ngForm (ngSubmit)="onSubmit(reservation)">
                         <div class="row">
                             <div class="col-md-12 form-group">
 
@@ -71,7 +71,7 @@
                                     <option value="4">4</option>
                                 </select>
                             </div>
-                            <div *ngIf="auth" class="col-md-12 text-center">
+                            <div  class="col-md-12 text-center">
                                 <button class="btn btn-primary btn-shadow btn-lg" type="submit" name="submit">reserve
                                     now</button>
                             </div>

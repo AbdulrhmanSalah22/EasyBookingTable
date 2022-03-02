@@ -56,11 +56,14 @@
           <li class="nav-item dropdown">
             <a class="nav-link" (click)="freg('reserve')">Reservation</a>
           </li>
-          <li class="nav-item dropdown">
+          <li *ngIf="!Auth" class="nav-item dropdown">
             <a class="nav-link" routerLink="/signin">Login</a>
           </li>
-          <li class="nav-item dropdown">
+          <li *ngIf="!Auth" class="nav-item dropdown">
             <a class="nav-link" routerLink="/signup">Register</a>
+          </li>
+          <li *ngIf="Auth" class="nav-item dropdown">
+            <a class="nav-link" routerLink="/signin" (click)="logOut()">LogOut</a>
           </li>
            <li class="nav-item dropdown">
             <span>
@@ -68,7 +71,6 @@
               <div class="ciircle">{{number() }}</div>
             </i></span>
           </li>
-         
         </div>
        
       </ul>
