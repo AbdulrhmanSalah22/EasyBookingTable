@@ -24,7 +24,7 @@ export class UserService {
         console.log(ResData);
         localStorage.setItem('toke', ResData.token);
         this.autoLogin();
-        this.router.navigate(['/menu']);
+        this.router.navigate(['/home']);
       },
       (error) => {
         console.log(error);
@@ -41,7 +41,7 @@ export class UserService {
         if (ResData.token) {
           localStorage.setItem('toke', ResData.token);
           this.autoLogin();
-          this.router.navigate(['/menu']);
+          this.router.navigate(['/home']);
         } else {
           this.loginErrors.next(ResData);
         }

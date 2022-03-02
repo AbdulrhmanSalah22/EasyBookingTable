@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Meal } from 'src/app/shared/model/meal';
+import { FavouriteService } from 'src/app/shared/service/favourite.service';
 import { MealService } from 'src/app/shared/service/meal.service';
 import { OrderService } from 'src/app/shared/service/order.service';
 
@@ -11,7 +12,9 @@ import { OrderService } from 'src/app/shared/service/order.service';
 export class MenuMealsComponent implements OnInit {
   @Input() id!:number;
   @Input() meal!:Meal;
-  constructor(private MealService:MealService,private OrderService:OrderService) { }
+  constructor(private MealService:MealService,
+    private OrderService:OrderService,
+    private FavouriteService:FavouriteService) { }
 
   ngOnInit(): void {
   }
@@ -23,8 +26,14 @@ export class MenuMealsComponent implements OnInit {
     this.OrderService.addorder(mymeal);
     console.log(mymeal)
   }
-  getmeal(mymeal:any)
+  
+  addFavourite(mymeal:any)
   {
-   this.OrderService.additemtochart(mymeal)
+  let data={id:mymeal.id}
+   this.FavouriteService.sendfev(data).subscribe(
+     (next)=>{console.log(next)},
+     (error)=>{console.log(error)}
+   );
   }
+
 }

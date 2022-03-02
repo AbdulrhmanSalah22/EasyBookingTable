@@ -24,10 +24,7 @@ export class HeaderComponent implements OnInit {
    this.UserService.Auth.subscribe(Auth=>{
     this.Auth=Auth
     })
-    // this.UserService.AuthUser.subscribe(user=>this.Auth= user.token? true :false)
-    if(localStorage.getItem('toke')){
-      this.Auth=true
-    }
+    this.UserService.autoLogin()
   }
   freg(reserve:string)
   {
@@ -39,4 +36,5 @@ export class HeaderComponent implements OnInit {
   logOut(){
     this.UserService.logOut()
   }
+
 }

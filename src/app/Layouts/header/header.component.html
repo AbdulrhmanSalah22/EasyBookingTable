@@ -1,14 +1,27 @@
 <nav id="navbar-header" class="navbar navbar-expand-lg">
   <div class="container">
-    <a class="navbar-brand navbar-brand-center d-flex align-items-center p-0 only-mobile" href="/">
+    <a
+      class="navbar-brand navbar-brand-center d-flex align-items-center p-0 only-mobile"
+      href="/"
+    >
       <img src="../../../assets/img/logo.png" alt="" />
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="lnr lnr-menu"></span>
     </button>
 
-    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+    <div
+      class="collapse navbar-collapse justify-content-between"
+      id="navbarSupportedContent"
+    >
       <ul class="navbar-nav d-flex justify-content-between">
         <!-- <li class="nav-item only-desktop">
           <a class="nav-link" id="side-nav-open" href="#">
@@ -17,7 +30,9 @@
         </li> -->
         <div class="d-flex flex-lg-row flex-column">
           <li class="nav-item active">
-            <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" routerLink="/home"
+              >Home <span class="sr-only">(current)</span></a
+            >
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/aboutus">About</a>
@@ -25,7 +40,26 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/ourteam">Team</a>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" (click)="freg('reserve')">Reservation</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" id="love" routerLink="/favourite" 
+              ><img src="../../../assets/img/add-to-favorites.png" alt=""
+            /></a>
+          </li>
+         
+        </div>
+      </ul>
 
+      <a
+        class="navbar-brand navbar-brand-center d-flex align-items-center only-desktop"
+        href="#"
+      >
+        <img src="../../../assets/img/logo.png" alt="" />
+      </a>
+      <ul class="navbar-nav d-flex justify-content-between">
+        <div class="d-flex flex-lg-row flex-column">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
@@ -37,25 +71,10 @@
               <a class="dropdown-item" (click)="freg('meal2')">Salmon Zucchini</a>
             </div>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link" id="love" routerLink="/favourite"><img src="../../../assets/img/add-to-favorites.png" alt=""></a>
-            
-          </li>
-        
-        </div>
-      </ul>
-
-      <a class="navbar-brand navbar-brand-center d-flex align-items-center only-desktop" href="#">
-        <img src="../../../assets/img/logo.png" alt="" />
-      </a>
-      <ul class="navbar-nav d-flex justify-content-between">
-        <div class="d-flex flex-lg-row flex-column">
-            <li class="nav-item active">
+          <li class="nav-item active">
             <a class="nav-link" routerLink="/menu">Menu</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link" (click)="freg('reserve')">Reservation</a>
-          </li>
+          
           <li *ngIf="!Auth" class="nav-item dropdown">
             <a class="nav-link" routerLink="/signin">Login</a>
           </li>
@@ -63,16 +82,23 @@
             <a class="nav-link" routerLink="/signup">Register</a>
           </li>
           <li *ngIf="Auth" class="nav-item dropdown">
-            <a class="nav-link" routerLink="/signin" (click)="logOut()">LogOut</a>
+            <a class="nav-link" routerLink="/signin" (click)="logOut()"
+              >LogOut</a
+            >
           </li>
-           <li class="nav-item dropdown">
+          <li class="nav-item dropdown">
             <span>
-              <i class="fa-solid fa-cart-shopping shoping" id="cart" routerLink="/order" style="position: relative;">
-              <div class="ciircle">{{number() }}</div>
-            </i></span>
+              <i
+                class="fa-solid fa-cart-shopping shoping"
+                id="cart"
+                routerLink="/order"
+                style="position: relative"
+              >
+                <div class="ciircle">{{ number() }}</div>
+              </i></span
+            >
           </li>
         </div>
-       
       </ul>
     </div>
   </div>
