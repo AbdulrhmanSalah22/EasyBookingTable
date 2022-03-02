@@ -34,9 +34,10 @@ class CreateReservationsTable extends Migration
                 ->on('tables')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->string('comment');
-            $table->dateTime('time_in');
-            $table->dateTime('time_out');
+            $table->integer('count');
+            $table->date('day');
+            $table->time('time_in');
+            $table->time('time_out');
             $table->primary(['user_id', 'order_id' , 'table_id']);
             $table->timestamps();
         });

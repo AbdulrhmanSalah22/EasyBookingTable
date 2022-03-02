@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::controller(MealController::class)->prefix('meal')->group(function (){
+Route::controller(MealController::class)->middleware(['auth','admin'])->prefix('meal')->group(function (){
 
     Route::get('/add','create')->name('CreateMeal');
     Route::post('/store','store')->name('StoreMeal');

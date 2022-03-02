@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::controller(OptionController::class)->prefix('option')->group(function (){
+Route::controller(OptionController::class)->middleware(['auth','admin'])->prefix('option')->group(function (){
 
     Route::get('/show' ,'showAllOptions')->name('ShowOptions');
     Route::get('/create' ,'create')->name('CreateOptions');
@@ -24,8 +24,6 @@ Route::controller(OptionController::class)->prefix('option')->group(function (){
     Route::get('/add-to-meal' ,'addOptionsToMeal')->name('AddMealOptions');
     Route::post('/store-to-meal' ,'storeOptionsToMeal')->name('StoreMealOptions');
 
-    Route::get('/try' ,'s')->name('a');
-    Route::get('/join' ,'join')->name('join');
 });
 
 

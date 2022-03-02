@@ -13,9 +13,10 @@ class Option extends Model
     protected $fillable = ['name'];
 
 
-    // option table 
+    // option table
     public function meal()
     {
         return $this->belongsToMany(Meal::class , 'meal_options' , 'meal_id' , 'option_id');
     }
+
 }

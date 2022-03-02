@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::controller(OrderController::class)->prefix('order')->group(function (){
+Route::controller(OrderController::class)->middleware(['auth','admin'])->prefix('order')->group(function (){
 
     Route::get('/show' ,'showOrders')->name('ShowOrders');
 });

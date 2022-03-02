@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Favourite;
 use App\Models\Meal;
 use App\Models\Reservation;
 use App\Models\Table;
@@ -12,7 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use PhpParser\Node\Stmt\Foreach_;
+
 
 class ApiController extends Controller
 {
@@ -32,19 +33,46 @@ class ApiController extends Controller
              }
         return response()->json($meals);
     }
+    
     public function getMeal($id){
-        $meal = Meal::with(['media','category','option'])->find($id);
- 
-         $meal-> media[0] -> makeHidden('id','model_type','model_id','uuid','collection_name','name','file_name','mime_type','disk','conversions_disk','size','generated_conversions','manipulations','custom_properties','responsive_images','order_column','created_at','updated_at','preview_url');
- 
-        return response()->json($meal);
-     }
+       $meal = Meal::with(['media','category','option'])->find($id);
+
+        $meal-> media[0] -> makeHidden('id','model_type','model_id','uuid','collection_name','name','file_name','mime_type','disk','conversions_disk','size','generated_conversions','manipulations','custom_properties','responsive_images','order_column','created_at','updated_at','preview_url');
+
+       return response()->json($meal);
+    }
+
 
     public function getUserFavorites($user_id)
     {
-
         $user = User::with('meal')->find($user_id);
-        return response()->json($user);
+        return response()->json($user->meal);
+    }
+
+    public function addToFavorite(Request $request){
+
+        ///////// Function to get bearer token form request////////
+
+        /// First Method::
+        //// Return the token without the word Bearer
+
+        $t = $request->bearerToken();
+        $token_parts = explode('|', $t);
+
+        //// Second Method::
+        //// Return all of the token
+
+        // $token = $request->header('Authorization');
+        // $auth_header = explode(' ', $token);
+        // $token = $auth_header[1];
+        // $token_parts = explode('|', $token);
+
+        $favorite = new Favourite();
+        $favorite->user_id = $token_parts[0] ;
+        $favorite->meal_id = $request->id;
+        
+        // return response()->json(['status_code' => 200, 'message' =>   $favorite]);
+        $favorite->save();
     }
 
     public function getMealOptions($meal_id)
@@ -66,74 +94,4 @@ class ApiController extends Controller
         return response()->json($user);
     }
 
-
-    public function searchForTableStatus(Request $request)
-    {
-        $table = Table::where('status', '=', '0')->first();
-
-        if ($table) {
-
-            return response()->json(
-                ['status_code' => 200, 'table availability' => $table]
-            );
-        }
-
-        $reservations =  DB::table('reservations')
-            ->orderBy('time_out', 'asc')
-            ->get();
-       
-        foreach ($reservations  as $value) {
-
-            if ($value->time_in == $request->time_in) {
-
-                $timeOut = $value->time_out ;
-                $timeAfterAddMinutes = Carbon::Parse($timeOut)->addMinutes(30);
-                $newTime =  $timeAfterAddMinutes->format('Y-m-d H:i:s');
-                return response()->json(
-                    ['status_code' => 200, 'answer' => " The new time is $newTime "]
-                );
-            }
-
-        }
-
-        /// Time in not = any time in in database
-        if ($value->time_in != $request->time_in) {
-
-           $y = $request->time_in;
-         $z=  Arr::first($reservations, function ($value, $key) {
-            return $value->time_out > "2022-02-09 15:00:00";
-        });
-        $timeAfterAddMinutes = Carbon::Parse($z->time_out)->addMinutes(30);
-        $newTime =  $timeAfterAddMinutes->format('Y-m-d H:i:s');
-                return response()->json(
-                    ['status_code' => 200, 'answer' => $newTime]
-                );
-            // }
-              
-           
-        }
-
-      
-
-
-        //        // else{
-        //        //     return response()->json(
-        //        //         ['status_code' => 200, 'answer' => 'hi']
-        //        //         // ['status_code' => 200, 'table availability' => $table]
-        //        //     );
-        //        // }  
-        //    }
-
-
-        // return response()->json(
-        //     ['status_code' => 200, 'answer' => $request->time_in]
-        //     // ['status_code' => 200, 'table availability' => $table]
-        // );
-
-
-
-
-
-
-    }
 }

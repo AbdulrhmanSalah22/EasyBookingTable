@@ -26,7 +26,7 @@ class MealRequest extends FormRequest
         return [
             'name' => 'required|min:3|max:20',
             'price' => 'required',
-            'description' => 'required|min:10|max:100',
+            'description' => 'required|min:10|max:300',
             'category_id' => 'required',
             'meal_img' => 'required'
         ];
@@ -40,8 +40,8 @@ class MealRequest extends FormRequest
             'name.max' => 'The name must be between 3 to 20 character',  
             'price.required' => 'Please fill Price',  
             'description.required' => 'Please fill description',
-            'description.min' => 'The description must be between 10 to 100 character',
-            'description.max' => 'The description must be between 10 to 100 character',
+            'description.min' => 'The description must be between 10 to 300 character',
+            'description.max' => 'The description must be between 10 to 300 character',
             'category_id.required' => 'Please select Category Name',
             'meal_img.required' => 'Please select an image',
         ];

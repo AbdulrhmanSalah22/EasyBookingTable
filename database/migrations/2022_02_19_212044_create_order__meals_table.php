@@ -17,13 +17,14 @@ class CreateOrderMealsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('meal_id');
-            $table->unsignedBigInteger('option_id');
+            $table->unsignedBigInteger('option_id')->nullable()->default(NULL);
             $table->foreign('order_id')->references('id')->on('orders')
                 ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('meal_id')->references('id')->on('meals')
                 ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('option_id')->references('id')->on('options')
                 ->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('num')->default(1);
             $table->timestamps();
         });
     }

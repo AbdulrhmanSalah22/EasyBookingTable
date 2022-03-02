@@ -48,22 +48,24 @@ class User extends Authenticatable
     ];
 
 
-    // favorites table 
-    public function favoriteMeal()
+    // favorites table
+    public function meal()
     {
         return $this->belongsToMany(Meal::class , 'favourites' , 'user_id' , 'meal_id');
     }
 
 
-    // option reservations 
-    //////// Why???
+    // option reservations
     public function order()
     {
         return $this->belongsToMany(Order::class , 'reservations' , 'user_id' , 'order_id');
     }
+//    public function reservation(){
+//        return $this->hasMany(Reservation::class ,'');
+//    }
 
 
-    // option reservations 
+    // option reservations
     public function table()
     {
         return $this->belongsToMany(Table::class , 'reservations' , 'user_id' , 'table_id');

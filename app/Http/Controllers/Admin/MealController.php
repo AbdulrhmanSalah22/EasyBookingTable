@@ -15,13 +15,7 @@ class MealController extends Controller
        return view('Meal.create',compact('cats'));
     }
     public function store(MealRequest $request){
-//        return $request->all() ;
-//    $meal = new  Meal ;
-//    $meal -> name = $request -> name ;
-//    $meal -> price = $request -> price ;
-//    $meal -> description = $request-> description;
-//    $meal -> category_id = $request -> category_id ;
-//    $meal -> save();
+
         $input = $request->all();
 
         $meal = Meal::create($input);
@@ -50,13 +44,20 @@ class MealController extends Controller
         $cats = Category::all();
         return view('Meal.edit',compact('meal','cats'));
     }
-    public function update(Request $request , $id){
-        Meal::find($id)->update([
-            'name' => $request ->name ,
-            'price'=> $request ->price ,
-            'description'=> $request ->description ,
-            'category_id' => $request -> category_id
+    public function update(MealRequest $request , $id)
+    {
+        $meal = Meal::find($id);
+        $meal->update([
+            'name' => $request->name,
+            'price' => $request->price,
+            'description' => $request->description,
+            'category_id' => $request->category_id
         ]);
-        return redirect()->route("ShowMeals");
+        if ($request->hasFile('meal_img')) {
+            $meal->clearMediaCollection('meal_img');
+            $meal->addMediaFromRequest('meal_img')->toMediaCollection('meal_img');
+
+            return redirect()->route("ShowMeals");
+        }
     }
 }

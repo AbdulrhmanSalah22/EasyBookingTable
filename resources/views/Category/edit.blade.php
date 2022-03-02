@@ -23,9 +23,9 @@
            @enderror
             <label class="fs-3 my-2">Upload Category Image :: </label>
             <input type="file" class="form-control" name="cat_img" >
-            {{-- @error('name')
+             @error('cat_img')
             <small class="form-text text-danger">{{$message}}</small>
-            @enderror --}}
+            @enderror
         </div>
         <button type="submit" class="btn btn-primary form-control mt-4">Submit</button>
     </form>
