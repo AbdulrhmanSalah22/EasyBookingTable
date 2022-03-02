@@ -15,7 +15,7 @@ export class ReservationService {
 
   TableCheck(data: Reservation) {
     return this.Http.post<Reservation>(
-      'http://localhost:8000/api/check1',
+      'http://localhost:8000/api/get-table',
       data
     )
   }

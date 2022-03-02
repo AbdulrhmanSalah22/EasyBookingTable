@@ -37,6 +37,8 @@ export class ReservationComponent implements OnInit {
     this.ReservationService.TableCheck(reservation.value).subscribe(
       (ResData) => {
         if(ResData.available==true){
+          console.log(ResData);
+          
           let reservationData = {
             start_time: reservation.value.start_time,
             end_time: reservation.value.end_time,

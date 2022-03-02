@@ -52,6 +52,10 @@ export class UserService {
     );
   }
   logOut() {
+    this.Http.post<User>(
+      'http://127.0.0.1:8000/api/user/logout',
+      localStorage.getItem('toke')
+    ).subscribe()
     localStorage.removeItem('toke');
     this.Auth.next(false);
   }
