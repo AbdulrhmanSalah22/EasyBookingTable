@@ -32,7 +32,7 @@
     <div class="col-md-12">
       <div class="card-sl">
         <div class="card-image">
-          <img style="height: 287px; width: 100%" src="{{ meal.img }}" />
+          <img style="height: 287px; width: 100%" src="{{ meal.media[0].original_url }}" />
         </div>
         <a class="card-action" (click)="getmeal(meal)"
           ><i class="fa fa-heart"></i
@@ -46,7 +46,7 @@
           {{ meal.name }}
         </div>
         <div class="card-text">
-          {{ meal.des }}
+          {{ meal.description }}
         </div>
         <div class="card-text">$67,400</div>
         <a (click)="addorder(meal)" class="card-button"> Add To Cart</a>

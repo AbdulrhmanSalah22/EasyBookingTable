@@ -1,22 +1,71 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
 import { User } from '../model/user';
 import { OrderService } from './order.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
+  loginErrors = new Subject<any>();
+  Auth = new Subject<boolean>();
+  getUser() {}
 
-  getUser(){
+  addUser(user: any) {
+    console.log(user);
 
+    return this.Http.post<User>(
+      'http://localhost:8000/api/user/register',
+      user
+    ).subscribe(
+      (ResData) => {
+        console.log(ResData);
+        localStorage.setItem('toke', ResData.token);
+        this.autoLogin();
+        this.router.navigate(['/menu']);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
-  addUser(user:any){
-   let date1= {name: 'aliaaaliyyyyyyyee',email:'aliaa@tahoo'}
-    console.log(user)
- return  this.Http.post('http://localhost:8000/api/user/register',user)
-  }
+  login(data: User) {
+    this.Http.post<User>(
+      'http://127.0.0.1:8000/api/user/login',
+      data
+    ).subscribe(
+      (ResData) => {
+        if (ResData.token) {
+          localStorage.setItem('toke', ResData.token);
+          this.autoLogin();
+          this.router.navigate(['/menu']);
+        }else{
+          this.loginErrors.next(ResData)
 
-  constructor(private Http:HttpClient,private OrderService:OrderService) { }
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+  logOut() {
+    localStorage.removeItem('toke');
+    this.Auth.next(false);
+  }
+  autoLogin() {
+    if (localStorage.getItem('toke')) {
+      this.Auth.next(true);
+    } else {
+      this.Auth.next(false);
+    }
+  }
+  constructor(
+    private Http: HttpClient,
+    private OrderService: OrderService,
+    private router: Router
+  ) {}
 }

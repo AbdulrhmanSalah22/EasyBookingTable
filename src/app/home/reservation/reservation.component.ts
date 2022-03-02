@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, Validators } from '@angular/forms';
 import {formatDate} from '@angular/common'
+import { UserService } from 'src/app/shared/service/user.service';
 @Component({
   selector: 'app-reservation',
   templateUrl: './reservation.component.html',
@@ -9,17 +10,18 @@ import {formatDate} from '@angular/common'
 })
 export class ReservationComponent implements OnInit {
 
-  // auth=true;
-  auth:boolean=true;
-
+  Auth!:boolean
  book=this.fb.group({
     date:['',[Validators.required]],  
    start_time:['',[Validators.required]],  
    end_time:['',[Validators.required]]    
  })
-  constructor(private fb:FormBuilder) { }
+  constructor(private fb:FormBuilder, private UserService:UserService) { }
 
   ngOnInit(): void {
+    this.UserService.Auth.subscribe(Auth=>{
+      this.Auth=Auth
+      })
     // var currentDate = new Date().getDate();
     // var currentyear = new Date().getFullYear();
     // var currentmonth = new Date().getUTCMonth();    
