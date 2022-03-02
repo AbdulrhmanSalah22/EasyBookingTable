@@ -11,12 +11,18 @@ import { Reservation } from 'src/app/shared/model/reservation';
   styleUrls: ['./reservation.component.css'],
 })
 export class ReservationComponent implements OnInit {
+  
+  current:any=formatDate(new Date(),'yyyy-MM-dd', 'en');
+  // currentMonth:any= this.current.setMonth(this.current.getMonth()+1);
+
+
+
+  Auth!: boolean;
   table_id!:string
   message!: string | undefined;
   reserved:boolean=false
 
 
-  Auth!: boolean;
   book = this.fb.group({
     date: ['', [Validators.required]],
     start_time: ['', [Validators.required]],
@@ -30,6 +36,10 @@ export class ReservationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.UserService.Auth.subscribe(Auth=>{
+      this.Auth=Auth
+      })
+      this.UserService.autoLogin()
     console.log(formatDate(new Date(), 'MM/dd/yyyy', 'en'));
   }
   onSubmit(reservation: any) {

@@ -4,7 +4,7 @@
   style="background-image: url(../../../assets/img/reservation-bg.jpg)"
   data-stellar-background-ratio="0.8"
 >
-  <div class="container">
+  <div *ngIf="Auth" class="container">
     <div class="row">
       <div class="col-lg-5">
         <div class="section-content bg-white p-5 shadow">
@@ -35,6 +35,14 @@
                         book.get('date')!.invalid && book.get('date')!.touched
                     }"
                   />
+                </div>
+                <div
+                  *ngIf="
+                  current+7  < book.get('date')!.value < current &&
+                    book.get('date')!.touched && book.get('date')!.valid
+                  "
+                >
+                  <span style="color: red">*Please Enter a valid date </span>
                 </div>
                 <div
                   *ngIf="book.get('date')!.invalid && book.get('date')!.touched && book.get('date')!.errors?.['required'] "
@@ -93,7 +101,6 @@
                     }"
                   />
                 </div>
-
                 <div
                   *ngIf="book.get('end_time')!.invalid && book.get('end_time')!.touched && book.get('end_time')!.errors?.['required'] "
                 >
@@ -107,13 +114,13 @@
                   class="form-control"
                   id="person"
                 >
-                  <option selected disabled>person</option>
-                  <option value="1">2 Persons</option>
-                  <option value="2">4 Persons</option>
-                  <option value="3">5 Persons</option>
-                  <option value="4">6 Persons</option>
-                  <option value="4">7 Persons</option>
-                  <option value="4">8 Persons</option>
+                  <option selected disabled>A Company Numper</option>
+                  <option value="2 Persons">2 Persons</option>
+                  <option value="4 Persons">4 Persons</option>
+                  <option value="5 Persons">5 Persons</option>
+                  <option value="6 Persons">6 Persons</option>
+                  <option value="7 Persons">7 Persons</option>
+                  <option value="8 Persons">8 Persons</option>
                 </select>
               </div>
               <div class="col-md-12 text-center">
@@ -121,6 +128,11 @@
                   class="btn btn-primary btn-shadow btn-lg mt-5"
                   type="submit"
                   name="submit"
+                  [disabled]="
+                    book.invalid ||
+                    book.get('date')!.value < current ||
+                    book.get('start_time')!.value > book.get('end_time')!.value
+                  "
                 >
                   reserve now
                 </button>

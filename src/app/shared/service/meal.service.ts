@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Login } from '../model/login';
@@ -21,7 +21,7 @@ export class MealService {
       `http://localhost:8000/api/get-meal/${this.SelectedMeal.id}`
     );
   }
-
+ 
   constructor(private Http: HttpClient) {}
   
 }
