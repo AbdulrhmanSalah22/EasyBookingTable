@@ -28,27 +28,6 @@ export class LoginComponent implements OnInit {
     })
   }
   onSubmit(signin: any) {
-    // console.log(signin.value);
-    // this.lohin_ser.sendData(signin.value).subscribe(
-    //   (next)=>{console.log(next)
-    //     // localStorage.setItem('token' , next.token)
-    //   },
-    //   (error)=>{
-    //     if(error){
-    //       console.log(error);
-    //     // this.router.navigateByUrl('#'+"reserve");
-    //     // this.router.navigate(["/"])
-    //     // this.router.navigate(["/signup"])
-    //   }}
-    // );
-
     this.UserService.login(signin.value);
-    //.subscribe(
-    //   (next)=>{console.log(next)
-
-    //     // localStorage.setItem('token' , next.token)
-    //   },
-    //   (error)=>{console.log(error)}
-    // )
   }
 }
