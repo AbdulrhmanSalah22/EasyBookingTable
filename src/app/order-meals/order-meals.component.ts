@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { Meal } from '../shared/model/meal';
 import { MealService } from '../shared/service/meal.service';
 import { OrderService } from '../shared/service/order.service';
+import { ReservationService } from '../shared/service/reservation.service';
 
 @Component({
   selector: 'app-order-meals',
@@ -9,7 +10,7 @@ import { OrderService } from '../shared/service/order.service';
   styleUrls: ['./order-meals.component.css'],
 })
 export class OrderMealsComponent implements OnInit {
-  constructor(private orderservice: OrderService) {}
+  constructor(private orderservice: OrderService,private ReservationSErvice:ReservationService) {}
   price!:number
   display = true;
   listOrder!: Array<Meal>;
@@ -48,7 +49,9 @@ export class OrderMealsComponent implements OnInit {
     this.uniqueOrder.forEach(meal=>{
      this.price=this.price+(meal.count*meal.price)
     })
-    console.log(this.listOrder)
     return this.price
+  }
+  orderNow(){
+       this.ReservationSErvice.saveReservation(this.listOrder)
   }
 }

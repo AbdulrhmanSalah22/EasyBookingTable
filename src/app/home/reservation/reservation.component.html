@@ -1,91 +1,146 @@
+<section
+  id="gtco-reservation"
+  class="bg-fixed bg-white section-padding overlay"
+  style="background-image: url(../../../assets/img/reservation-bg.jpg)"
+  data-stellar-background-ratio="0.8"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="section-content bg-white p-5 shadow">
+          <div class="heading-section text-center">
+            <span class="subheading"> Reservation </span>
+            <h2>Book Now</h2>
+          </div>
 
-<section id="gtco-reservation" class="bg-fixed bg-white section-padding overlay"
-    style="background-image: url(../../../assets/img/reservation-bg.jpg);" data-stellar-background-ratio="0.8">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-5">
-                <div class="section-content bg-white p-5 shadow">
-                    <div class="heading-section text-center">
-                        <span class="subheading">
-                            Reservation
-                        </span>
-                        <h2>
-                            Book Now
-                        </h2>
-                    </div>
-
-                    <form *ngIf="!Auth" name="contact-us" [formGroup]="book" #reservation=ngForm (ngSubmit)="onSubmit(reservation)">
-                        <div class="row">
-                            <div class="col-md-12 form-group">
-
-                                <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                                    <input type="date" class="form-control datetimepicker-input" formControlName="date"
-                                        [ngClass]="{'invalid': book.get('date')!.invalid && book.get('date')!.touched}">
-
-                                </div>
-                                <div  *ngIf="book.get('date')!.invalid && book.get('date')!.touched && book.get('date')!.errors?.['required'] ">
-                                    <span style="color: red;">*This field is required </span>
-                                </div>
-
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label for="start">in time</label>
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label for="end">out time</label>
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
-                                    <input type="time" class="form-control datetimepicker-input" id="start"
-                                        placeholder="start time" formControlName="start_time"
-                                        [ngClass]="{'invalid': book.get('start_time')!.invalid && book.get('start_time')!.touched}"
-                                        >
-
-                                </div>
-                                <div  *ngIf="book.get('start_time')!.invalid && book.get('start_time')!.touched && book.get('start_time')!.errors?.['required'] ">
-                                    <span style="color: red;">*This field is required </span>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 form-group">
-                                <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
-
-
-                                    <input type="time" class="form-control datetimepicker-input" id="end"
-                                        placeholder="Time" formControlName="end_time"
-                                        [ngClass]="{'invalid': book.get('end_time')!.invalid && book.get('end_time')!.touched}"
-                                        >
-                                </div>
-
-                                <div  *ngIf="book.get('end_time')!.invalid && book.get('end_time')!.touched && book.get('end_time')!.errors?.['required'] ">
-                                    <span style="color: red;">*This field is required </span>
-                                </div>
-
-                            </div>
-                            <div class="col-md-12 form-group">
-                                <select name="person" class="form-control" id="person">
-                                    <option selected disabled>person</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                </select>
-                            </div>
-                            <div  class="col-md-12 text-center">
-                                <button class="btn btn-primary btn-shadow btn-lg" type="submit" name="submit">reserve
-                                    now</button>
-                            </div>
-                            <!-- <div *ngIf="!auth" class="col-md-12 text-center" >
-                                <button class="btn btn-primary btn-shadow btn-lg" type="submit" name="submit">Register</button>
-                            </div> -->
-                        </div>
-                    </form>
-
+          <form
+            name="contact-us"
+            [formGroup]="book"
+            #reservation="ngForm"
+            (ngSubmit)="onSubmit(reservation)"
+          >
+            <div class="row">
+              <div class="col-md-12 form-group">
+                <div
+                  class="input-group date"
+                  id="datetimepicker4"
+                  data-target-input="nearest"
+                >
+                  <input
+                    type="date"
+                    class="form-control datetimepicker-input"
+                    formControlName="date"
+                    [ngClass]="{
+                      invalid:
+                        book.get('date')!.invalid && book.get('date')!.touched
+                    }"
+                  />
                 </div>
-            </div>
-        </div>
+                <div
+                  *ngIf="book.get('date')!.invalid && book.get('date')!.touched && book.get('date')!.errors?.['required'] "
+                >
+                  <span style="color: red">*This field is required </span>
+                </div>
+              </div>
+              <div class="col-md-6 form-group">
+                <label for="start">in time</label>
+              </div>
+              <div class="col-md-6 form-group">
+                <label for="end">out time</label>
+              </div>
+              <div class="col-md-6 form-group">
+                <div
+                  class="input-group date"
+                  id="datetimepicker3"
+                  data-target-input="nearest"
+                >
+                  <input
+                    type="time"
+                    class="form-control datetimepicker-input"
+                    id="start"
+                    placeholder="start time"
+                    formControlName="start_time"
+                    [ngClass]="{
+                      invalid:
+                        book.get('start_time')!.invalid &&
+                        book.get('start_time')!.touched
+                    }"
+                  />
+                </div>
+                <div
+                  *ngIf="book.get('start_time')!.invalid && book.get('start_time')!.touched && book.get('start_time')!.errors?.['required'] "
+                >
+                  <span style="color: red">* This field is required </span>
+                </div>
+              </div>
 
+              <div class="col-md-6 form-group">
+                <div
+                  class="input-group date"
+                  id="datetimepicker3"
+                  data-target-input="nearest"
+                >
+                  <input
+                    type="time"
+                    class="form-control datetimepicker-input"
+                    id="end"
+                    placeholder="Time"
+                    formControlName="end_time"
+                    [ngClass]="{
+                      invalid:
+                        book.get('end_time')!.invalid &&
+                        book.get('end_time')!.touched
+                    }"
+                  />
+                </div>
+
+                <div
+                  *ngIf="book.get('end_time')!.invalid && book.get('end_time')!.touched && book.get('end_time')!.errors?.['required'] "
+                >
+                  <span style="color: red">*This field is required </span>
+                </div>
+              </div>
+              <div class="col-md-12 form-group">
+                <select
+                  formControlName="comment"
+                  name="comment"
+                  class="form-control"
+                  id="person"
+                >
+                  <option selected disabled>person</option>
+                  <option value="1">2 Persons</option>
+                  <option value="2">4 Persons</option>
+                  <option value="3">5 Persons</option>
+                  <option value="4">6 Persons</option>
+                  <option value="4">7 Persons</option>
+                  <option value="4">8 Persons</option>
+                </select>
+              </div>
+              <div class="col-md-12 text-center">
+                <button
+                  class="btn btn-primary btn-shadow btn-lg mt-5"
+                  type="submit"
+                  name="submit"
+                >
+                  reserve now
+                </button>
+              </div>
+              <div class="col-md-12 form-group">
+                <div class="row">
+                  <div class="col-12 text-center fs-6 fw-bold mt-3">
+                    {{ message }}
+                  </div>
+                  <div *ngIf="reserved" class="col-12 mt-2 text-end">
+                    <a routerLink="/menu"
+                      >Go Now<i class="fa-solid fa-circle-arrow-right"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-   
->>>>>>> ayaGamal
+  </div>
 </section>

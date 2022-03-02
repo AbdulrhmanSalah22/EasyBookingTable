@@ -42,9 +42,8 @@ export class UserService {
           localStorage.setItem('toke', ResData.token);
           this.autoLogin();
           this.router.navigate(['/menu']);
-        }else{
-          this.loginErrors.next(ResData)
-
+        } else {
+          this.loginErrors.next(ResData);
         }
       },
       (error) => {
