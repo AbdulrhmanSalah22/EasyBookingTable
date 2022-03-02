@@ -69,3 +69,4 @@ export class OrderService {
 //     if(this.orderarray[i].id==meal.id){
 //     this.orderarray.splice(i, 1);
 //     }
+
