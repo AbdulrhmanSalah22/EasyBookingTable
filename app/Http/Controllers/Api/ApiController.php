@@ -143,17 +143,16 @@ class ApiController extends Controller
 
 
     public function insertIntoReservation(Request $request){
-        return $request[2]->price->price ;
-        // try {
+        try {
             $token = $request->bearerToken();
             $token_parts = explode('|', $token);
             $user_id = DB::table('personal_access_tokens')
                 ->where('id', $token_parts[0])
                 ->get();
 
-//        /  $user_id[0]->tokenable_id ***
-            $date =  $request[0]-> date ;
-            $total = $request[2]->price ;
+            $count = explode(' ', $request[0]['comment']);
+            $date =  $request[0]['date'];
+            $total = $request[2]['price'] ;
             $order =  Order::create([
                 'date' => $date,
                 'total' => $total
@@ -162,25 +161,23 @@ class ApiController extends Controller
             Reservation::create([
                 'user_id' => $user_id[0]->tokenable_id ,
                 'order_id' => $order_id ,
-                'table_id' => $request[0] -> table_id ,
-                'count' => $request[0] -> comment ,
+                'table_id' => $request[0]['table_id']['id'] ,
+                'count' =>  $count[0] ,
                 'day' => $date ,
-                'time_in' => $request[0]-> start_time,
-                'time_out' => $request[0]-> end_time
+                'time_in' => $request[0]['start_time']   ,
+                'time_out' => $request[0]['end_time']
             ]);
             foreach ($request[1] as $meal){
                 Order_Meals::create([
-                    'order_id'=> $order_id ,
-                    'meal_id' => $meal->id ,
-                    'option_id' => $meal->option[0]->id?? null ,
+                    'order_id'=> $order_id ,  
+                    'meal_id' => $meal['id'] ,
+                    'option_id' => isset($meal['option'][0]['id']) ? $meal['option'][0]['id'] : null,
                 ]);
             }
-            // return redirect(route('sendEmail'));
-            return response()->json(['status_code'=> 200]) ;
-        // }catch (Exception $e){
-        //    $error = $e-> getCode();
-        //    return response()->json(['status_code' => $error]) ;
-        // }
+        }catch (Exception $e){
+           $error = $e-> getCode();
+           return response()->json(['status_code' => $error]) ;
+        }
     }
 
 
