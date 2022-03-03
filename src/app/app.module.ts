@@ -24,6 +24,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { OrderMealsComponent } from './order-meals/order-meals.component';
 import {HttpClientModule} from '@angular/common/http';
 import { FavouriteComponent } from './favourite/favourite.component';
+import { ListOrderComponent } from './list-order/list-order.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { FavouriteComponent } from './favourite/favourite.component';
     MealPageComponent,
     SelectedMealComponent,
     OrderMealsComponent,
-    FavouriteComponent
+    FavouriteComponent,
+    ListOrderComponent
   ],
   imports:
    [BrowserModule,

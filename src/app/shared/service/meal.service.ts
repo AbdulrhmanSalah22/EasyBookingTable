@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { identifierName } from '@angular/compiler';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import { Fev } from '../model/fervoirt';
@@ -29,7 +30,7 @@ export class MealService {
 reserve(data:Reserve):Observable<Reserve>{
    return this.Http.post<Reserve>('http://localhost:8000/api/meals',data);
 }
-sendfo(id:number):Observable<Fev>{
+sendfev(id:any):Observable<Fev>{
   return this.Http.post<Fev>("url",id);
 }
 
@@ -38,7 +39,7 @@ getallfev():Observable<Fev>{
 }
 
 deleteFev(id:any):Observable<Fev>{
-  return this.Http.delete<Fev>('http://localhost:8000/api/meals');
+  return this.Http.delete<Fev>('http://localhost:8000/api/meals'+id);
 }
 
   constructor(private Http: HttpClient) {}

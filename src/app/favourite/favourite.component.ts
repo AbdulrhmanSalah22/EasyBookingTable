@@ -15,13 +15,25 @@ export class FavouriteComponent implements OnInit {
     this.mealarray=this.mealservice.cartArray;
     
   }
-  delete(product:Meal) {
     // this.mealarray.splice(this.mealarray.indexOf(product), 1);
-  let  data={id:product.id}
-    this.mealservice.deleteFev(data).subscribe(
-      (next)=>{console.log("delete")},
-      (error)=>{console.log(error)}
-    );
+  // let  data={id:product.id}
+  delete(mymea:Meal) {  
+    if(localStorage.getItem('toke')){
+      this.mealservice.deleteFev(mymea.id).subscribe(
+        (next)=>{console.log("delete")},
+        (error)=>{console.log(error)}
+      );
+    }
+  else{
+     this.mealarray.splice(this.mealarray.indexOf(mymea), 1);
   }
-
+     // this.mealarray.splice(this.mealarray.indexOf(mymea), 1);
+  // let  data={id:product.id}
+  }
+  getfev(){
+    this.mealservice.getallfev().subscribe(
+      (next)=>{console.log(next)},
+      (error)=>{console.log(error)}
+    )
+  }
 }

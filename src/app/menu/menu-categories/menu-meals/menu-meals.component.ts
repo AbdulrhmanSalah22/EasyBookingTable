@@ -24,9 +24,10 @@ export class MenuMealsComponent implements OnInit {
   }
   getmeal(mymeal:any)
   {
-    console.log(mymeal.id);
-   this.MealService.additemtochart(mymeal);
-   this.MealService.sendfo(mymeal.id).subscribe(
+  //   console.log(mymeal.id);
+  //  this.MealService.additemtochart(mymeal);
+  let data={id:mymeal.id}
+   this.MealService.sendfev(data).subscribe(
      (next)=>{console.log(next)},
      (error)=>{console.log(error)}
    );
