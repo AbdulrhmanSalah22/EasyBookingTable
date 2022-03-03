@@ -28,25 +28,15 @@ class DatabaseSeeder extends Seeder
         //  / To add Seeder in reservation table to work easy :D
 //         Reservation::factory(3)->create();
 
-        // \App\Models\User::factory()->create(
-        //     [
-        //         'name' => 'Admin',
-        //         'email' => 'admin@admin.com',
-        //         'password' => Hash::make('123456'),
-        //         'phone' => '01045782305',
-        //         'is_admin' => true
-        //     ]
-        // );
-        //*************************************************** */
-        // $products = factory('App\Product', 25)->create();
-
-        // $faker = Faker::create();
-        // $imageUrl = $faker->imageUrl(640,480, null, false);
-
-        // foreach($products as $product){
-        //     $gift->addMediaFromUrl($imageUrl)->toMediaCollection('images');
-        // }
-
+         \App\Models\User::factory()->create(
+             [
+                 'name' => 'Admin',
+                 'email' => 'admin@admin.com',
+                 'password' => Hash::make('123456'),
+                 'phone' => '01045782305',
+                 'is_admin' => true
+             ]
+         );
 
 }
 }

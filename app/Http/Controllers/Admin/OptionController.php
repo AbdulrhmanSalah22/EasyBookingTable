@@ -61,33 +61,4 @@ class OptionController extends Controller
     }
 
 
-    // try to get options of each meal to show it it meal dataTable
-    public function s(){
-      $res =   new Reservation();
-    //    return Reservation::with('order_meals')->get();
-    //  dd($res -> getmeal() )   ;
-
-   return $res -> getmeal();
-    //    dd($x );
-    // foreach($x as $s){
-
-    //     echo $s;
-    //    echo '<br>';
-    // }
-    //    return $y ;
-    }
-
-
-    public function join(){
-        $res = DB::table('reservations')
-        ->join('order_meals', 'reservations.order_id', '=', 'order_meals.order_id')
-        ->join('meals', 'order_meals.meal_id', '=', 'meals.id')
-        ->join('users', 'reservations.user_id', '=', 'users.id')
-        ->select( 'meals.name' , 'users.name')
-        ->get();
-
-        dd($res)  ;
-    }
-
-
 }
