@@ -22,16 +22,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/////////// Add middleware ////////
 
 Route::controller(ApiController::class)->group(function (){
     Route::get('get-cat','getCategories');
     Route::get('get-meal','getMeals');
-    Route::get('get-meal/{id}','getMeal');
-    Route::get('get-fav/{user_id}','getUserFavorites');
-    Route::post('add-fav','addToFavorite');
     Route::get('get-option/{meal_id}','getMealOptions');
-    Route::get('get-reservation/{user_id}','getUserReservation');
+    Route::get('get-meal/{id}','getMeal');
+    Route::get('get-fav','getUserFavorites')->middleware('auth:sanctum');
+    Route::post('add-fav','addToFavorite')->middleware('auth:sanctum');
+    Route::post('delete-fav/{id}','deleteFromFavorite')->middleware('auth:sanctum');
+    Route::get('get-reservation','getUserReservation');
+    Route::get('mail','sendEmail')->name('sendEmail');
+    Route::post('try','insertIntoReservation');
     
 });
 
@@ -44,8 +46,10 @@ Route::controller(ApiUserController::class)->group(function (){
 
 Route::controller(ApiTimeController::class)->group(function (){
     
-    Route::post('get-table','searchForTableStatus');
+    Route::post('get-table','searchForTableStatus')->middleware('auth:sanctum');
 
 });
+
+
 
 
