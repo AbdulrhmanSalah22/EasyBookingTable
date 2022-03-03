@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
@@ -52,10 +52,15 @@ export class UserService {
     );
   }
   logOut() {
+    const headers = new HttpHeaders({
+      Authorization: localStorage.getItem('toke')??""
+    })
     this.Http.post<User>(
-      'http://127.0.0.1:8000/api/user/logout',
-      localStorage.getItem('toke')
-    ).subscribe()
+      'http://127.0.0.1:8000/api/user/logout',"log",{headers}).subscribe(
+        data=>{
+          console.log(data)
+        }
+      )
     localStorage.removeItem('toke');
     this.Auth.next(false);
   }

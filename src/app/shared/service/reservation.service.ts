@@ -27,7 +27,7 @@ export class ReservationService {
     })
     if(this.SendData.length==2){
       this.Http.post<Reservation>(
-        'http://localhost:8000/api/check',this.SendData,{headers} ).subscribe(
+        'http://localhost:8000/api/get-table',this.SendData,{headers} ).subscribe(
           (ResData) => {
            console.log(ResData)
           },

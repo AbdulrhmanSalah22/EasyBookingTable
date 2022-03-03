@@ -11,18 +11,21 @@ export class FavouriteService {
     const headers = new HttpHeaders({
       Authorization: localStorage.getItem('toke')??""
     })
-    return this.Http.post<Meal>('http://localhost:8000/api/check1',id,{headers});
+    return this.Http.post<Meal>('http://127.0.0.1:8000/api/add-fav',id,{headers});
   }
 
   getFev():Observable<Meal[]>{
     const headers = new HttpHeaders({
       Authorization: localStorage.getItem('toke')??""
     })
-    return this.Http.get<Meal[]>('http://localhost:8000/api/get-meal',{headers});
+    return this.Http.get<Meal[]>('http://localhost:8000/api/get-fav',{headers});
   }
 
   deleteFev(id:any):Observable<Meal>{
-    return this.Http.delete<Meal>(`http://localhost:8000/api/get-meal/${id}`);
+    const headers = new HttpHeaders({
+      Authorization: localStorage.getItem('toke')??""
+    })
+    return this.Http.post<Meal>(`http://localhost:8000/api/delete-fav/${id}`,'blog' ,{headers});
   }
 
   constructor(private Http: HttpClient) { }

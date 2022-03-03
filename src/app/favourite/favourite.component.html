@@ -2,19 +2,19 @@
 
     <div class="row justify-content-center" >
       <h3>your favourites !!</h3>
-      
-      <div class="col-md-3 m-3 col-sm-6"  *ngFor="let order of FevArray">
+      <div class="col-md-3 m-3 col-sm-6" *ngFor="let FevArray of array">
+      <div  *ngFor="let order of FevArray">
         <div class="card card-block">
           <h4 class="card-title special text-right"><i class="fa-solid fa-x" (click)="delete(order)"></i></h4>
           <img src="{{ order.media[0].original_url }}" alt="Photo of sunset">
           <div class="d-flex justify-content-between px-3">
           <h5 class="card-title mt-3 mb-3">{{ order.name }}</h5>
-          <h5 class="card-title mt-3 mb-3">100$</h5>
+          <h5 class="card-title mt-3 mb-3">{{ order.price }} </h5>
         </div>
-          <p class="card-text px-3">This is a company that builds websites, web apps and e-commerce solutions.</p>
+          <p class="card-text px-3">T{{ order.description }}</p>
         </div>
       </div>
-      
+    </div>
     </div>
     <!-- <div class="col-md-3 col-sm-6" style="height: 451px;"></div> -->
   </div>

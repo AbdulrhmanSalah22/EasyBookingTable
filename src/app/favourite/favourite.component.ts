@@ -10,27 +10,32 @@ import { OrderService } from '../shared/service/order.service';
   styleUrls: ['./favourite.component.css']
 })
 export class FavouriteComponent implements OnInit {
-  FevArray!:Array<Meal>;
+  array!:any;
   constructor(private mealservice:MealService,
     private OrderService:OrderService,
     private FavouriteService:FavouriteService) { }
 
   ngOnInit(): void {
     this.getfev()
-    this.FevArray=this.OrderService.cartArray;
+    this.array=this.OrderService.cartArray;
+    
     
   }
   getfev(){
     this.FavouriteService.getFev().subscribe(
       (next)=>{
-       this.FevArray=next
+        console.log(next);
+        
+       this.array=next
       },
       (error)=>{console.log(error)}
     )
   }
   delete(meal:Meal) {  
     this.FavouriteService.deleteFev(meal.id).subscribe(
-      (next)=>{console.log(next)},
+      (next)=>{
+        this.getfev()
+        console.log(next)},
       (error)=>{console.log(error)}
     );
   }
