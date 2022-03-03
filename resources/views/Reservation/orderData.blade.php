@@ -50,9 +50,9 @@
 
                                         <td>
                                                 @foreach ($details as $detail)
-                                                @foreach ($detail->getMeals as $meal)
-                                                {{$meal  ->name}}
-                                                @endforeach >>
+                                                    @foreach ($detail->getMeals as $meal)
+                                                        {{$meal  ->name}}
+                                                    @endforeach >>
                                                     @foreach ($detail->getoption as $option)
                                                         {{$option->name}}
                                                     @endforeach

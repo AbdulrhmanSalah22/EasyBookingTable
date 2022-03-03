@@ -50,7 +50,7 @@ class ApiUserController extends Controller
         $user->save();
         $token = $user->createToken('authToken')->plainTextToken;
 
-        return response()->json(['status_code' => 200, 'message' => 'user created successfully', 'token' => $token]);
+        return response()->json(['status_code' => 200, 'message' => 'user created successfully', 'token' => 'Bearer'.$token]);
     }
 
 
@@ -59,9 +59,9 @@ class ApiUserController extends Controller
 
         $credentials = request(['email', 'password']);
         if (!Auth::attempt($credentials)) {
-            
+
             return response()->json(['status_code' => 500, 'message' => 'Email or password not correct']);
-            
+
         }
 
         $user = User::where('email', $request->email)->first();

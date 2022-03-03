@@ -32,19 +32,19 @@ Route::controller(ApiController::class)->group(function (){
     Route::post('add-fav','addToFavorite');
     Route::get('get-option/{meal_id}','getMealOptions');
     Route::get('get-reservation/{user_id}','getUserReservation');
-    
+
 });
 
 Route::controller(ApiUserController::class)->group(function (){
     Route::post('user/register','register');
     Route::post('user/login','login');
     Route::post('user/logout','logout')->middleware('auth:sanctum');
-    
+
 });
 
 Route::controller(ApiTimeController::class)->group(function (){
-    
-    Route::post('get-table','searchForTableStatus');
+
+    Route::get('get-table','searchForTableStatus');
 
 });
 

@@ -17,7 +17,7 @@ class ReservationFactory extends Factory
     {
         $user_id =  DB::table('users')->pluck('id');
         $order_id =  DB::table('orders')->pluck('id');
-        $table_id =  DB::table('users')->pluck('id');
+        $table_id =  DB::table('tables')->pluck('id');
         return [
             
             'count' => $this->faker->numberBetween(1, 6),
@@ -25,8 +25,8 @@ class ReservationFactory extends Factory
             'order_id' => $this->faker->randomElement($order_id),
             'table_id' => $this->faker->randomElement($table_id),
             'day' => $this->faker->date(),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+            'time_in' => Carbon::now(),
+            'time_out' => Carbon::now(),
         ];
     }
 }
