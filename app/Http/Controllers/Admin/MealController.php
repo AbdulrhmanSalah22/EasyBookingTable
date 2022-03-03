@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Meal\MealRequest;
 use App\Models\Category;
 use App\Models\Meal;
-use Illuminate\Http\Request;
 
 class MealController extends Controller
 {
