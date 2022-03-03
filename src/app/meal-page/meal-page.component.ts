@@ -22,8 +22,8 @@ export class MealPageComponent implements OnInit {
     this.CategoryService.getById().subscribe(category=>{
       this.Category=category
     })
-    // this.SelectedMeal=this.MealService.SelectedMeal
-    // console.log(this.SelectedMeal)
+    this.SelectedMeal=this.MealService.SelectedMeal
+    console.log(this.SelectedMeal)
 
   }
   

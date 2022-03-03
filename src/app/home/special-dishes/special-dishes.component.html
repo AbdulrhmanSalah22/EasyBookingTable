@@ -10,16 +10,14 @@
           <h2 class="special-number">01.</h2>
           <div class="dishes-text">
             <h3>
-              <span>Beef</span><br />
-              {{ SpecialMeal[0].name }}
+              <span>New One</span><br />
+              {{ SpecialMeal?.[0].name }}
             </h3>
             <p class="pt-3">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Cupiditate, ea vero alias perferendis quas animi doloribus
-              voluptates. Atque explicabo ea nesciunt provident libero qui eum,
-              corporis esse quos excepturi soluta?
+              {{ SpecialMeal?.[0].description }}
+
             </p>
-            <h3 class="special-dishes-price">${{ SpecialMeal[0].price }}</h3>
+            <h3 class="special-dishes-price">${{ SpecialMeal?.[0].price }}</h3>
 
             <a href="#" class="btn-primary mt-3">book a table<span><i class="fa fa-long-arrow-right"></i></span
               ></a>
@@ -29,7 +27,7 @@
           class="col-lg-5 offset-lg-2 col-md-6 align-self-center mt-4 mt-md-0"
         >
           <img
-            src="{{ SpecialMeal[0].media[0].original_url }}"
+            src="{{ SpecialMeal?.[0].media[0].original_url }}"
             alt=""
             class="img-fluid shadow w-100"
           />
@@ -40,7 +38,7 @@
           class="col-lg-5 col-md-6 align-self-center order-2 order-md-1 mt-4 mt-md-0"
         >
           <img
-            src="{{ SpecialMeal[1].media[0].original_url }}"
+            src="{{ SpecialMeal?.[1].media[0].original_url }}"
             alt=""
             class="img-fluid shadow w-100"
           />
@@ -51,14 +49,14 @@
           <h2 class="special-number">02.</h2>
           <div class="dishes-text">
             <h3>
-              <span>Salmon</span><br />
-              {{ SpecialMeal[1].name }}
+              <span>Best Seller</span><br />
+              {{ SpecialMeal?.[1].name }}
             </h3>
             <p class="pt-3">
-              {{ SpecialMeal[1].description }}
+              {{ SpecialMeal?.[1].description }}
 
             </p>
-            <h3 class="special-dishes-price">${{ SpecialMeal[1].price }}</h3>
+            <h3 class="special-dishes-price">${{ SpecialMeal?.[1].price }}</h3>
             <a href="#" class="btn-primary mt-3"
               >book a table <span><i class="fa fa-long-arrow-right"></i></span
             ></a>

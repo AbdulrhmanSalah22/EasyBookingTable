@@ -5,17 +5,17 @@
     cursor: pointer;
 }
 .ciircle{
-        width: 15px;
-        background-color: #bb1d1d;        
-        height: 15px;
-        border-radius: 100%;
-        position: absolute;
-        top: -7px;
-        left: 10px;
-        text-align: center;
-        color: white;
-        font-size: 10px;
-        padding: 2px;
+    width: 15px;
+    background-color: #f17897;
+    height: 15px;
+    border-radius: 100%;
+    position: absolute;
+    top: -7px;
+    left: 10px;
+    text-align: center;
+    color: #565b60;
+    font-size: 10px;
+    padding: 2px;
 }
 .hidden{
     display: none;

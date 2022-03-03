@@ -40,15 +40,19 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/ourteam">Team</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link" (click)="freg('reserve')">Reservation</a>
+          <li class="nav-item ">
+            <a class="nav-link" (click)="freg('reserve')">ReserveNow</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link" id="love" routerLink="/favourite" 
-              ><img src="../../../assets/img/heart.png" alt=""
+            <a class="nav-link" id="love" routerLink="/favourite"
+              ><img src="../../../assets/img/healthy-food.png" alt=""
             /></a>
+            <!-- <span>
+             
+                <div class="ciircle">{{ number() }}</div></a
+              >
+            </span> -->
           </li>
-         
         </div>
       </ul>
 
@@ -58,28 +62,44 @@
       >
         <img src="../../../assets/img/logo.png" alt="" />
       </a>
-      <ul class="navbar-nav d-flex justify-content-between">
-        <div class="d-flex flex-lg-row flex-column">
+      <ul class="navbar-nav d-flex justify-content-end">
+        <div class="d-flex flex-lg-row flex-column justify-content-end">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
               Special Dishes
             </a>
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" (click)="freg('meal1')">Beef Steak Sauce</a>
-              <a class="dropdown-item" (click)="freg('meal2')">Salmon Zucchini</a>
+              <a class="dropdown-item" (click)="freg('meal1')"
+                >Beef Steak Sauce</a
+              >
+              <a class="dropdown-item" (click)="freg('meal2')"
+                >Salmon Zucchini</a
+              >
             </div>
           </li>
           <li class="nav-item active">
             <a class="nav-link" routerLink="/menu">Menu</a>
           </li>
-          
+
           <li *ngIf="!Auth" class="nav-item dropdown">
             <a class="nav-link" routerLink="/signin">Login</a>
           </li>
           <li *ngIf="!Auth" class="nav-item dropdown">
             <a class="nav-link" routerLink="/signup">Register</a>
+          </li>
+          <li *ngIf="Auth" class="nav-item dropdown">
+            <a class="nav-link" routerLink="/myreservation" 
+              >MyReServation</a
+            >
           </li>
           <li *ngIf="Auth" class="nav-item dropdown">
             <a class="nav-link" routerLink="/signin" (click)="logOut()"

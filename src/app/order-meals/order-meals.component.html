@@ -16,41 +16,45 @@
       class="row justify-content-center mb-5"
       *ngFor="let order of uniqueOrder"
     >
-      <div class="col-10 d-flex orderContainer">
-        <div class="col-md-4">
-          <img src="{{ order.media[0].original_url }}" class="card-img-top" />
-        </div>
-        <div class="col-md-7 ps-5">
-          <h4 class="special">{{ order.name }}</h4>
-          <div class="ps-5">
-            <p class="py-2">
-              {{ order.description }}
-            </p>
-            <div *ngFor="let opt of order.option">
-              <input
-                (click)="Option(order, opt.id)"
-                type="radio"
-                name="{{ order.id }}"
-              />
-              <label for="radio">{{ opt.name }} </label>
-            </div>
-            <h4>${{ order.price }}</h4>
-            <div class="d-flex justify-content-between">
-              <button class="btn btn-primary" (click)="delateMeal(order)">
-                Delete
-              </button>
+      <div class="card mb-3" >
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img
+              src="{{ order.media[0].original_url }}"
+              class="img-fluid rounded-start"
+              alt="..."
+              width="100%"
+            />
+          </div>
+          <div class="col-md-8 ps-md-5">
+            <div class="card-body">
+              <h5 class="card-title">{{ order.name }}</h5>
+              <p class="card-text">
+                {{ order.description }}
+              </p>
+              <div *ngFor="let opt of order.option">
+                <input
+                  (click)="Option(order, opt.id)"
+                  type="radio"
+                  name="{{ order.id }}"
+                />
+                <label for="radio">{{ opt.name }} </label>
+              </div>
+              <p class="card-text"></p>
+              <div class="d-flex justify-content-between">
+                <button class="btn btn-primary" (click)="delateMeal(order)">
+                  Delete
+                </button>
 
-              <button class="counter" (click)="addQty(order)">
-                <i class="fa-solid fa-circle-plus"></i>
-              </button>
-              <h4 class="pt-2">Qty:{{ order.count }}</h4>
-              <button class="counter" (click)="decQty(order)">
-                <i class="fa-solid fa-circle-minus"></i>
-              </button>
+                <button class="counter" (click)="addQty(order)">
+                  <i class="fa-solid fa-circle-plus"></i>
+                </button>
+                <h4 class="pt-2">Qty:{{ order.count }}</h4>
+                <button class="counter" (click)="decQty(order)">
+                  <i class="fa-solid fa-circle-minus"></i>
+                </button>
+              </div>
             </div>
-            <!-- <button class="btn btn-primary" (click)="addOthrMeal(order)">
-              Add Meal with Other Option
-            </button> -->
           </div>
         </div>
       </div>
@@ -69,11 +73,12 @@
       </div>
     </div>
   </div>
-
-  
 </div>
 <div *ngIf="display">
-  <div class="container-fluid" style="background-color: #f7f7f7; padding: 20px 0px">
+  <div
+    class="container-fluid"
+    style="background-color: #f7f7f7; padding: 20px 0px"
+  >
     <div class="row justify-content-center my-4">
       <div class="col-6 text-center">
         <img src="../../assets/img/empty.jpeg" alt="" />
@@ -81,9 +86,7 @@
     </div>
     <div class="row justify-content-center my-4">
       <div class="col-4 text-center">
-        <button class="btn btn-primary" routerLink="/menu">
-          got to order
-        </button>
+        <button class="btn btn-primary" routerLink="/menu">got to order</button>
       </div>
     </div>
   </div>

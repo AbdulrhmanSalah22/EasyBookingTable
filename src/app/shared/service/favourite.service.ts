@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Meal } from '../model/meal';
 
 @Injectable({
@@ -8,26 +8,33 @@ import { Meal } from '../model/meal';
 })
 export class FavouriteService {
  FevArray:Meal[]=[]
+ MainFavArray=new Subject<any>()
+
 
   sendfev(id:any):Observable<Meal>{
     const headers = new HttpHeaders({
       Authorization: localStorage.getItem('toke')??""
     })
-    return this.Http.post<Meal>('http://localhost:8000/api/check',id,{headers});
+    return this.Http.post<Meal>('http://localhost:8000/api/add-fav',id,{headers});
   }
 
-  getFev():Observable<Meal[]>{
+  getFev(){
     const headers = new HttpHeaders({
       Authorization: localStorage.getItem('toke')??""
     })
-    return this.Http.get<Meal[]>('http://localhost:8000/api/get-meal',{headers});
+    this.Http.get<Meal[]>('http://localhost:8000/api/get-fav',{headers}).subscribe(
+      (next)=>{
+        this.MainFavArray.next(next)
+      },
+      (error)=>{console.log(error)}
+    );
   }
 
   deleteFev(id:any):Observable<Meal>{
     const headers = new HttpHeaders({
       Authorization: localStorage.getItem('toke')??""
     })
-    return this.Http.post<Meal>(`http://localhost:8000/api/get-meal/${id}`,'blog',{headers});
+    return this.Http.post<Meal>(`http://localhost:8000/api/delete-fav/${id}`,'blog',{headers});
   }
 
   addToLocalFev(meal: Meal){
@@ -37,6 +44,10 @@ export class FavouriteService {
     }
     const res = this.FevArray;
     return res;
+  }
+
+  delFromLocalFev(meal: Meal){
+    this.FevArray.splice(this.FevArray.indexOf(meal), 1);
   }
 
   constructor(private Http: HttpClient) { }

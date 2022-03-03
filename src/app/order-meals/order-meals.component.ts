@@ -58,6 +58,6 @@ export class OrderMealsComponent implements OnInit {
   }
   orderNow(){
       let  Total={price:this.price}
-       this.ReservationSErvice.saveReservation(this.listOrder,Total)
+       this.ReservationSErvice.saveReservation(this.uniqueOrder,Total)
   }
 }
