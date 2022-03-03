@@ -10,7 +10,7 @@ import { Resgister } from '../model/register';
 })
 export class MealService {
   SelectedMeal!: Meal;
-  getAll(): Observable<Meal> {
+   getAll(): Observable<Meal> {
     return this.Http.get<Meal>('http://localhost:8000/api/get-meal');
   }
   display(meal: Meal) {
