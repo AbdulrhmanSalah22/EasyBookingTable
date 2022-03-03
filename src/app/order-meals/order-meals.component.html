@@ -1,4 +1,16 @@
-<div class="container main">
+<div *ngIf="checked" class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-8 text-center">
+      <img src="../../assets/img/green-check-mark.jpg" alt="" />
+      <p class="my-5">
+        Your Reservation Done Succesfully And your order will be prepared in
+        restaurant
+      </p>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!checked" class="container my-5">
   <div class="container mb-5">
     <div
       class="row justify-content-center mb-5"
@@ -20,7 +32,7 @@
                 type="radio"
                 name="{{ order.id }}"
               />
-              <label for="radio">{{ opt.name }}</label>
+              <label for="radio">{{ opt.name }} </label>
             </div>
             <h4>${{ order.price }}</h4>
             <div class="d-flex justify-content-between">
@@ -58,19 +70,21 @@
     </div>
   </div>
 
-  <div *ngIf="display">
-    <div class="container">
-      <div class="d-flex justify-content-center">
-        <div>
-          <i class="fa-solid fa-cart-shopping" style="font-size: 100px"></i>
-          <p>Card order Empty</p>
-          <!-- <img src="../../assets/emptycart.png" /><br> -->
-          <button class="btn btn-primary" routerLink="/menu">
-            got to order
-          </button>
-        </div>
+  
+</div>
+<div *ngIf="display">
+  <div class="container-fluid" style="background-color: #f7f7f7; padding: 20px 0px">
+    <div class="row justify-content-center my-4">
+      <div class="col-6 text-center">
+        <img src="../../assets/img/empty.jpeg" alt="" />
+      </div>
+    </div>
+    <div class="row justify-content-center my-4">
+      <div class="col-4 text-center">
+        <button class="btn btn-primary" routerLink="/menu">
+          got to order
+        </button>
       </div>
     </div>
   </div>
 </div>
-<!-- <button (click)="CalcPrice()">calc</button> -->

@@ -11,27 +11,37 @@ import { OrderService } from '../shared/service/order.service';
 })
 export class FavouriteComponent implements OnInit {
   FevArray!:Array<Meal>;
-  constructor(private mealservice:MealService,
+  constructor(private MealService:MealService,
     private OrderService:OrderService,
     private FavouriteService:FavouriteService) { }
 
   ngOnInit(): void {
     this.getfev()
-    this.FevArray=this.OrderService.cartArray;
+    // this.FevArray=this.OrderService.cartArray;
     
   }
   getfev(){
-    this.FavouriteService.getFev().subscribe(
-      (next)=>{
-       this.FevArray=next
-      },
-      (error)=>{console.log(error)}
-    )
+    if(localStorage.getItem('toke')){
+      this.FavouriteService.getFev().subscribe(
+        (next)=>{
+         this.FevArray=next
+        },
+        (error)=>{console.log(error)}
+      )
+    }else{
+      this.FevArray=this.FavouriteService.FevArray
+      console.log(this.FevArray)
+
+    }
+   
   }
   delete(meal:Meal) {  
     this.FavouriteService.deleteFev(meal.id).subscribe(
       (next)=>{console.log(next)},
       (error)=>{console.log(error)}
     );
+  }
+  ShowMeal(meal:Meal){
+    this.MealService.display(meal)
   }
 }

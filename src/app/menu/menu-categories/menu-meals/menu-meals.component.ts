@@ -29,11 +29,16 @@ export class MenuMealsComponent implements OnInit {
   
   addFavourite(mymeal:any)
   {
-  let data={id:mymeal.id}
-   this.FavouriteService.sendfev(data).subscribe(
-     (next)=>{console.log(next)},
-     (error)=>{console.log(error)}
-   );
+    if(localStorage.getItem('toke')){
+      let data={id:mymeal.id}
+      console.log(data)
+       this.FavouriteService.sendfev(data).subscribe(
+         (next)=>{console.log(next)},
+         (error)=>{console.log(error)}
+       );      
+    }else{
+      this.FavouriteService.addToLocalFev(mymeal);    }
+ 
   }
 
 }

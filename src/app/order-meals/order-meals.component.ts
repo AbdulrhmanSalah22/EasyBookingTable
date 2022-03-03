@@ -11,6 +11,7 @@ import { ReservationService } from '../shared/service/reservation.service';
 })
 export class OrderMealsComponent implements OnInit {
   constructor(private orderservice: OrderService,private ReservationSErvice:ReservationService) {}
+  checked:boolean=false
   price!:number
   display = true;
   listOrder!: Array<Meal>;
@@ -24,6 +25,9 @@ export class OrderMealsComponent implements OnInit {
     if (this.listOrder.length > 0) {
       this.display = false;
     }
+    this.ReservationSErvice.checked.subscribe(data=>{
+      this.checked=data
+    })
   }
 
   delateMeal(meal: Meal) {
@@ -46,12 +50,14 @@ export class OrderMealsComponent implements OnInit {
   } 
   CalcPrice(){
     this.price=0
+    console.log(this.uniqueOrder)
     this.uniqueOrder.forEach(meal=>{
      this.price=this.price+(meal.count*meal.price)
     })
     return this.price
   }
   orderNow(){
-       this.ReservationSErvice.saveReservation(this.listOrder)
+      let  Total={price:this.price}
+       this.ReservationSErvice.saveReservation(this.listOrder,Total)
   }
 }

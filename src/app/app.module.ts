@@ -19,11 +19,11 @@ import { TeamPageComponent } from './team-page/team-page.component';
 import { RegisterationComponent } from './registeration/registeration.component';
 import { LoginComponent } from './login/login.component';
 import { MealPageComponent } from './meal-page/meal-page.component';
-import { SelectedMealComponent } from './meal-page/selected-meal/selected-meal.component';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderMealsComponent } from './order-meals/order-meals.component';
 import {HttpClientModule} from '@angular/common/http';
 import { FavouriteComponent } from './favourite/favourite.component';
+import { UserReservationComponent } from './user-reservation/user-reservation.component';
 
 @NgModule({
   declarations: [
@@ -45,9 +45,9 @@ import { FavouriteComponent } from './favourite/favourite.component';
     RegisterationComponent,
     LoginComponent,
     MealPageComponent,
-    SelectedMealComponent,
     OrderMealsComponent,
-    FavouriteComponent
+    FavouriteComponent,
+    UserReservationComponent
   ],
   imports:
    [BrowserModule,

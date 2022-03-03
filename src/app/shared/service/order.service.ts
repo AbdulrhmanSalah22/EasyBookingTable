@@ -63,6 +63,11 @@ export class OrderService {
       }
     }
   }
+  DeleteOrder(){
+    this.orderarray.length=0
+    this.uniqueOrder.length=0
+
+  }
 }
 
 // for(let i=0;i<this.orderarray.length+1;i++){

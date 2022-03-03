@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+*{
+    text-transform: capitalize;
+    font-family: "Jost","futura-pt","Proxima-Nova",Arial,"sans-serif";
+}
 a{
     cursor: pointer;
 }
