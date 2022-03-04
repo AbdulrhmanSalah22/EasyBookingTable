@@ -17,7 +17,7 @@ class ReservationFactory extends Factory
     {
         $user_id =  DB::table('users')->pluck('id');
         $order_id =  DB::table('orders')->pluck('id');
-        $table_id =  DB::table('users')->pluck('id');
+        $table_id =  DB::table('tables')->pluck('id');
         return [
             
             'count' => $this->faker->numberBetween(1, 6),

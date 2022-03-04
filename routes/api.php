@@ -33,7 +33,7 @@ Route::controller(ApiController::class)->group(function (){
     Route::post('delete-fav/{id}','deleteFromFavorite')->middleware('auth:sanctum');
     Route::get('get-reservation','getUserReservation')->middleware('auth:sanctum');
     Route::post('reserve','insertIntoReservation')->middleware('auth:sanctum');
-    Route::get('mail','sendEmail')->name('sendEmail');
+    // Route::get('mail','sendEmail')->name('sendEmail');
     
 });
 
@@ -41,7 +41,7 @@ Route::controller(ApiUserController::class)->group(function (){
     Route::post('user/register','register');
     Route::post('user/login','login');
     Route::post('user/logout','logout')->middleware('auth:sanctum');
-    
+
 });
 
 Route::controller(ApiTimeController::class)->group(function (){

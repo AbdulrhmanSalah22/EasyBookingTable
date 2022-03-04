@@ -34,7 +34,7 @@ class ApiController extends Controller
              }
         return response()->json($meals);
     }
-    
+
     public function getMeal($id){
        $meal = Meal::with(['media','category','option'])->find($id);
 
@@ -47,7 +47,7 @@ class ApiController extends Controller
     public function getUserFavorites(Request $request)
     {
         $token = $request->bearerToken();
-        $token_parts = explode('|', $token); 
+        $token_parts = explode('|', $token);
         $user_id = DB::table('personal_access_tokens')
         ->where('id', $token_parts[0])
         ->get();
@@ -61,29 +61,32 @@ class ApiController extends Controller
             array_push($fav_meal,$MealWithMedia);
         }
         return response()->json($fav_meal);
-        
+
     }
 
     public function addToFavorite(Request $request){
 
         $token = $request->bearerToken();
-        $token_parts = explode('|', $token); 
+        $token_parts = explode('|', $token);
         $user_id = DB::table('personal_access_tokens')
         ->where('id', $token_parts[0])
         ->get();
-
+        $exist = DB::table('favourites')->where('user_id','=',$user_id[0]->tokenable_id)->where('meal_id','=',$request->id)->get();
+       if (isset($exist[0]->user_id) == $user_id[0]->tokenable_id){
+           return response()->json(['status_code' => 400 , 'error_message'=> 'Item Already Exist']);
+       }
         $favorite = new Favourite();
         $favorite->user_id = $user_id[0]->tokenable_id ;
         $favorite->meal_id = $request->id;
         $favorite->save();
-        
-        return response()->json(['status_code' => 200 ]);
+
+        return response()->json(['status_code' => 200 , 'message' => 'Added' ]);
 
     }
 
     public function deleteFromFavorite(Request $request , $id){
         $token = $request->bearerToken();
-        $token_parts = explode('|', $token); 
+        $token_parts = explode('|', $token);
         $user_id = DB::table('personal_access_tokens')
         ->where('id', $token_parts[0])
         ->get();
@@ -94,6 +97,8 @@ class ApiController extends Controller
          return response()->json(['status_code' => 200]);
     }
 
+//        return response()->json(['status_code' => 200, 'message' =>   $user->meal]);
+        // return response()->json($user->meal);
     public function getMealOptions($meal_id)
     {
 
@@ -104,7 +109,7 @@ class ApiController extends Controller
     public function getUserReservation(Request $request)
     {
         $token = $request->bearerToken();
-        $token_parts = explode('|', $token); 
+        $token_parts = explode('|', $token);
         $user_id = DB::table('personal_access_tokens')
         ->where('id', $token_parts[0])
         ->get();
@@ -119,31 +124,35 @@ class ApiController extends Controller
         return response()->json($array);
     }
 
-    public function sendEmail(Request $request){
-        $token = $request->bearerToken();
-        $token_parts = explode('|', $token);
-        $user_id = DB::table('personal_access_tokens')
-        ->where('id', $token_parts[0])
-        ->get();
+    // public function sendEmail(Request $request){
+    //     $token = $request->bearerToken();
+    //     $token_parts = explode('|', $token);
+    //     $user_id = DB::table('personal_access_tokens')
+    //     ->where('id', $token_parts[0])
+    //     ->get();
 
-       $user =  DB::table('users')
-        ->where('id', $user_id[0]->tokenable_id)
-        ->get();
+    //    $user =  DB::table('users')
+    //     ->where('id', $user_id[0]->tokenable_id)
+    //     ->get();
 
-        $details =  [
-            'title' => 'Reservation',
-            'body' => 'Thanks for reserving in our restaurant the reservation
-             will be at Day, time_in , time_out'
-        ]; 
+    //     $details =  [
+    //         'title' => 'Reservation',
+    //         'body' => "Thanks for reserving in our restaurant the reservation
+    //          will be at day, time_in , time_out"
+    //     ];
 
-        Mail::to($user[0]->email)->send(new Email($details));
+    //     Mail::to($user[0]->email)->send(new Email($details));
 
-        return response()->json(['status_code' => 200 , 'email' => 'email sent successfully' ]); 
-    }
+    //     return response()->json(['status_code' => 200 , 'email' => 'email sent successfully' ]);
+    // }
 
 
     public function insertIntoReservation(Request $request){
+        // return $request ;
+        // foreach ($request[1] as $meal){return $meal['count'];}
         try {
+            $time_in = $request[0]['start_time'];
+            $time_out = $request[0]['end_time'];
             $token = $request->bearerToken();
             $token_parts = explode('|', $token);
             $user_id = DB::table('personal_access_tokens')
@@ -169,11 +178,34 @@ class ApiController extends Controller
             ]);
             foreach ($request[1] as $meal){
                 Order_Meals::create([
-                    'order_id'=> $order_id ,  
+                    'order_id'=> $order_id ,
                     'meal_id' => $meal['id'] ,
-                    'option_id' => isset($meal['option'][0]['id']) ? $meal['option'][0]['id'] : null,
+                    'option_id' => isset($meal['selectedOption']) ? $meal['selectedOption'] : null,
+                    'num' => $meal['count']  ,
+                    // isset($meal['count']) ? $meal['count'] : 1
                 ]);
             }
+            // return redirect()->route('sendEmail');
+
+            ////// Send Email
+            $user =  DB::table('users')
+            ->where('id', $user_id[0]->tokenable_id)
+            ->get();
+    
+            $details =  [
+                'title' => 'Hello ' . $user[0]->name,
+                'body' => "Thanks for reserving in our restaurant.
+                 the reservation will be at $date From $time_in to $time_out , 
+                 we will be waiting for you.
+                 Have a nice day."
+            ];
+    
+            Mail::to($user[0]->email)->send(new Email($details));
+    
+            return response()->json(['status_code' => 200 , 'email' => 'Email sent successfully' ]);
+
+
+            ///////////////////////
         }catch (Exception $e){
            $error = $e-> getCode();
            return response()->json(['status_code' => $error]) ;

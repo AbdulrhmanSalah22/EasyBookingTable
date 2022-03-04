@@ -34,9 +34,9 @@ class ApiUserController extends Controller
 
         $credentials = request(['email', 'password']);
         if (!Auth::attempt($credentials)) {
-            
+
             return response()->json(['status_code' => 500, 'message' => 'Email or password not correct']);
-            
+
         }
 
         $user = User::where('email', $request->email)->first();

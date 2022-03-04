@@ -27,10 +27,11 @@ class ApiTimeController extends Controller
                 ['status_code' => 200, 'available' => true,'table_id' => $table->id]
             );
         }
-        
-            $open = [] ;
 
-            
+        
+    
+
+        $open = [] ;
         $table_id = DB::table('tables')->count();
         $reservations_time = DB::table('reservations')->select('table_id', 'day', 'time_in', 'time_out')->whereDay('day','=', $day )->orderBy('table_id')->get();
         if ( $reservations_time ->groupBy('table_id')->count() < $table_id){
@@ -60,7 +61,6 @@ class ApiTimeController extends Controller
         return response()->json(['status_code' => 200, 'available'=> false ]);
     }
     
-
 }
 // $reservations_time = DB::table('reservations')->select('table_id', 'day', 'time_in', 'time_out')->whereDay('day','=', $day )->orderBy('table_id')->get();
 // if ( $reservations_time -> isEmpty()){

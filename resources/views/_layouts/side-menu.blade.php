@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link text-decoration-none">
-      <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">EasyBookingTable</span>
+      <img src="https://image.shutterstock.com/image-vector/restaurant-icon-resto-food-court-260nw-1809528202.jpg" alt="AdminLTE Logo" class="brand-image img-circle " style="">
+      <span class="brand-text font-weight-light h4 fst-italic fw-normal">Resto</span>
     </a>
 
     <!-- Sidebar -->
@@ -31,6 +31,14 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a href="{{route('dashboard')}}" class="nav-link">
+                <i class="nav-icon fad fa-arrow-circle-right"></i>
+                <p>
+                    Dashboard
+                </p>
+            </a>
+        </li>
           <li class="nav-item">
             <a href="{{route('ShowCategories')}}" class="nav-link">
                 <i class="nav-icon fad fa-arrow-circle-right"></i>
