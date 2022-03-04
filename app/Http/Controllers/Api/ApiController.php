@@ -71,6 +71,9 @@ class ApiController extends Controller
         $user_id = DB::table('personal_access_tokens')
         ->where('id', $token_parts[0])
         ->get();
+
+        /// مكنتش شغالة لان في الحالتين بيرجع array 
+        // واحدة مليانة وواحدة فاضية فانا فضلت اهبد لحد ما اشتغلت ممكن تبص عليها بردو
         $exist = DB::table('favourites')->where('user_id','=',$user_id[0]->tokenable_id)->where('meal_id','=',$request->id)->get();
        if (isset($exist[0]->user_id) == $user_id[0]->tokenable_id){
            return response()->json(['status_code' => 400 , 'error_message'=> 'Item Already Exist']);
@@ -151,6 +154,9 @@ class ApiController extends Controller
         // return $request ;
         // foreach ($request[1] as $meal){return $meal['count'];}
         try {
+
+            // انا بعمل ال time_in/ time_out 
+            // عشان استخدمهم وانا ببعت الايميل 
             $time_in = $request[0]['start_time'];
             $time_out = $request[0]['end_time'];
             $token = $request->bearerToken();
@@ -180,6 +186,10 @@ class ApiController extends Controller
                 Order_Meals::create([
                     'order_id'=> $order_id ,
                     'meal_id' => $meal['id'] ,
+                    ///*************** */
+                    // هنا مش بتتبعت في option لا
+                    // في الجديد بتتبعت علطول من جوا meal 
+                    // فاضل بس ال count ومش عارفة ماله
                     'option_id' => isset($meal['selectedOption']) ? $meal['selectedOption'] : null,
                     'num' => $meal['count']  ,
                     // isset($meal['count']) ? $meal['count'] : 1
@@ -188,6 +198,10 @@ class ApiController extends Controller
             // return redirect()->route('sendEmail');
 
             ////// Send Email
+
+            // عملت الايميل كده عشان انا باخد من هنا الوقت والتاريخ 
+            // معرفتش ازاي ابعت متغيرات ل route بصراحة
+            /*  اقرا وبعدين امسح اوعي ترفعهم بالهبل ده */
             $user =  DB::table('users')
             ->where('id', $user_id[0]->tokenable_id)
             ->get();
