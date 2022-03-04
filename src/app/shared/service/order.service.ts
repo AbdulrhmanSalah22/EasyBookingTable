@@ -27,6 +27,7 @@ export class OrderService {
       this.orderarray.push(meal);
       this.uniqueOrder.push(meal);
     }
+    console.log(meal)
   }
   additemtochart(product: Meal): Meal[] {
     var index = this.cartArray.findIndex((x) => x.id == product.id);
@@ -70,8 +71,34 @@ export class OrderService {
   }
 }
 
+
 // for(let i=0;i<this.orderarray.length+1;i++){
 //     if(this.orderarray[i].id==meal.id){
 //     this.orderarray.splice(i, 1);
 //     }
 
+
+ // addorder(meal: Meal) {
+    // if (this.orderarray.length == 0) {
+    //   this.orderarray.push(meal);
+    //   this.uniqueOrder.push(meal);
+    // } else {
+    //   this.uniqueOrder.find((elemen) => {
+    //     if (elemen.id==meal.id) {
+    //       this.orderarray.push(meal);
+    //       meal.count = 0;
+    //       this.orderarray.forEach((element) => {
+    //         if (element == meal) {
+    //           meal.count++;
+    //         }
+    //       });
+    //     } else {
+    //       console.log(meal);
+    //       meal.count = 1;
+    //       this.orderarray.push(meal);
+    //       this.uniqueOrder.push(meal);
+    //     }
+    //   });
+    // }
+
+  // }

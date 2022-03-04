@@ -7,56 +7,47 @@ import { OrderService } from '../shared/service/order.service';
 @Component({
   selector: 'app-favourite',
   templateUrl: './favourite.component.html',
-  styleUrls: ['./favourite.component.css']
+  styleUrls: ['./favourite.component.css'],
 })
 export class FavouriteComponent implements OnInit {
-  array!:any;
-  constructor(private mealservice:MealService,
-    private OrderService:OrderService,
-    private FavouriteService:FavouriteService) { }
+  MainFavArray!: Array<any>;
+  FevArray!: Array<Meal>;
+
+  constructor(
+    private MealService: MealService,
+    private OrderService: OrderService,
+    private FavouriteService: FavouriteService
+  ) {}
 
   ngOnInit(): void {
-    this.getfev()
-    this.array=this.OrderService.cartArray;
-    
-    
+    this.getfev();
   }
-  // getfev(){
-  //   this.FavouriteService.getFev().subscribe(
-  //     (next)=>{
-  //       console.log(next);
-        
-  //      this.array=next
-  //     },
-  //     (error)=>{console.log(error)}
-  //   )
-  //   // this.FevArray=this.OrderService.cartArray;
-    
-  // }
-  getfev(){
-    if(localStorage.getItem('toke')){
-      this.FavouriteService.getFev().subscribe(
-        (next)=>{
-         this.array=next
-        },
-        (error)=>{console.log(error)}
-      )
-    }else{
-      this.array=this.FavouriteService.FevArray
-      console.log(this.array)
-
+  getfev() {
+    if (localStorage.getItem('toke')) {
+      this.FavouriteService.getFev();
+      this.FavouriteService.MainFavArray.subscribe((fev) => {
+        this.MainFavArray = fev;
+      });
+    } else {
+      this.FevArray = this.FavouriteService.FevArray;
+      console.log(this.FevArray);
     }
-   
   }
-  delete(meal:Meal) {  
-    this.FavouriteService.deleteFev(meal.id).subscribe(
-      (next)=>{
-        this.getfev()
-        console.log(next)},
-      (error)=>{console.log(error)}
-    );
+  delete(meal: Meal) {
+    if (localStorage.getItem('toke')) {
+      this.FavouriteService.deleteFev(meal.id).subscribe(
+        (next) => {
+          this.getfev();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    } else {
+      this.FavouriteService.delFromLocalFev(meal)
+    }
   }
-  ShowMeal(meal:Meal){
-    this.mealservice.display(meal)
+  ShowMeal(meal: Meal) {
+    this.MealService.display(meal);
   }
 }

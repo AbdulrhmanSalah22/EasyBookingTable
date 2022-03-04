@@ -1,6 +1,7 @@
 import { Component, OnInit ,Input} from '@angular/core';
 import { Category } from 'src/app/shared/model/category';
 import { Meal } from 'src/app/shared/model/meal';
+import { FavouriteService } from 'src/app/shared/service/favourite.service';
 import { MealService } from 'src/app/shared/service/meal.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { MealService } from 'src/app/shared/service/meal.service';
 export class MenuCategoriesComponent implements OnInit {
   meals!:any
   @Input() category!:Category;
-  constructor(private MealService:MealService) { }
+  constructor(private MealService:MealService,private favouriteService:FavouriteService) { }
 
   ngOnInit(): void {
     this.MealService.getAll().subscribe((meals)=>{

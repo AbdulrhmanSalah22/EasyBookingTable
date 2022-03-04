@@ -24,7 +24,6 @@ export class MenuMealsComponent implements OnInit {
 
   addorder(mymeal:any){
     this.OrderService.addorder(mymeal);
-    console.log(mymeal)
   }
   
   addFavourite(mymeal:any)

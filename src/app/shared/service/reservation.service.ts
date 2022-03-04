@@ -54,5 +54,13 @@ export class ReservationService {
     this.SendData.push(data)
       console.log(this.SendData)
   }
+
+  GetUserReservation(){
+    const headers = new HttpHeaders({
+      Authorization: localStorage.getItem('toke')??""
+    })
+   return this.Http.get<Reservation>(
+      'http://localhost:8000/api/get-reservation',{headers})
+  }
   constructor(private Http: HttpClient,private OrderService:OrderService,private router:Router) {}
 }

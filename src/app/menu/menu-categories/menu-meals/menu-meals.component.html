@@ -1,38 +1,13 @@
-<!-- <div class="card" width="100%">
-  <div class="card-body">
-    <div class="d-flex justify-content-between">
-      <h4
-        routerLink="/menu/{{ meal.name }}"
-        (click)="ShowMeal(meal)"
-        style="cursor: pointer"
-      >
-        {{ meal.name }}
-      </h4>
-      <h4>${{ meal.price }}</h4>
-    </div>
 
-    <p class="card-text">
-      {{ meal.des }}
-    </p>
-  </div>
-  <img src="{{ meal.img }}" class="card-img-top" alt="..." />
-  <div class="d-flex justify-content-center" id="fav">
-    <span><i class="fa-solid fa-heart" id="love"></i></span>
-    <span
-      ><i
-        class="fa-solid fa-cart-shopping"
-        id="cart"
-        (click)="addorder(meal)"
-      ></i
-    ></span>
-  </div>
-</div> -->
 <div class="container" style="margin-top: 50px">
   <div class="row">
     <div class="col-md-12">
       <div class="card-sl">
         <div class="card-image">
-          <img style="height: 287px; width: 100%" src="{{ meal.media[0].original_url }}" />
+          <img
+            style="height: 287px; width: 100%"
+            src="{{ meal.media[0].original_url }}"
+          />
         </div>
         <a class="card-action" (click)="addFavourite(meal)"
           ><i class="fa fa-heart"></i
@@ -48,7 +23,7 @@
         <div class="card-text">
           {{ meal.description }}
         </div>
-        <div class="card-text">$67,400</div>
+        <div class="card-text">$ {{ meal.price }}</div>
         <a (click)="addorder(meal)" class="card-button"> Add To Cart</a>
       </div>
     </div>
