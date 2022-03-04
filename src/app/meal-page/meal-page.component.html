@@ -3,30 +3,41 @@
     <div class="section-content">
       <div class="heading-section text-center">
         <span class="subheading"> Specialties </span>
-        <h2>{{SelectedMeal.category?.name}}</h2>
+        <h2>{{ SelectedMeal.category?.name }}</h2>
       </div>
-      <div class="row mt-5" id="meal1">
-        <div class="col-lg-5 col-md-6 align-self-center py-5">
+      <div class="row mt-5 justify-content-center" id="meal1">
+        <div class="col-lg-5 col-md-6 align-self-center py-3">
           <h2 class="special">{{ SelectedMeal.name }}</h2>
           <div class="dishes-text">
-            <h3>
-              <!-- <span>{{ SelectedMeal.name }}</span -->
-              <!-- ><br /> -->
-            </h3>
-            <p class="pt-3">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Cupiditate, ea vero alias perferendis quas animi doloribus
-              voluptates. Atque explicabo ea nesciunt provident libero qui eum,
-              corporis esse quos excepturi soluta?
+            <p>
+              {{ SelectedMeal.description }}
             </p>
-            <h3 class="special-dishes-price">${{ SelectedMeal.price }}</h3>
-            <a href="#" class="btn-primary mt-3">book a table</a>
+            <div>
+              <p class="m-0" style="font-size: 20px; font-weight: 700">
+                <i class="fa-solid fa-utensils"></i> Side Dishes
+              </p>
+              <span class="px-2" *ngFor="let opt of SelectedMeal.option">
+                <span
+                  ><i class="fa-solid fa-check"></i
+                  ><span style="font-weight: 500">{{ opt.name }}</span>
+                </span>
+              </span>
+            </div>
+
+            <h3
+              style="font-size: 25px; margin-top: 10px"
+              class="special-dishes-price"
+            >
+              ${{ SelectedMeal.price }}
+            </h3>
           </div>
         </div>
-        <div
-          class="col-lg-5 offset-lg-2 col-md-6 align-self-center mt-4 mt-md-0"
-        >
-          <img src="{{ SelectedMeal.media[0].original_url }}" alt="" class="img-fluid shadow w-100" />
+        <div class="col-lg-6">
+          <img
+            src="{{ SelectedMeal.media[0].original_url }}"
+            alt=""
+            class="img-fluid shadow w-100"
+          />
         </div>
       </div>
     </div>

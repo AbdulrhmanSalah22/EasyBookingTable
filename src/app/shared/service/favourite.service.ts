@@ -7,6 +7,8 @@ import { Meal } from '../model/meal';
   providedIn: 'root'
 })
 export class FavouriteService {
+ FevArray:Meal[]=[]
+
   sendfev(id:any):Observable<Meal>{
     const headers = new HttpHeaders({
       Authorization: localStorage.getItem('toke')??""
@@ -25,7 +27,16 @@ export class FavouriteService {
     const headers = new HttpHeaders({
       Authorization: localStorage.getItem('toke')??""
     })
-    return this.Http.post<Meal>(`http://localhost:8000/api/delete-fav/${id}`,'blog' ,{headers});
+    return this.Http.post<Meal>(`http://localhost:8000/api/delete-fav/${id}`,'blog',{headers});
+  }
+
+  addToLocalFev(meal: Meal){
+    var index = this.FevArray.findIndex((x) => x.id == meal.id);
+    if (index === -1) {
+      this.FevArray.push(meal);
+    }
+    const res = this.FevArray;
+    return res;
   }
 
   constructor(private Http: HttpClient) { }

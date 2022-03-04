@@ -21,15 +21,32 @@ export class FavouriteComponent implements OnInit {
     
     
   }
-  getfev(){
-    this.FavouriteService.getFev().subscribe(
-      (next)=>{
-        console.log(next);
+  // getfev(){
+  //   this.FavouriteService.getFev().subscribe(
+  //     (next)=>{
+  //       console.log(next);
         
-       this.array=next
-      },
-      (error)=>{console.log(error)}
-    )
+  //      this.array=next
+  //     },
+  //     (error)=>{console.log(error)}
+  //   )
+  //   // this.FevArray=this.OrderService.cartArray;
+    
+  // }
+  getfev(){
+    if(localStorage.getItem('toke')){
+      this.FavouriteService.getFev().subscribe(
+        (next)=>{
+         this.array=next
+        },
+        (error)=>{console.log(error)}
+      )
+    }else{
+      this.array=this.FavouriteService.FevArray
+      console.log(this.array)
+
+    }
+   
   }
   delete(meal:Meal) {  
     this.FavouriteService.deleteFev(meal.id).subscribe(
@@ -38,5 +55,8 @@ export class FavouriteComponent implements OnInit {
         console.log(next)},
       (error)=>{console.log(error)}
     );
+  }
+  ShowMeal(meal:Meal){
+    this.mealservice.display(meal)
   }
 }

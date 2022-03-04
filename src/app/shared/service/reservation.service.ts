@@ -10,26 +10,33 @@ import { OrderService } from './order.service';
   providedIn: 'root',
 })
 export class ReservationService {
+  checked=new Subject<boolean>()
   reservationData=new Subject<Reservation>()
   SendData:any[]=[]
 
   TableCheck(data: Reservation) {
+    const headers = new HttpHeaders({
+      Authorization: localStorage.getItem('toke')??""
+    })
     return this.Http.post<Reservation>(
       'http://localhost:8000/api/get-table',
-      data
+      data , {headers}
     )
   }
-  saveReservation(order:Meal[]) {
-    this.SendData.push(order) 
+  saveReservation(order:Meal[],price:any) {
+
+    this.SendData.push(order,price) 
     console.log( this.SendData)  
      const headers = new HttpHeaders({
       Authorization: localStorage.getItem('toke')??""
     })
-    if(this.SendData.length==2){
+    if(this.SendData.length==3){
       this.Http.post<Reservation>(
-        'http://localhost:8000/api/get-table',this.SendData,{headers} ).subscribe(
+        'http://localhost:8000/api/reserve',this.SendData,{headers} ).subscribe(
           (ResData) => {
            console.log(ResData)
+           this.OrderService.DeleteOrder()
+           this.checked.next(true)
           },
           (error) => {
             console.log(error);

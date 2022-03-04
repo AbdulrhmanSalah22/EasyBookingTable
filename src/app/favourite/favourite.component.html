@@ -1,3 +1,6 @@
+<h3 class="header">Your  Favourites <img src="../../assets/img/heart.png" alt=""> !!</h3>
+
+
 <div class="container mt-4">
 
     <div class="row justify-content-center" >
@@ -8,10 +11,11 @@
           <h4 class="card-title special text-right"><i class="fa-solid fa-x" (click)="delete(order)"></i></h4>
           <img src="{{ order.media[0].original_url }}" alt="Photo of sunset">
           <div class="d-flex justify-content-between px-3">
-          <h5 class="card-title mt-3 mb-3">{{ order.name }}</h5>
-          <h5 class="card-title mt-3 mb-3">{{ order.price }} </h5>
+          <h5   routerLink="/menu/{{ order.name }}"
+          (click)="ShowMeal(order)"class="card-title mt-3 mb-3">{{ order.name }}</h5>
+          <h5 class="card-title mt-3 mb-3">${{ order.price}}</h5>
         </div>
-          <p class="card-text px-3">T{{ order.description }}</p>
+          <p class="card-text px-3">{{ order.description}}</p>
         </div>
       </div>
     </div>

@@ -12,10 +12,9 @@ img{
     cursor:pointer;
   }
   .card-title{  
-    font-size:15px;
+    font-size: 20px;
     transition:1s;
     cursor:pointer;
-    padding-left: 8px;
   }
   .card-title i{  
     font-size:15px;
@@ -33,7 +32,12 @@ img{
     box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
   }
   .card-text{
-    height:80px;  
+    height:45px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;  
+    font-size: 14px;
+    color: #636262;
   }
   
   .card::before, .card::after {
@@ -64,9 +68,15 @@ img{
 
   }
  h3{
-    
-    color: #E34949;
+   /* font-family:  'Courgette', cursive; */
+   background-color: rgba(245, 222, 179, 0.425);
+    padding: 20px;;
+    color: black;
     text-align: center;
     margin: 42px 0px 42px;
 
+ }
+ h3 img{
+  width: 27px;
+  height: 31px;
  }
