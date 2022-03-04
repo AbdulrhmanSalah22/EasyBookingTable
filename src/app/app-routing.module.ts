@@ -10,6 +10,7 @@ import { TeamPageComponent } from './team-page/team-page.component';
 import { OrderMealsComponent } from './order-meals/order-meals.component';
 import { FavouriteComponent } from './favourite/favourite.component';
 import { UserReservationComponent } from './user-reservation/user-reservation.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path:"order",component:OrderMealsComponent},
   {path:"favourite",component:FavouriteComponent},
   {path:"myreservation",component:UserReservationComponent},
+  {path:"payment",component:PaymentComponent},
   {path:"**",component:HomeComponent},
 ];
 const routerOptions:ExtraOptions={

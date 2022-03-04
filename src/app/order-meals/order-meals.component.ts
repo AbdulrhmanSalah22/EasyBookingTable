@@ -28,6 +28,7 @@ export class OrderMealsComponent implements OnInit {
     this.ReservationSErvice.checked.subscribe(data=>{
       this.checked=data
     })
+    this.ReservationSErvice.loadStripe();
   }
 
   delateMeal(meal: Meal) {
@@ -60,4 +61,5 @@ export class OrderMealsComponent implements OnInit {
       let  Total={price:this.price}
        this.ReservationSErvice.saveReservation(this.uniqueOrder,Total)
   }
+  
 }

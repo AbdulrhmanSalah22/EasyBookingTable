@@ -21,7 +21,12 @@ export class MealService {
       `http://localhost:8000/api/get-meal/${this.SelectedMeal.id}`
     );
   }
- 
+ sendtoken(token:any){
+console.log("hello",token);
+let data={token:token.id};
+   return this.Http.post("http://localhost:8000/api/get-meal",data);
+
+ }
   constructor(private Http: HttpClient) {}
   
 }

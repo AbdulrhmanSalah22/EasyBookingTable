@@ -25,6 +25,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { FavouriteComponent } from './favourite/favourite.component';
 import { UserReservationComponent } from './user-reservation/user-reservation.component';
 import { TotalPriceComponent } from './user-reservation/total-price/total-price.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { TotalPriceComponent } from './user-reservation/total-price/total-price.
     OrderMealsComponent,
     FavouriteComponent,
     UserReservationComponent,
-    TotalPriceComponent
+    TotalPriceComponent,
+    PaymentComponent
   ],
   imports:
    [BrowserModule,

@@ -12,6 +12,7 @@ import { UserService } from '../shared/service/user.service';
 })
 export class RegisterationComponent implements OnInit {  
   error!:any;
+  
 registeForm=this.fb.group({
   name:['',[Validators.required,Validators.minLength(3),Validators.pattern("[A-Za-z0-9_-]{1,32}")]],
   email:['',[Validators.required,Validators.email]],

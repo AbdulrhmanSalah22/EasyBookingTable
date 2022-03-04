@@ -1,0 +1,114 @@
+<!-- <div class="container">
+
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default credit-card-box">
+                <div class="panel-heading display-table">
+                   
+                </div>
+                <div class="panel-body">
+               
+
+                    <form 
+                    data-cc-on-file="false"
+                        data-stripe-publishable-key="pk_test_51KX58pBmVrP9kTEPu5BezVgAPsbulPVD70Pd8OkRf0TXE6E4BgoyEJw0qATrbRp9ymZMPtqmhkWQqN5a0RHQnKRY00Zb43DjCN‏"
+                         #paymentt="ngForm"           [formGroup]="payment"
+                        (ngSubmit)="onSubmit(paymentt)">
+
+                        <div class='form-row row'>
+                            <div class='col-xs-12 form-group required'>
+                                <label class='control-label'>Name on Card</label> 
+                                <input class='form-control' size='4'   type='text'   formControlName="NameonCard">
+
+                                <div
+                                *ngIf="payment.get('NameonCard')?.invalid &&payment.get('NameonCard')?.touched && payment.get('NameonCard')?.errors?.['required'] ">
+                                <span style="color: red">* This field is require </span>
+                              </div>
+                               <div  *ngIf="payment.get('NameonCard')?.errors?.['pattern'] || payment.get('NameonCard')?.errors?.['minlength'] || payment.get('NameonCard')?.errors?.['maxlength'] ">
+                                <span style="color: red">*not valid card name </span>
+                              </div>
+                            </div>
+                                 
+                            
+                        </div>
+
+                        <div class='form-row row'>
+                            <div class='col-xs-12 form-group card required'>
+                                <label class='control-label'>Card Number</label>
+                                <input autocomplete='off' class='form-control card-number' size='16' type='text' formControlName="CardNumber">
+                                <div
+                                *ngIf="payment.get('CardNumber')?.invalid &&payment.get('CardNumber')?.touched && payment.get('CardNumber')?.errors?.['required'] ">
+                                <span style="color: red">* This field is require </span>
+                              </div>
+
+                              <div   *ngIf="payment.get('CardNumber')?.invalid &&payment.get('CardNumber')?.touched && payment.get('CardNumber')?.errors?.['minlength'] || payment.get('CardNumber')?.errors?.['maxlength'] || payment.get('CardNumber')?.errors?.['pattern'] ">
+                                <span style="color: red">* Number must be 16 </span>
+                              </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class='form-row row'>
+                            <div class='col-xs-12 col-md-4 form-group cvc required'>
+                                <label class='control-label'>CVC</label> 
+                                <input autocomplete='off'
+                                    class='form-control card-cvc' placeholder='ex. 311' size='4' type='text' formControlName="CVC">
+
+                               <div  *ngIf="payment.get('CVC')?.invalid && payment.get('CVC')?.touched && payment.get('CVC')?.errors?.['required'] ">
+                                <span style="color: red">* This field is require </span>
+                              </div>
+
+                              <div  *ngIf="payment.get('CVC')?.invalid && payment.get('CVC')?.touched && payment.get('CVC')?.errors?.['minlength'] || payment.get('CVC')?.errors?.['maxlength'] || payment.get('CVC')?.errors?.['pattern']   ">
+                                <span style="color: red">* Number must be 3 or 4  </span>
+                              </div>
+
+                            </div>
+                            <div class='col-xs-12 col-md-4 form-group expiration required'>
+                                <label class='control-label'>Expiration Month</label>
+                                 <input  class='form-control card-expiry-month' placeholder='MM' size='2' type='text' formControlName="ExpirationMonth">
+
+                                 <div  *ngIf="payment.get('ExpirationMonth')?.invalid && payment.get('ExpirationMonth')?.touched && payment.get('ExpirationMonth')?.errors?.['required'] ">
+                                    <span style="color: red">* This field is require </span>
+                                  </div>
+
+                                  <div  *ngIf="payment.get('ExpirationMonth')?.invalid && payment.get('ExpirationMonth')?.touched && payment.get('ExpirationMonth')?.errors?.['minlength'] || payment.get('ExpirationMonth')?.errors?.['maxlength'] || payment.get('ExpirationMonth')?.errors?.['pattern']   ">
+                                    <span style="color: red">* Number must be 2  </span>
+                                  </div>
+
+                                  <div  *ngIf="payment.get('ExpirationMonth')?.value > 12 ">
+                                    <span style="color: red">* not valid  </span>
+                                  </div>
+
+                            </div>
+                            <div class='col-xs-12 col-md-4 form-group expiration required'>
+                                <label class='control-label'>Expiration Year</label> <input
+                                    class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text' formControlName="ExpirationYear">
+
+                           
+                                 <div  *ngIf="payment.get('ExpirationYear')?.invalid && payment.get('ExpirationYear')?.touched && payment.get('ExpirationYear')?.errors?.['required'] ">
+                                        <span style="color: red">* This field is require </span>
+                                      </div>   
+
+                                      
+                            <div  *ngIf=" payment.get('ExpirationYear')?.errors?.['minlength'] || payment.get('ExpirationYear')?.errors?.['maxlength'] || payment.get('ExpirationYear')?.errors?.['pattern'] || payment.get('ExpirationYear')?.value < current   ">
+                                        <span style="color: red">* Not Valid  </span>
+                                      </div>         
+                            </div>
+                        </div>
+
+                       
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="payment.invalid">Pay Now ($100)</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ -->
