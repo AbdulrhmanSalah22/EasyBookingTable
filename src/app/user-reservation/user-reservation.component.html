@@ -1,6 +1,6 @@
 <!-- <p>list-order works!</p> -->
 <!-- <p>list-order works!</p> -->
-<div class="container">
+<div class="container" *ngIf="display" >
   <div class="row gutters">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
       <div class="card">
@@ -71,3 +71,15 @@
   </div>
 </div>
 <div>
+  
+  <div class="container py-5 divcont ">
+	  
+	  <div class="col-lg-3 col-md-6 mb-4 mb-lg-0 center" >
+		<!-- Card-->
+		<div class="card rounded shadow-sm border-0 ">
+		  <div class="card-body p-4"><img src="../../assets/img/booknow.jpg" alt="" class="img-fluid d-block mx-auto mb-3">
+			<h5> <a  class="text-dark" (click)="freg('reserve')"  style="text-align: center;font-size: 40px;">Reserve Now</a></h5>
+		  </div>
+		</div>
+	  </div>	  
+	</div>

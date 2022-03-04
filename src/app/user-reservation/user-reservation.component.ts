@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ReservationService } from '../shared/service/reservation.service';
 
 @Component({
@@ -8,8 +9,8 @@ import { ReservationService } from '../shared/service/reservation.service';
 })
 export class UserReservationComponent implements OnInit {
   data!:any
-
-  constructor(private ReservationService:ReservationService) { }
+display=true;
+  constructor(private ReservationService:ReservationService, private router:Router) { }
 
   ngOnInit(): void {
     this.ReservationService.GetUserReservation().subscribe((data:any)=>{
@@ -18,7 +19,17 @@ export class UserReservationComponent implements OnInit {
         console.log( this.data)
 
       // }
+      if(data.length>0){
+this.display=true;
+      }
+      else{
+       this.display=false;
+      }
+
     })
   }
-
+ freg(reserve:string)
+  {
+    this.router.navigateByUrl('#'+reserve);
+  }
 }

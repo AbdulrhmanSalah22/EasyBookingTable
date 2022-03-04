@@ -136,3 +136,12 @@ body{
 .custom-actions-btns .btn {
     margin: .3rem 0 .3rem .3rem;
 }
+.center{     
+    margin: auto;
+    width: 70%;
+    padding: 10px;
+  }
+  
+ .divcont{ 	
+	   margin-top: 50px;
+} 
