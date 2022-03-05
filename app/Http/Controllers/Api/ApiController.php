@@ -184,10 +184,11 @@ class ApiController extends Controller
 
 
     public function payment(Request $request){
+        // return $request ;
 
             Stripe\Stripe::setApikey(env('STRIPE_SECRET'));
             Stripe\Charge::create([
-             "amount"=> $request->price * 100,
+             "amount"=> $request->price['price'] * 100,
              "currency"=>"usd",
              "source"=> $request->token,
              "description"=> "Reservation form Resto"
