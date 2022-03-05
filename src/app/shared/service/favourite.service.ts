@@ -51,15 +51,15 @@ export class FavouriteService {
     this.FevArray.splice(this.FevArray.indexOf(meal), 1);
   }
 
- payment(toto:any , amount:number){
-  let data={token:toto , price:amount}
-  console.log(data);
+//  payment(toto:any , amount:number){
+//   let data={token:toto , price:amount}
+//   console.log(data);
   
-    const headers = new HttpHeaders({
-      Authorization: localStorage.getItem('toke')??""
-    })
-     this.Http.post(`http://localhost:8000/api/payment`,data,{headers}).subscribe(next=>console.log(next), error=>console.log(error));
-  }
+//     const headers = new HttpHeaders({
+//       Authorization: localStorage.getItem('toke')??""
+//     })
+//      this.Http.post(`http://localhost:8000/api/payment`,data,{headers}).subscribe(next=>console.log(next), error=>console.log(error));
+//   }
 
   // bassant(){
   //    this.Http.get('http://localhost:8000/api/payment').subscribe(next=>console.log(next), error=>console.log(error));
