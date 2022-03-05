@@ -33,8 +33,7 @@ Route::controller(ApiController::class)->group(function (){
     Route::post('delete-fav/{id}','deleteFromFavorite')->middleware('auth:sanctum');
     Route::get('get-reservation','getUserReservation')->middleware('auth:sanctum');
     Route::post('reserve','insertIntoReservation')->middleware('auth:sanctum');
-    Route::post('payment','payment');
-    // Route::get('mail','sendEmail')->name('sendEmail');
+    Route::post('payment','payment')->middleware('auth:sanctum');
     
 });
 

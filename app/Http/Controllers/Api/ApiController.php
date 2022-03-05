@@ -15,7 +15,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use Stripe\Stripe;
+use Stripe;
 
 class ApiController extends Controller
 {
@@ -123,32 +123,7 @@ class ApiController extends Controller
         return response()->json($array);
     }
 
-    // public function sendEmail(Request $request){
-    //     $token = $request->bearerToken();
-    //     $token_parts = explode('|', $token);
-    //     $user_id = DB::table('personal_access_tokens')
-    //     ->where('id', $token_parts[0])
-    //     ->get();
-
-    //    $user =  DB::table('users')
-    //     ->where('id', $user_id[0]->tokenable_id)
-    //     ->get();
-
-    //     $details =  [
-    //         'title' => 'Reservation',
-    //         'body' => "Thanks for reserving in our restaurant the reservation
-    //          will be at day, time_in , time_out"
-    //     ];
-
-    //     Mail::to($user[0]->email)->send(new Email($details));
-
-    //     return response()->json(['status_code' => 200 , 'email' => 'email sent successfully' ]);
-    // }
-
-
     public function insertIntoReservation(Request $request){
-        // return $request ;
-        // foreach ($request[1] as $meal){return $meal['count'];}
         try {
 
             $time_in = $request[0]['start_time'];
@@ -200,11 +175,7 @@ class ApiController extends Controller
             ];
     
             Mail::to($user[0]->email)->send(new Email($details));
-    
-            // return response()->json(['status_code' => 200 , 'email' => 'Email sent successfully' ]);
 
-
-            ///////////////////////
         }catch (Exception $e){
            $error = $e-> getCode();
            return response()->json(['status_code' => $error]) ;
@@ -219,10 +190,8 @@ class ApiController extends Controller
              "amount"=> $request->price * 100,
              "currency"=>"usd",
              "source"=> $request->token,
-             "description"=> "Try"
+             "description"=> "Reservation form Resto"
             ]);
-            
-        return response()->json(['status_code' => 200 , 'request' => $request->token]);
     }
 
 }
