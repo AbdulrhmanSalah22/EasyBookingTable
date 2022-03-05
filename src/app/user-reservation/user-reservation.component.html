@@ -10,14 +10,10 @@
               <!-- Row start -->
               <div class="row gutters">
                 <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-                  <div class="invoice-details" style="color: white">
-                    
-                  </div>
+                  <div class="invoice-details" style="color: white"></div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-                  <div class="invoice-details">
-                   
-                  </div>
+                  <div class="invoice-details"></div>
                 </div>
               </div>
               <!-- Row end -->
@@ -53,6 +49,7 @@
                         <tr class="d-flex justify-content-end">
                           <app-total-price
                             [id]="item[0].order_id"
+                            [data]="OrderData"
                           ></app-total-price>
                         </tr>
                       </tbody>
@@ -70,4 +67,4 @@
     </div>
   </div>
 </div>
-<div>
+<div></div>

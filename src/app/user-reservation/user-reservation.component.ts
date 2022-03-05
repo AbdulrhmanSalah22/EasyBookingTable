@@ -8,14 +8,17 @@ import { ReservationService } from '../shared/service/reservation.service';
 })
 export class UserReservationComponent implements OnInit {
   data!:any
+  OrderData!:any
 
   constructor(private ReservationService:ReservationService) { }
 
   ngOnInit(): void {
     this.ReservationService.GetUserReservation().subscribe((data:any)=>{
       // for(let i=1;i<3;i++){
+        this.OrderData=data[0]
         this.data=data.splice(1)
         console.log( this.data)
+
 
       // }
     })

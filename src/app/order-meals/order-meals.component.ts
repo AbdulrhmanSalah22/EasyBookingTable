@@ -50,7 +50,6 @@ export class OrderMealsComponent implements OnInit {
   } 
   CalcPrice(){
     this.price=0
-    console.log(this.uniqueOrder)
     this.uniqueOrder.forEach(meal=>{
      this.price=this.price+(meal.count*meal.price)
     })
