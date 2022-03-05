@@ -15,6 +15,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Stripe\Stripe;
 
 class ApiController extends Controller
 {
@@ -71,11 +72,8 @@ class ApiController extends Controller
         $user_id = DB::table('personal_access_tokens')
         ->where('id', $token_parts[0])
         ->get();
-
-        /// مكنتش شغالة لان في الحالتين بيرجع array 
-        // واحدة مليانة وواحدة فاضية فانا فضلت اهبد لحد ما اشتغلت ممكن تبص عليها بردو
         $exist = DB::table('favourites')->where('user_id','=',$user_id[0]->tokenable_id)->where('meal_id','=',$request->id)->get();
-       if (isset($exist[0]->user_id) == $user_id[0]->tokenable_id){
+       if ($exist->count() >= 1){
            return response()->json(['status_code' => 400 , 'error_message'=> 'Item Already Exist']);
        }
         $favorite = new Favourite();
@@ -100,8 +98,6 @@ class ApiController extends Controller
          return response()->json(['status_code' => 200]);
     }
 
-//        return response()->json(['status_code' => 200, 'message' =>   $user->meal]);
-        // return response()->json($user->meal);
     public function getMealOptions($meal_id)
     {
 
@@ -155,8 +151,6 @@ class ApiController extends Controller
         // foreach ($request[1] as $meal){return $meal['count'];}
         try {
 
-            // انا بعمل ال time_in/ time_out 
-            // عشان استخدمهم وانا ببعت الايميل 
             $time_in = $request[0]['start_time'];
             $time_out = $request[0]['end_time'];
             $token = $request->bearerToken();
@@ -186,22 +180,13 @@ class ApiController extends Controller
                 Order_Meals::create([
                     'order_id'=> $order_id ,
                     'meal_id' => $meal['id'] ,
-                    ///*************** */
-                    // هنا مش بتتبعت في option لا
-                    // في الجديد بتتبعت علطول من جوا meal 
-                    // فاضل بس ال count ومش عارفة ماله
                     'option_id' => isset($meal['selectedOption']) ? $meal['selectedOption'] : null,
                     'num' => $meal['count']  ,
-                    // isset($meal['count']) ? $meal['count'] : 1
                 ]);
             }
-            // return redirect()->route('sendEmail');
+            
 
             ////// Send Email
-
-            // عملت الايميل كده عشان انا باخد من هنا الوقت والتاريخ 
-            // معرفتش ازاي ابعت متغيرات ل route بصراحة
-            /*  اقرا وبعدين امسح اوعي ترفعهم بالهبل ده */
             $user =  DB::table('users')
             ->where('id', $user_id[0]->tokenable_id)
             ->get();
@@ -216,7 +201,7 @@ class ApiController extends Controller
     
             Mail::to($user[0]->email)->send(new Email($details));
     
-            return response()->json(['status_code' => 200 , 'email' => 'Email sent successfully' ]);
+            // return response()->json(['status_code' => 200 , 'email' => 'Email sent successfully' ]);
 
 
             ///////////////////////
@@ -226,5 +211,18 @@ class ApiController extends Controller
         }
     }
 
+
+    public function payment(Request $request){
+
+            Stripe\Stripe::setApikey(env('STRIPE_SECRET'));
+            Stripe\Charge::create([
+             "amount"=> $request->price * 100,
+             "currency"=>"usd",
+             "source"=> $request->token,
+             "description"=> "Try"
+            ]);
+            
+        return response()->json(['status_code' => 200 , 'request' => $request->token]);
+    }
 
 }

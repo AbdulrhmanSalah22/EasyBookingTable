@@ -11,7 +11,7 @@ class Order_Meals extends Model
     use HasFactory;
 
     protected $table = 'order_meals' ;
-    protected $fillable =['id','order_id','meal_id','option_id'];
+    protected $fillable =['id','order_id','meal_id','option_id','num'];
 
 
     public function getMeals(){

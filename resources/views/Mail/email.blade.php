@@ -15,7 +15,7 @@
         <div class="card-body">
           <h3 class="card-title text-center">{{$details['title']}}</h3>
           <p class="card-text"> {{$details['body'] }} </p>
-          <a href="http://localhost:40441/" class="btn btn-primary"> Go Back To Website  </a>
+          <a href="http://localhost:4200/" class="btn btn-primary"> Go Back To Website  </a>
         </div>
       </div>
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

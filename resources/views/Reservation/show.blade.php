@@ -44,7 +44,7 @@
                                         <th scope="col">User Name</th>
                                         <th scope="col">Order Id</th>
                                         <th scope="col">Table Id</th>
-                                        <th scope="col">Comment</th>
+                                        <th scope="col">Accompany Num</th>
                                         <th scope="col">Time In</th>
                                         <th scope="col">Time Out</th>
                                         <th scope="col">Actions</th>
@@ -57,7 +57,7 @@
                                             <td> {{$reservation -> user ->name}} </td>
                                             <td> {{$reservation->order_id}} </td>
                                             <td> {{$reservation->table_id}} </td>
-                                            <td> {{$reservation->comment}} </td>
+                                            <td> {{$reservation->count}} </td>
                                             <td> {{$reservation->time_in}} </td>
                                             <td> {{$reservation->time_out}} </td>
                                             <td> 

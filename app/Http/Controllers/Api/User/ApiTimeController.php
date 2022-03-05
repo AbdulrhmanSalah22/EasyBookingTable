@@ -14,6 +14,7 @@ class ApiTimeController extends Controller
     {
         $date = Carbon::Parse($request-> date);
         $day =  $date->format('d');
+        $month =  $date->format('M');
         $start_time = Carbon::Parse($request-> start_time);
         $time_in =  $start_time->format('H:i:s');
         $end_time = Carbon::Parse($request-> end_time);
@@ -22,7 +23,7 @@ class ApiTimeController extends Controller
         $table = Table::where('status', '=', '0')->first();
 
         if ($table) {
-
+            $table -> status = 1 ;
             return response()->json(
                 ['status_code' => 200, 'available' => true,'table_id' => $table->id]
             );
@@ -33,7 +34,7 @@ class ApiTimeController extends Controller
 
         $open = [] ;
         $table_id = DB::table('tables')->count();
-        $reservations_time = DB::table('reservations')->select('table_id', 'day', 'time_in', 'time_out')->whereDay('day','=', $day )->orderBy('table_id')->get();
+        $reservations_time = DB::table('reservations')->select('table_id', 'day', 'time_in', 'time_out')->whereDay('day','=', $day )->whereMonth('day','=',$month)->orderBy('table_id')->get();
         if ( $reservations_time ->groupBy('table_id')->count() < $table_id){
            $free = DB::table('tables')->select('id')->leftJoinWhere('reservations','id','!=','table_id')->get();
              return response()->json(['status_code' => 200, 'available' => true, 'table_id' => $free->random()]);
