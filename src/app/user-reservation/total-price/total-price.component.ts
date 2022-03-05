@@ -13,10 +13,21 @@ export class TotalPriceComponent implements OnInit {
   constructor(private ReservationService:ReservationService) { }
 
   ngOnInit(): void {
+    // this.ReservationService.GetUserReservation().subscribe((data:any)=>{
+    //  this.data=data[0].order[this.id-1]
+    //  console.log(this.data)
+    // })
+
     this.ReservationService.GetUserReservation().subscribe((data:any)=>{
-     this.data=data[0].order[this.id-1]
-     console.log(this.data)
-    })
+      const index =data[0].order.findIndex(
+        (element:any) => element.id ==this.id
+        
+     )
+     this.data=data[0].order[index]
+    console.log(index) } );
+     console.log(this.id)
+
+  }
   }
 
-}
+

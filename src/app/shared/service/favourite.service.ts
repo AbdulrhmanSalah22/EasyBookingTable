@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Meal } from '../model/meal';
+import { Payment } from '../model/payment';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +50,21 @@ export class FavouriteService {
   delFromLocalFev(meal: Meal){
     this.FevArray.splice(this.FevArray.indexOf(meal), 1);
   }
+
+ payment(toto:any , amount:number){
+  let data={token:toto , price:amount}
+  console.log(data);
+  
+    const headers = new HttpHeaders({
+      Authorization: localStorage.getItem('toke')??""
+    })
+     this.Http.post(`http://localhost:8000/api/payment`,data,{headers}).subscribe(next=>console.log(next), error=>console.log(error));
+  }
+
+  // bassant(){
+  //    this.Http.get('http://localhost:8000/api/payment').subscribe(next=>console.log(next), error=>console.log(error));
+     
+  // }
 
   constructor(private Http: HttpClient) { }
 }

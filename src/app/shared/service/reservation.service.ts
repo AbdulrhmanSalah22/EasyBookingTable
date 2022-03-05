@@ -32,7 +32,7 @@ export class ReservationService {
     })
     if(this.SendData.length==3){
       this.Http.post<Reservation>(
-        'http://localhost:8000/api/reserve',this.SendData,{headers} ).subscribe(
+        'http://localhost:8000/api/reserv',this.SendData,{headers} ).subscribe(
           (ResData) => {
            console.log(ResData)
            this.OrderService.DeleteOrder()

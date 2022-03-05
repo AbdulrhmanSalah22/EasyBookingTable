@@ -1,17 +1,22 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Meal } from '../model/meal';
+import { Payment } from '../model/payment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
-  constructor() {}
+  constructor(private Http: HttpClient ) { }
   cartArray: Meal[] = [];
   orderarray: Meal[] = [];
   uniqueOrder: Meal[] = [];
   arr: Meal[] = [...this.orderarray];
 
   orderSum: number = 0;
+
+  
 
   addorder(meal: Meal) {
     if (this.orderarray.includes(meal)) {
@@ -69,6 +74,9 @@ export class OrderService {
     this.uniqueOrder.length=0
 
   }
+
+
+ 
 }
 
 
