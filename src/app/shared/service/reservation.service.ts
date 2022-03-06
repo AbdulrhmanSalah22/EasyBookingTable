@@ -33,18 +33,7 @@ export class ReservationService {
     })
     if(this.SendData.length==3){
       this.pay(price);
-      this.Http.post<Reservation>(
-        'http://localhost:8000/api/reserve',this.SendData,{headers} ).subscribe(
-          (ResData) => {
-           console.log(ResData)
-           this.OrderService.DeleteOrder()
-           this.checked.next(true)
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-      this.SendData.length=0
+      // this.SendData.length=0
       console.log(this.SendData)
     }else{
       this.router.navigateByUrl('#'+'reserve'); 
@@ -110,7 +99,24 @@ export class ReservationService {
     const headers = new HttpHeaders({
       Authorization: localStorage.getItem('toke')??""
     })
-     this.Http.post(`http://localhost:8000/api/payment`,data,{headers}).subscribe(next=>console.log(next), error=>console.log(error));
+     this.Http.post(`http://localhost:8000/api/payment`,data,{headers}).subscribe(
+       next=>{
+       
+       console.log(next)
+       this.Http.post<Reservation>(
+        'http://localhost:8000/api/reserve',this.SendData,{headers} ).subscribe(
+          (ResData) => {
+           console.log(ResData)
+           this.OrderService.DeleteOrder()
+           this.checked.next(true)
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    }
+     
+     , error=>console.log(error));
   }
   constructor(private Http: HttpClient,private OrderService:OrderService,private router:Router) {}
 }
