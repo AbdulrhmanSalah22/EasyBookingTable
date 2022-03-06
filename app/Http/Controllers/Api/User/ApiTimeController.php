@@ -34,11 +34,21 @@ class ApiTimeController extends Controller
 
 
         $open = [];
-        $reservations_time = DB::table('reservations')->select('table_id', 'day', 'time_in', 'time_out')->whereDay('day', '=', $day)->whereMonth('day', '=', $month)->orderBy('table_id')->get();
-        if ($reservations_time->isEmpty()) {
-            $table_id = DB::table('tables')->select('id')->first();
-            return response()->json(['status_code' => 200, 'available' => true, 'table_id' => $table_id]);
+        $bussy = [];
+        $table_id = DB::table('tables')->count();
+        $reservations_time = DB::table('reservations')->select('table_id', 'day', 'time_in', 'time_out')->whereDay('day','=', $day )->whereMonth('day','=',$month)->orderBy('table_id')->get();
+        $reserved = DB::table('tables')->leftJoin('reservations','tables.id','=','reservations.table_id')->whereDay('day','=', $day )->whereMonth('day','=',$month)->groupBy('id')->select('id')->get();
+        foreach ($reserved as $table){
+            array_push($bussy ,$table->id );}
+        if ($reserved->count() < $table_id){
+            $free =  DB::table('tables')->select('id')->whereNotIn('id',$bussy)->get();
+            return response()->json(['status_code' => 200, 'available' => true, 'table_id' => $free->random()]);
         }
+        // $reservations_time = DB::table('reservations')->select('table_id', 'day', 'time_in', 'time_out')->whereDay('day', '=', $day)->whereMonth('day', '=', $month)->orderBy('table_id')->get();
+        // if ($reservations_time->isEmpty()) {
+        //     $table_id = DB::table('tables')->select('id')->first();
+        //     return response()->json(['status_code' => 200, 'available' => true, 'table_id' => $table_id]);
+        // }
 
        
 
@@ -56,7 +66,8 @@ class ApiTimeController extends Controller
             // الراجل هيمشي قبل ما الشخض الجديد يجي
             if ($reserve->time_in > $time_out || $reserve->time_out <  $time_in) {
                 if (!in_array($reserve->table_id, $open)) {
-                    return response()->json(['status_code' => 200, 'available' => true, 'table_id' => $reserve->table_id]);
+                    $id = DB::table('tables')->where('id','=',$reserve->table_id)->select('id')->get();
+                    return response()->json(['status_code' => 200, 'available' => true, 'table_id' => $id[0]]);
                 }
             }
         }

@@ -124,6 +124,7 @@ class ApiController extends Controller
     }
 
     public function insertIntoReservation(Request $request){
+        // return $request ;
         try {
 
             $time_in = $request[0]['start_time'];
