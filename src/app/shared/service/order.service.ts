@@ -1,11 +1,16 @@
+
+////////new update/////
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Meal } from '../model/meal';
+// import { Payment } from '../model/payment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
-  constructor() {}
+  constructor(private Http: HttpClient) {}
   cartArray: Meal[] = [];
   orderarray: Meal[] = [];
   uniqueOrder: Meal[] = [];
@@ -14,14 +19,19 @@ export class OrderService {
   orderSum: number = 0;
 
   addorder(meal: Meal) {
-    if (this.orderarray.includes(meal)) {
+    let even = (element: any) => element.id === meal.id;
+
+    if (this.orderarray.some(even)) {
+      var index = this.uniqueOrder.findIndex((x) => x.id == meal.id);
+      this.uniqueOrder.splice(index, 1);
       this.orderarray.push(meal);
       meal.count = 0;
       this.orderarray.forEach((element) => {
-        if (element == meal) {
+        if (element.id == meal.id) {
           meal.count++;
         }
       });
+      this.uniqueOrder.push(meal);
     } else {
       meal.count = 1;
       this.orderarray.push(meal);
@@ -43,20 +53,27 @@ export class OrderService {
     this.orderarray.push(meal);
   }
   decQty(meal: Meal) {
+    const index = this.orderarray.findIndex((element) => element.id == meal.id);
     meal.count--;
-    this.orderarray.splice(this.orderarray.indexOf(meal), 1);
-    console.log(meal);
+    this.orderarray.splice(index, 1);
     if (meal.count == 0) {
-      this.uniqueOrder.splice(this.uniqueOrder.indexOf(meal), 1);
+      const index = this.uniqueOrder.findIndex(
+        (element) => element.id == meal.id
+      );
+      this.uniqueOrder.splice(index, 1);
     }
   }
   deleteMeal(meal: Meal) {
-    this.uniqueOrder.splice(this.uniqueOrder.indexOf(meal), 1);
+    const index = this.uniqueOrder.findIndex(
+      (element) => element.id == meal.id
+    );
+    this.uniqueOrder.splice(index, 1);
     for (var i = this.orderarray.length - 1; i >= 0; i--) {
-      if (this.orderarray[i] === meal) {
+      if (this.orderarray[i].id == meal.id) {
         this.orderarray.splice(i, 1);
       }
     }
+    meal.count=0
   }
   DeleteOrder() {
     this.orderarray.length = 0;
@@ -64,32 +81,3 @@ export class OrderService {
   }
 }
 
-// for(let i=0;i<this.orderarray.length+1;i++){
-//     if(this.orderarray[i].id==meal.id){
-//     this.orderarray.splice(i, 1);
-//     }
-
-// addorder(meal: Meal) {
-// if (this.orderarray.length == 0) {
-//   this.orderarray.push(meal);
-//   this.uniqueOrder.push(meal);
-// } else {
-//   this.uniqueOrder.find((elemen) => {
-//     if (elemen.id==meal.id) {
-//       this.orderarray.push(meal);
-//       meal.count = 0;
-//       this.orderarray.forEach((element) => {
-//         if (element == meal) {
-//           meal.count++;
-//         }
-//       });
-//     } else {
-//       console.log(meal);
-//       meal.count = 1;
-//       this.orderarray.push(meal);
-//       this.uniqueOrder.push(meal);
-//     }
-//   });
-// }
-
-// }
