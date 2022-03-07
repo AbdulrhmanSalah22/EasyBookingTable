@@ -33,20 +33,20 @@
         <div class="row">
             <div class="col-4">
               <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                <div class="card-header text-center fs-2">Orders</div>
+                <div class="card-header text-center fs-4">Orders</div>
                 <div class="card-body">
                   <p class="card-text display-3 text-center">{{$orders}}</p>
                 </div>
               </div>
               <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-                <div class="card-header text-center fs-2">Clients</div>
+                <div class="card-header text-center fs-4">Clients</div>
                 <div class="card-body">
                   <p class="card-text display-3 text-center">{{$clients - 1}}</p>
                 </div>
               </div>
 
               <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                <div class="card-header text-center fs-2">Available Tables</div>
+                <div class="card-header text-center fs-4">Available Tables</div>
                 <div class="card-body">
                   <p class="card-text display-3 text-center">{{$available_table}}</p>
                 </div>
@@ -55,7 +55,7 @@
             <div class="col-4">
 
               <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                <div class="card-header text-center fs-2">Catrgories</div>
+                <div class="card-header text-center fs-4">Catrgories</div>
                 <div class="card-body">
                   <p class="card-text display-3 text-center">{{$categories}}</p>
                 </div>
@@ -63,13 +63,13 @@
             </div>
 
               <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
-                <div class="card-header text-center fs-2"> Reservations</div>
+                <div class="card-header text-center fs-4"> Reservations</div>
                 <div class="card-body">
                   <p class="card-text display-3 text-center">{{$reservations}}</p>
                 </div>
               </div>
               <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
-                <div class="card-header text-center fs-2"> Reserved Tables</div>
+                <div class="card-header text-center fs-4"> Reserved Tables</div>
                 <div class="card-body">
                   <p class="card-text display-3 text-center">{{$reserved_table}}</p>
                 </div>
@@ -77,15 +77,22 @@
             </div>
             <div class="col-4">
               <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-                <div class="card-header text-center fs-2">Meals</div>
+                <div class="card-header text-center fs-4">Meals</div>
                 <div class="card-body">
                   <p class="card-text display-3 text-center">{{$meals}}</p>
                 </div>
               </div>
               <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
-                <div class="card-header text-center fs-2">Tables</div>
+                <div class="card-header text-center fs-4">Tables</div>
                 <div class="card-body">
                   <p class="card-text display-3 text-center">{{$tables}}</p>
+                </div>
+              </div>
+
+              <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header text-center fs-4">Today's reservations</div>
+                <div class="card-body">
+                  <p class="card-text display-3 text-center">{{$reservation_today}}</p>
                 </div>
               </div>
 

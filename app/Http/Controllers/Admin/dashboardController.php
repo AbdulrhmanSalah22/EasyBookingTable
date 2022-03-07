@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Reservation;
 use App\Models\Table;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -23,7 +24,8 @@ class dashboardController extends Controller
        $categories = Category::count();
        $available_table= DB::table('tables')->where('status','=',0)->count();
        $reserved_table= DB::table('tables')->where('status','=',1)->count();
+       $reservation_today = Reservation::whereDate('day','=', Carbon::today())->count();
         return view('dashboard' ,
-         compact('orders','clients','reservations','tables','meals','categories','available_table','reserved_table'));
+         compact('orders','clients','reservations','tables','meals','categories','available_table','reserved_table','reservation_today'));
     }
 }
