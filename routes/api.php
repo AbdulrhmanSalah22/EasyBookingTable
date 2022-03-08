@@ -34,7 +34,7 @@ Route::controller(ApiController::class)->group(function (){
     Route::get('get-reservation','getUserReservation');
     Route::get('mail','sendEmail')->name('sendEmail');
     Route::post('try','insertIntoReservation');
-    
+
 });
 
 Route::controller(ApiUserController::class)->group(function (){
@@ -45,11 +45,24 @@ Route::controller(ApiUserController::class)->group(function (){
 });
 
 Route::controller(ApiTimeController::class)->group(function (){
-    
+
     Route::post('get-table','searchForTableStatus')->middleware('auth:sanctum');
 
 });
 
-
+//Route::post('table',function (){
+//    $arr = [];
+////    return DB::table('tables')->count();
+////   return $reservations_time = DB::table('reservations')->select('table_id', 'day', 'time_in', 'time_out')->whereDay('day','=', 2 )->whereMonth('day','=',3)->orderBy('table_id')->get();
+//     $free = DB::table('tables')->leftJoin('reservations','tables.id','=','reservations.table_id')->whereDay('day','=', 2 )->whereMonth('day','=',3)->groupBy('id')->select('id')->get();
+//    foreach ($free as $table){
+////     $free_table = DB::table('tables')->select('id')->where('id','!=',$table->id)->get();
+//      array_push($arr ,$table->id );
+//}
+////     $arr ;
+//
+//    $arrrr =  DB::table('tables')->select('id')->whereNotIn('id',$arr)->get();
+//    return $arrrr -> random()->id;
+//});
 
 

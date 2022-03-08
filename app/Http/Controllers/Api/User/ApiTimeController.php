@@ -14,6 +14,7 @@ class ApiTimeController extends Controller
     {
         $date = Carbon::Parse($request-> date);
         $day =  $date->format('d');
+        $month =  $date->format('M');
         $start_time = Carbon::Parse($request-> start_time);
         $time_in =  $start_time->format('H:i:s');
         $end_time = Carbon::Parse($request-> end_time);
@@ -22,19 +23,24 @@ class ApiTimeController extends Controller
         $table = Table::where('status', '=', '0')->first();
 
         if ($table) {
-
+            $table -> status = 1 ;
+            $table -> save();
             return response()->json(
                 ['status_code' => 200, 'available' => true,'table_id' => $table->id]
             );
         }
 
         $open = [] ;
+        $bussy = [];
         $table_id = DB::table('tables')->count();
-        $reservations_time = DB::table('reservations')->select('table_id', 'day', 'time_in', 'time_out')->whereDay('day','=', $day )->orderBy('table_id')->get();
-        if ( $reservations_time ->groupBy('table_id')->count() < $table_id){
-           $free = DB::table('tables')->select('id')->leftJoinWhere('reservations','id','!=','table_id')->get();
-             return response()->json(['status_code' => 200, 'available' => true, 'table_id' => $free->random()]);
-         }
+        $reservations_time = DB::table('reservations')->select('table_id', 'day', 'time_in', 'time_out')->whereDay('day','=', $day )->whereMonth('day','=',$month)->orderBy('table_id')->get();
+        $reserved = DB::table('tables')->leftJoin('reservations','tables.id','=','reservations.table_id')->whereDay('day','=', $day )->whereMonth('day','=',$month)->groupBy('id')->select('id')->get();
+        foreach ($reserved as $table){
+            array_push($bussy ,$table->id );}
+        if ($reserved->count() < $table_id){
+            $free =  DB::table('tables')->select('id')->whereNotIn('id',$bussy)->get();
+            return response()->json(['status_code' => 200, 'available' => true, 'table_id' => $free->random()]);
+        }
 
         foreach ($reservations_time as $reserve){
            if ( $reserve-> time_in <= $time_out && $reserve-> time_out >= $time_in ) {
@@ -44,7 +50,8 @@ class ApiTimeController extends Controller
         foreach ($reservations_time as $reserve){
         if ($reserve-> time_in > $time_out || $reserve-> time_out <  $time_in){
             if (! in_array($reserve->table_id ,$open)){
-            return response()->json(['status_code' => 200, 'available' => true, 'table_id' => $reserve->table_id]);
+              $id = DB::table('tables')->where('id','=',$reserve->table_id)->select('id')->get();
+            return response()->json(['status_code' => 200, 'available' => true, 'table_id' => $id]);
             }
         }
     }
