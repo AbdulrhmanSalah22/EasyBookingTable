@@ -28,6 +28,8 @@ export class OrderMealsComponent implements OnInit {
     this.ReservationSErvice.checked.subscribe(data=>{
       this.checked=data
     })
+
+    this.ReservationSErvice.loadStripe();
   }
 
   delateMeal(meal: Meal) {

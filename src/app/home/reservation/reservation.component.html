@@ -4,9 +4,9 @@
   style="background-image: url(../../../assets/img/reservation-bg.jpg)"
   data-stellar-background-ratio="0.8"
 >
-  <div *ngIf="Auth" class="container">
+  <div class="container">
     <div class="row">
-      <div class="col-lg-5">
+      <div class="col-lg-5 col-md-8 col-12 col-sm-10">
         <div class="section-content bg-white p-5 shadow">
           <div class="heading-section text-center">
             <span class="subheading"> Reservation </span>
@@ -38,8 +38,9 @@
                 </div>
                 <div
                   *ngIf="
-                  current+7  < book.get('date')!.value < current &&
-                    book.get('date')!.touched && book.get('date')!.valid
+                    current + 7 < book.get('date')!.value < current &&
+                    book.get('date')!.touched &&
+                    book.get('date')!.valid
                   "
                 >
                   <span style="color: red">*Please Enter a valid date </span>
@@ -50,13 +51,10 @@
                   <span style="color: red">*This field is required </span>
                 </div>
               </div>
+
               <div class="col-md-6 form-group">
-                <label for="start">in time</label>
-              </div>
-              <div class="col-md-6 form-group">
-                <label for="end">out time</label>
-              </div>
-              <div class="col-md-6 form-group">
+                <label for="end">Time In</label>
+
                 <div
                   class="input-group date"
                   id="datetimepicker3"
@@ -83,6 +81,8 @@
               </div>
 
               <div class="col-md-6 form-group">
+                <label for="start">Time Out</label>
+
                 <div
                   class="input-group date"
                   id="datetimepicker3"
@@ -107,11 +107,12 @@
                   <span style="color: red">*This field is required </span>
                 </div>
               </div>
-              <div class="col-md-12 form-group">
+              <div class="col-md-12 form-group ">
+                <label for="person"> Choose A company Number:</label>
                 <select
                   formControlName="comment"
                   name="comment"
-                  class="form-control"
+                  class="form-control custom-select"
                   id="person"
                 >
                   <option selected disabled>A Company Numper</option>
@@ -123,9 +124,9 @@
                   <option value="8 Persons">8 Persons</option>
                 </select>
               </div>
-              <div class="col-md-12 text-center">
+              <div *ngIf="Auth" class="col-md-12 text-center">
                 <button
-                  class="btn btn-primary btn-shadow btn-lg mt-5"
+                  class="btn btn-primary btn-shadow btn-lg mb-5"
                   type="submit"
                   name="submit"
                   [disabled]="
@@ -148,6 +149,13 @@
                     ></a>
                   </div>
                 </div>
+              </div>
+              <div *ngIf="!Auth" class="col-md-12 text-center p-0">
+                <a href="/signup"
+                  class="btn btn-primary btn-shadow btn-lg mb-5"
+                >
+                  Register Now To Book Table
+                </a>
               </div>
             </div>
           </form>

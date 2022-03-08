@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { User } from '../model/user';
 import { OrderService } from './order.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class UserService {
     console.log(user);
 
     return this.Http.post<User>(
-      'http://localhost:8000/api/user/register',
+      environment.Api+'user/register',
       user
     ).subscribe(
       (ResData) => {
@@ -34,13 +35,12 @@ export class UserService {
 
   login(data: User) {
     this.Http.post<User>(
-      'http://127.0.0.1:8000/api/user/login',
+      environment.Api+'user/login',
       data
     ).subscribe(
       (ResData) => {
         if (ResData.token) {
           localStorage.setItem('toke', ResData.token);
-          // localStorage.setItem('selectedServers', JSON.stringify(ResDa))
           this.autoLogin();
           this.router.navigate(['/home']);
         } else {
@@ -57,7 +57,7 @@ export class UserService {
       Authorization: localStorage.getItem('toke')??""
     })
     this.Http.post<User>(
-      'http://127.0.0.1:8000/api/user/logout',"log",{headers}).subscribe(
+      environment.Api+'user/logout',"log",{headers}).subscribe(
         data=>{
           console.log(data)
         }

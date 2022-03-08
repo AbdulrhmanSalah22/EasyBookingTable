@@ -43,8 +43,8 @@
                             </p>
                           </td>
                           <td>${{ ite.get_meals[0].price }}</td>
-                          <td>2</td>
-                          <td>${{ 2 * ite.get_meals[0].price }}</td>
+                          <td>{{ite.num }}</td>
+                          <td>${{ ite.num * ite.get_meals[0].price }}</td>
                         </tr>
                         <tr class="d-flex justify-content-end">
                           <app-total-price

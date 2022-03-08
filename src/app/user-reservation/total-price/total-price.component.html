@@ -1,9 +1,8 @@
 <td>&nbsp;</td>
 <td colspan="2">
   <p>
-    Subtotal<br />
-    Shipping &amp; Handling<br />
-    Tax<br />
+   
+    Date
   </p>
   <h5 class="text-success">
     <strong>Grand Total</strong>
@@ -11,10 +10,8 @@
 </td>
 <td>
   <p>
-    <!-- ${{ data.total }} -->
-    <br />
-    $100.00<br />
-    $49.00<br />
+    
+    {{ data?.date }}
   </p>
   <h5 class="text-success">
     <strong>${{ data?.total }}</strong>

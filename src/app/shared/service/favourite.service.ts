@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Meal } from '../model/meal';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +16,14 @@ export class FavouriteService {
     const headers = new HttpHeaders({
       Authorization: localStorage.getItem('toke')??""
     })
-    return this.Http.post<Meal>('http://localhost:8000/api/add-fav',id,{headers});
+    return this.Http.post<Meal>(environment.Api+'add-fav',id,{headers});
   }
 
   getFev(){
     const headers = new HttpHeaders({
       Authorization: localStorage.getItem('toke')??""
     })
-    this.Http.get<Meal[]>('http://localhost:8000/api/get-fav',{headers}).subscribe(
+    this.Http.get<Meal[]>(environment.Api+'get-fav',{headers}).subscribe(
       (next)=>{
         this.MainFavArray.next(next)
       },
@@ -34,7 +35,7 @@ export class FavouriteService {
     const headers = new HttpHeaders({
       Authorization: localStorage.getItem('toke')??""
     })
-    return this.Http.post<Meal>(`http://localhost:8000/api/delete-fav/${id}`,'blog',{headers});
+    return this.Http.post<Meal>(environment.Api+`delete-fav/${id}`,'blog',{headers});
   }
 
   addToLocalFev(meal: Meal){

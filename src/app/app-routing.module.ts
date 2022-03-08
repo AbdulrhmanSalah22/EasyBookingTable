@@ -10,12 +10,13 @@ import { TeamPageComponent } from './team-page/team-page.component';
 import { OrderMealsComponent } from './order-meals/order-meals.component';
 import { FavouriteComponent } from './favourite/favourite.component';
 import { UserReservationComponent } from './user-reservation/user-reservation.component';
+import { AuthGuardGuard } from './shared/guard/auth-guard.guard';
 
 
 const routes: Routes = [
   {path:"home",component:HomeComponent},
   {path:"menu",component:MenuComponent},
-  {path:'' , redirectTo:'home' , pathMatch:'full'},
+  {path:'', redirectTo:'home' , pathMatch:'full'},
   {path:"aboutus",component:AboutUsComponent},
   {path:"ourteam",component:TeamPageComponent},
   {path:"signup",component:RegisterationComponent},
@@ -23,7 +24,7 @@ const routes: Routes = [
   {path:"menu/:name",component:MealPageComponent},
   {path:"order",component:OrderMealsComponent},
   {path:"favourite",component:FavouriteComponent},
-  {path:"myreservation",component:UserReservationComponent},
+  {path:"myreservation", canActivate:[AuthGuardGuard],component:UserReservationComponent},
   {path:"**",component:HomeComponent},
 ];
 const routerOptions:ExtraOptions={
