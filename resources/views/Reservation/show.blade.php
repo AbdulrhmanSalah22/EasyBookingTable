@@ -44,7 +44,7 @@
                                         <th scope="col">User Name</th>
                                         <th scope="col">Order Id</th>
                                         <th scope="col">Table Id</th>
-                                        <th scope="col">Accompany Num.</th>
+                                        <th scope="col">Accompany Num</th>
                                         <th scope="col">Time In</th>
                                         <th scope="col">Time Out</th>
                                         <th scope="col">Actions</th>
