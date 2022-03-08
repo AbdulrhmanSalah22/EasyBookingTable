@@ -24,7 +24,9 @@ class dashboardController extends Controller
        $categories = Category::count();
        $available_table= DB::table('tables')->where('status','=',0)->count();
        $reserved_table= DB::table('tables')->where('status','=',1)->count();
-       $reservation_today = Reservation::whereDate('day','=', Carbon::today())->count();
+       $reservation_today = Reservation::whereDate('day','=', Carbon::now()->format('Y-m-d'))->count();
+    //    dd($reservation_today); 
+    //    dd(Carbon::now()->format('Y-m-d'));
         return view('dashboard' ,
          compact('orders','clients','reservations','tables','meals','categories','available_table','reserved_table','reservation_today'));
     }
