@@ -160,21 +160,21 @@ class ApiController extends Controller
                     'num' => $meal['count']  ,
                 ]);
             }
-            
+
 
             ////// Send Email
             $user =  DB::table('users')
             ->where('id', $user_id[0]->tokenable_id)
             ->get();
-    
+
             $details =  [
                 'title' => 'Hello ' . $user[0]->name,
                 'body' => "Thanks for reserving in our restaurant.
-                 the reservation will be at $date From $time_in to $time_out , 
+                 the reservation will be at $date From $time_in to $time_out ,
                  we will be waiting for you.
                  Have a nice day."
             ];
-    
+
             Mail::to($user[0]->email)->send(new Email($details));
 
         }catch (Exception $e){
@@ -187,7 +187,7 @@ class ApiController extends Controller
     public function payment(Request $request){
         // return $request ;
 
-            Stripe\Stripe::setApikey(env('STRIPE_SECRET'));
+            Stripe\Stripe::setApikey('sk_test_51KX58pBmVrP9kTEPbwfc14iFacE1NwLGg4DTM5Jsv39gOYdmZreLVegaofU3uscXSaZ8F6qR2XTYbgZF8dx9ZsqH00PE1yu6xr‏');
             Stripe\Charge::create([
              "amount"=> $request->price['price'] * 100,
              "currency"=>"usd",
