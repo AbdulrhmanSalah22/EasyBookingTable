@@ -18,9 +18,14 @@ class MealController extends Controller
         $input = $request->all();
 
         $meal = Meal::create($input);
-        if($request->hasFile('meal_img') && $request->file('meal_img')->isValid()){
-            $meal->addMediaFromRequest('meal_img')->toMediaCollection('meal_img');
-        }
+
+        $meal->attachMedia($request->file('meal_img'));
+
+
+//        if($request->hasFile('meal_img') && $request->file('meal_img')->isValid()){
+//            $meal->addMediaFromRequest('meal_img')->toMediaCollection('meal_img');
+//        }
+
 
     return redirect()->route('ShowMeals');
     }
@@ -34,7 +39,9 @@ class MealController extends Controller
     }
 
     public function delete($id){
-        Meal::find($id)->delete();
+        $meal = Meal::find($id);
+        $meal->delete();
+        $meal->detachMedia();
         return redirect()->route('ShowMeals');
     }
     public function edit($id){
@@ -52,11 +59,13 @@ class MealController extends Controller
             'description' => $request->description,
             'category_id' => $request->category_id
         ]);
-        if ($request->hasFile('meal_img')) {
-            $meal->clearMediaCollection('meal_img');
-            $meal->addMediaFromRequest('meal_img')->toMediaCollection('meal_img');
+        $meal->updateMedia($request->file('meal_img'));
+
+//        if ($request->hasFile('meal_img')) {
+//            $meal->clearMediaCollection('meal_img');
+//            $meal->addMediaFromRequest('meal_img')->toMediaCollection('meal_img'); }
 
             return redirect()->route("ShowMeals");
         }
-    }
+
 }

@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
+use CloudinaryLabs\CloudinaryLaravel\MediaAlly;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Category extends Model implements HasMedia
+class Category extends Model
 {
-    use HasFactory , InteractsWithMedia ;
+    use HasFactory , MediaAlly  ;
 
    protected $fillable =['id','name'];
 

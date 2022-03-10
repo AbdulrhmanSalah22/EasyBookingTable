@@ -21,27 +21,36 @@ class ApiController extends Controller
 {
     public function getCategories()
     {
-        $categories = Category::with(['media'])->get();
+//        $categories = Category::with(['media'])->get();
+//        foreach ($categories as $category) {
+//            $category->media[0]->makeHidden('id','model_type', 'model_id', 'uuid', 'collection_name', 'name', 'file_name', 'mime_type', 'disk', 'conversions_disk', 'size', 'generated_conversions', 'manipulations', 'custom_properties', 'responsive_images', 'order_column', 'created_at', 'updated_at', 'preview_url');
+//        }
+        $categories = Category::with('medially')->get();
+
         foreach ($categories as $category) {
-            $category->media[0]->makeHidden('id','model_type', 'model_id', 'uuid', 'collection_name', 'name', 'file_name', 'mime_type', 'disk', 'conversions_disk', 'size', 'generated_conversions', 'manipulations', 'custom_properties', 'responsive_images', 'order_column', 'created_at', 'updated_at', 'preview_url');
+            $category ->medially[0] -> makeHidden('id','medially_type','medially_id','file_name','file_type','size','created_at','updated_at');
         }
         return response()->json($categories);
     }
 
     public function getMeals(){
-        $meals = Meal::with(['media','category','option'])->get();
-             foreach ($meals as $meal){
-          $meal-> media[0] -> makeHidden('id','model_type','model_id','uuid','collection_name','name','file_name','mime_type','disk','conversions_disk','size','generated_conversions','manipulations','custom_properties','responsive_images','order_column','created_at','updated_at','preview_url');
-             }
+//        $meals = Meal::with(['media','category','option'])->get();
+//             foreach ($meals as $meal){
+//          $meal-> media[0] -> makeHidden('id','model_type','model_id','uuid','collection_name','name','file_name','mime_type','disk','conversions_disk','size','generated_conversions','manipulations','custom_properties','responsive_images','order_column','created_at','updated_at','preview_url');
+//             }
+        $meals = Meal::with(['medially','category','option'])->get();
+        foreach ($meals as $meal){
+            $meal-> medially[0] -> makeHidden('id','medially_type','medially_id','file_name','file_type','size','created_at','updated_at');
+        }
         return response()->json($meals);
     }
 
     public function getMeal($id){
-       $meal = Meal::with(['media','category','option'])->find($id);
-
-        $meal-> media[0] -> makeHidden('id','model_type','model_id','uuid','collection_name','name','file_name','mime_type','disk','conversions_disk','size','generated_conversions','manipulations','custom_properties','responsive_images','order_column','created_at','updated_at','preview_url');
-
-       return response()->json($meal);
+//       $meal = Meal::with(['media','category','option'])->find($id);
+//        $meal-> media[0] -> makeHidden('id','model_type','model_id','uuid','collection_name','name','file_name','mime_type','disk','conversions_disk','size','generated_conversions','manipulations','custom_properties','responsive_images','order_column','created_at','updated_at','preview_url');
+        $meal = Meal::with(['medially','category','option'])->find($id);
+        $meal-> medially[0] -> makeHidden('id','medially_type','medially_id','file_name','file_type','size','created_at','updated_at');
+        return response()->json($meal);
     }
 
 
@@ -55,9 +64,9 @@ class ApiController extends Controller
         $fav_meal = [];
         $user = User::with('meal')->find($user_id[0]->tokenable_id );
         foreach ($user->meal as $meal){
-            $MealWithMedia = Meal::with('media')->where('id','=', $meal->id)->get();
+            $MealWithMedia = Meal::with('medially')->where('id','=', $meal->id)->get();
             foreach ($MealWithMedia as $mealMedia) {
-                $mealMedia->media[0]->makeHidden('id', 'model_type', 'model_id', 'uuid', 'collection_name', 'name', 'file_name', 'mime_type', 'disk', 'conversions_disk', 'size', 'generated_conversions', 'manipulations', 'custom_properties', 'responsive_images', 'order_column', 'created_at', 'updated_at', 'preview_url');
+                $mealMedia->medially[0] -> makeHidden('id','medially_type','medially_id','file_name','file_type','size','created_at','updated_at');
             }
             array_push($fav_meal,$MealWithMedia);
         }
