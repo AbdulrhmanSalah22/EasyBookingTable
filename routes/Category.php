@@ -27,4 +27,3 @@ Route::controller(CategoryController::class)->prefix('cat')->middleware(['auth',
 
 
 
-
