@@ -27,6 +27,6 @@ class ReservationController extends Controller
 
     public function showTodayReservations(){
         $reservations = Reservation::whereDate('day','=', Carbon::now()->format('Y-m-d'))->get();
-       return view('Reservation.show' , compact('reservations'));
+       return view('Reservation.ReservationToday' , compact('reservations'));
     }
 }
