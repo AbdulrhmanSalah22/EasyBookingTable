@@ -21,4 +21,9 @@ class ReservationController extends Controller
    $details =   Order_Meals::with(['getOption','getMeals'])->where('order_id' , $id)->get();
         return view('Reservation.orderData' , compact('details'));
     }
+
+    public function deleteReservations(){
+        Reservation::truncate();
+        return redirect(route('ShowReservations'));
+    }
 }

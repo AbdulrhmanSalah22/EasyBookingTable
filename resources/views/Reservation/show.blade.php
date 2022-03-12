@@ -69,6 +69,13 @@
                                 </tbody>
                             </table>
                         </div>
+                      <div class="text-center mb-3">
+                        <form method="post" action="{{ route('deleteReservations')}}" class="d-inline" >
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('Are you sure to delete all records?')" class="btn btn-danger"> Reset All Reservations </button>
+                        </form>                     
+                     </div>
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
