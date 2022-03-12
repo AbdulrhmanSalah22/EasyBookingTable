@@ -19,6 +19,7 @@ Route::controller(ReservationController::class)->middleware(['auth','admin'])->p
     Route::get('/show' ,'showReservations')->name('ShowReservations');
     Route::get('/show-order/{id}' ,'showOrderDetails')->name('ShowOrderDetails');
     Route::delete('/delete-reservation' ,'deleteReservations')->name('DeleteReservations');
+    Route::get('/today-reservations' ,'showTodayReservations')->name('ShowTodayReservations');
 });
 
 

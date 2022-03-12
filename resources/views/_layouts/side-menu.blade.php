@@ -90,6 +90,14 @@
                     </p>
                 </a>
             </li>
+            <li class="nav-item">
+              <a href="{{route('ShowTodayReservations')}}" class="nav-link">
+                  <i class="nav-icon fad fa-arrow-circle-right"></i>
+                  <p>
+                     Today's Reservations
+                  </p>
+              </a>
+          </li>
         </ul>
     </nav>
     <!-- /.sidebar-menu -->

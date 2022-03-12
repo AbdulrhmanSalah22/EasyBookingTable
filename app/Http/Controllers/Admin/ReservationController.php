@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order_Meals;
 use App\Models\Reservation;
+use Carbon\Carbon;
 
 class ReservationController extends Controller
 {
@@ -22,5 +23,10 @@ class ReservationController extends Controller
     public function deleteReservations(){
         Reservation::truncate();
         return redirect(route('ShowReservations'));
+    }
+
+    public function showTodayReservations(){
+        $reservations = Reservation::whereDate('day','=', Carbon::now()->format('Y-m-d'))->get();
+       return view('Reservation.show' , compact('reservations'));
     }
 }
