@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Category\CategoryRequest;
 use App\Models\Category;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class CategoryController extends Controller
@@ -18,9 +16,10 @@ class CategoryController extends Controller
 
         $input = $request->all();
         $cat = Category::create($input);
-        if($request->hasFile('cat_img') && $request->file('cat_img')->isValid()){
-            $cat->addMediaFromRequest('cat_img')->toMediaCollection('category_img');
-        }
+//        if($request->hasFile('cat_img') && $request->file('cat_img')->isValid()){
+//            $cat->addMediaFromRequest('cat_img')->toMediaCollection('category_img');
+//        }
+        $cat->attachMedia($request->file('cat_img'));
         return redirect()->route("ShowCategories");
     }
 
@@ -30,7 +29,9 @@ class CategoryController extends Controller
     }
 
     public function delete($id){
-        Category::find($id)->delete();
+        $cat = Category::find($id);
+        $cat->delete();
+        $cat->detachMedia();
         return redirect()->route('ShowCategories');
     }
     public function edit($id){
@@ -41,10 +42,11 @@ class CategoryController extends Controller
        $cat =  Category::find($id);
        $cat -> name = $request -> name ;
        $cat ->save();
-            if ($request->hasFile('cat_img')) {
-                $cat->clearMediaCollection('category_img');
-                $cat->addMediaFromRequest('cat_img')->toMediaCollection('category_img');
-            }
+//            if ($request->hasFile('cat_img')) {
+//                $cat->clearMediaCollection('category_img');
+//                $cat->addMediaFromRequest('cat_img')->toMediaCollection('category_img');
+//            }
+        $cat->updateMedia($request->file('cat_img'));
 
         return redirect()->route("ShowCategories");
 

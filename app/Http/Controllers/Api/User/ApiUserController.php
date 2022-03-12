@@ -25,7 +25,7 @@ class ApiUserController extends Controller
         $user->save();
         $token = $user->createToken('authToken')->plainTextToken;
 
-        return response()->json(['status_code' => 200, 'message' => 'user created successfully', 'token' => 'Bearer '.$token]);
+        return response()->json(['status_code' => 200, 'message' => 'user created successfully', 'token' => 'Bearer '.$token , 'UserName'=> $user->name]);
     }
 
 
@@ -42,7 +42,7 @@ class ApiUserController extends Controller
         $user = User::where('email', $request->email)->first();
         $token = $user->createToken('authToken')->plainTextToken;
         return response()->json(
-            ['status_code' => 200, 'token' => 'Bearer '.$token]
+            ['status_code' => 200, 'token' => 'Bearer '.$token , 'UserName'=> $user->name]
         );
     }
 

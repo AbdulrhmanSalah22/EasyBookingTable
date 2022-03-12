@@ -51,7 +51,7 @@
                                         <tr>
                                             <th scope="row">{{ $cat->id }}</th>
                                             <td>{{ $cat->name }}</td>
-                                            <td><img src="{{ $cat->getFirstMediaUrl('category_img') }}" width="200px"
+                                            <td><img src="{{ $cat->fetchFirstMedia()->file_url }}" width="200px"
                                                     height="80px"></td>
                                             <td> <a class="btn btn-success" href="{{route('EditCategory', $cat -> id)}}"> Edit
                                                 </a>  ::

@@ -55,7 +55,7 @@
                                             <td>{{ $cat_meal -> price }}</td>
                                             <td>{{ $cat_meal -> description }}</td>
 
-                                            <td><img src="{{ $cat_meal -> getFirstMediaUrl('meal_img') }}" width="200px"
+                                            <td><img src="{{ $cat_meal->fetchFirstMedia()->file_url }}" width="200px"
                                                     height="80px"></td>
                                         </tr>
                                     @endforeach

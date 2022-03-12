@@ -15,32 +15,42 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Stripe;
 
 class ApiController extends Controller
 {
     public function getCategories()
     {
-        $categories = Category::with(['media'])->get();
+//        $categories = Category::with(['media'])->get();
+//        foreach ($categories as $category) {
+//            $category->media[0]->makeHidden('id','model_type', 'model_id', 'uuid', 'collection_name', 'name', 'file_name', 'mime_type', 'disk', 'conversions_disk', 'size', 'generated_conversions', 'manipulations', 'custom_properties', 'responsive_images', 'order_column', 'created_at', 'updated_at', 'preview_url');
+//        }
+        $categories = Category::with('medially')->get();
+
         foreach ($categories as $category) {
-            $category->media[0]->makeHidden('id','model_type', 'model_id', 'uuid', 'collection_name', 'name', 'file_name', 'mime_type', 'disk', 'conversions_disk', 'size', 'generated_conversions', 'manipulations', 'custom_properties', 'responsive_images', 'order_column', 'created_at', 'updated_at', 'preview_url');
+            $category ->medially[0] -> makeHidden('id','medially_type','medially_id','file_name','file_type','size','created_at','updated_at');
         }
         return response()->json($categories);
     }
 
     public function getMeals(){
-        $meals = Meal::with(['media','category','option'])->get();
-             foreach ($meals as $meal){
-          $meal-> media[0] -> makeHidden('id','model_type','model_id','uuid','collection_name','name','file_name','mime_type','disk','conversions_disk','size','generated_conversions','manipulations','custom_properties','responsive_images','order_column','created_at','updated_at','preview_url');
-             }
+//        $meals = Meal::with(['media','category','option'])->get();
+//             foreach ($meals as $meal){
+//          $meal-> media[0] -> makeHidden('id','model_type','model_id','uuid','collection_name','name','file_name','mime_type','disk','conversions_disk','size','generated_conversions','manipulations','custom_properties','responsive_images','order_column','created_at','updated_at','preview_url');
+//             }
+        $meals = Meal::with(['medially','category','option'])->get();
+        foreach ($meals as $meal){
+            $meal-> medially[0] -> makeHidden('id','medially_type','medially_id','file_name','file_type','size','created_at','updated_at');
+        }
         return response()->json($meals);
     }
 
     public function getMeal($id){
-       $meal = Meal::with(['media','category','option'])->find($id);
-
-        $meal-> media[0] -> makeHidden('id','model_type','model_id','uuid','collection_name','name','file_name','mime_type','disk','conversions_disk','size','generated_conversions','manipulations','custom_properties','responsive_images','order_column','created_at','updated_at','preview_url');
-
-       return response()->json($meal);
+//       $meal = Meal::with(['media','category','option'])->find($id);
+//        $meal-> media[0] -> makeHidden('id','model_type','model_id','uuid','collection_name','name','file_name','mime_type','disk','conversions_disk','size','generated_conversions','manipulations','custom_properties','responsive_images','order_column','created_at','updated_at','preview_url');
+        $meal = Meal::with(['medially','category','option'])->find($id);
+        $meal-> medially[0] -> makeHidden('id','medially_type','medially_id','file_name','file_type','size','created_at','updated_at');
+        return response()->json($meal);
     }
 
 
@@ -54,9 +64,9 @@ class ApiController extends Controller
         $fav_meal = [];
         $user = User::with('meal')->find($user_id[0]->tokenable_id );
         foreach ($user->meal as $meal){
-            $MealWithMedia = Meal::with('media')->where('id','=', $meal->id)->get();
+            $MealWithMedia = Meal::with('medially')->where('id','=', $meal->id)->get();
             foreach ($MealWithMedia as $mealMedia) {
-                $mealMedia->media[0]->makeHidden('id', 'model_type', 'model_id', 'uuid', 'collection_name', 'name', 'file_name', 'mime_type', 'disk', 'conversions_disk', 'size', 'generated_conversions', 'manipulations', 'custom_properties', 'responsive_images', 'order_column', 'created_at', 'updated_at', 'preview_url');
+                $mealMedia->medially[0] -> makeHidden('id','medially_type','medially_id','file_name','file_type','size','created_at','updated_at');
             }
             array_push($fav_meal,$MealWithMedia);
         }
@@ -72,7 +82,7 @@ class ApiController extends Controller
         ->where('id', $token_parts[0])
         ->get();
         $exist = DB::table('favourites')->where('user_id','=',$user_id[0]->tokenable_id)->where('meal_id','=',$request->id)->get();
-       if ($exist){
+       if ($exist->count() >= 1){
            return response()->json(['status_code' => 400 , 'error_message'=> 'Item Already Exist']);
        }
         $favorite = new Favourite();
@@ -97,8 +107,6 @@ class ApiController extends Controller
          return response()->json(['status_code' => 200]);
     }
 
-//        return response()->json(['status_code' => 200, 'message' =>   $user->meal]);
-        // return response()->json($user->meal);
     public function getMealOptions($meal_id)
     {
 
@@ -124,31 +132,12 @@ class ApiController extends Controller
         return response()->json($array);
     }
 
-    public function sendEmail(Request $request){
-        $token = $request->bearerToken();
-        $token_parts = explode('|', $token);
-        $user_id = DB::table('personal_access_tokens')
-        ->where('id', $token_parts[0])
-        ->get();
-
-       $user =  DB::table('users')
-        ->where('id', $user_id[0]->tokenable_id)
-        ->get();
-
-        $details =  [
-            'title' => 'Reservation',
-            'body' => 'Thanks for reserving in our restaurant the reservation
-             will be at Day, time_in , time_out'
-        ];
-
-        Mail::to($user[0]->email)->send(new Email($details));
-
-        return response()->json(['status_code' => 200 , 'email' => 'email sent successfully' ]);
-    }
-
-
     public function insertIntoReservation(Request $request){
+        // return $request ;
         try {
+
+            $time_in = $request[0]['start_time'];
+            $time_out = $request[0]['end_time'];
             $token = $request->bearerToken();
             $token_parts = explode('|', $token);
             $user_id = DB::table('personal_access_tokens')
@@ -176,14 +165,44 @@ class ApiController extends Controller
                 Order_Meals::create([
                     'order_id'=> $order_id ,
                     'meal_id' => $meal['id'] ,
-                    'option_id' => isset($meal['option'][0]['id']) ? $meal['option'][0]['id'] : null,
+                    'option_id' => isset($meal['selectedOption']) ? $meal['selectedOption'] : null,
+                    'num' => $meal['count']  ,
                 ]);
             }
+
+
+            ////// Send Email
+            $user =  DB::table('users')
+            ->where('id', $user_id[0]->tokenable_id)
+            ->get();
+
+            $details =  [
+                'title' => 'Hello ' . $user[0]->name,
+                'body' => "Thanks for reserving in our restaurant.
+                 the reservation will be at $date From $time_in to $time_out ,
+                 we will be waiting for you.
+                 Have a nice day."
+            ];
+
+            Mail::to($user[0]->email)->send(new Email($details));
+
         }catch (Exception $e){
            $error = $e-> getCode();
            return response()->json(['status_code' => $error]) ;
         }
     }
 
+
+    public function payment(Request $request){
+        // return $request ;
+
+            Stripe\Stripe::setApikey('sk_test_51KX58pBmVrP9kTEPbwfc14iFacE1NwLGg4DTM5Jsv39gOYdmZreLVegaofU3uscXSaZ8F6qR2XTYbgZF8dx9ZsqH00PE1yu6xr');
+            Stripe\Charge::create([
+             "amount"=> $request->price['price'] * 100,
+             "currency"=>"usd",
+             "source"=> $request->token,
+             "description"=> "Reservation form Resto"
+            ]);
+    }
 
 }

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Order;
 use App\Models\Reservation;
 use App\Models\Table;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -28,8 +29,7 @@ class DatabaseSeeder extends Seeder
         //  / To add Seeder in reservation table to work easy :D
 //         Reservation::factory(3)->create();
 
-         \App\Models\User::factory()->create(
-             [
+        User::create([
                  'name' => 'Admin',
                  'email' => 'admin@admin.com',
                  'password' => Hash::make('123456'),

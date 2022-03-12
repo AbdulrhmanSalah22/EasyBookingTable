@@ -53,7 +53,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                   
+
                                     @foreach ($meals as $meal)
                                     <tr>
                                         <th scope="row">{{ $meal -> id }}</th>
@@ -62,7 +62,7 @@
                                         <td>{{ $meal -> description }}</td>
                                         <td>{{ $meal -> category -> name }}</td>
                                         <td>
-                                            @foreach ($meal -> option as $item) 
+                                            @foreach ($meal -> option as $item)
                                                 @if($item)
                                                       {{ $item-> name  }},
                                                 @else No Option attached to this meal
@@ -70,7 +70,7 @@
                                              @endforeach
                                         </td>
 
-                                        <td><img src="{{$meal->getFirstMediaUrl('meal_img')}}"  width="200px" height="80px" ></td>
+                                        <td><img src="{{$meal->fetchFirstMedia()->file_url}}"  width="200px" height="80px" ></td>
                                         <td>
                                             <a class="btn btn-success" href="{{route('EditMeal',$meal -> id)}}"> Edit </a>
                                             ::

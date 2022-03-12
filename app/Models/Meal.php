@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
+use CloudinaryLabs\CloudinaryLaravel\MediaAlly;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Meal extends Model implements HasMedia
+class Meal extends Model
 {
-    use HasFactory , InteractsWithMedia;
+    use HasFactory , MediaAlly;
 
     protected $fillable =['id','name','price','description','category_id'];
 
@@ -21,14 +20,14 @@ class Meal extends Model implements HasMedia
 
     }
 
-     // favorites table 
+     // favorites table
     public function user()
     {
         return $this->belongsToMany(User::class , 'favourites' , 'user_id' , 'meal_id');
     }
 
 
-     // option table 
+     // option table
      public function option()
      {
          return $this->belongsToMany(Option::class , 'meal_options' , 'meal_id' , 'option_id');

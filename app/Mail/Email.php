@@ -30,6 +30,6 @@ class Email extends Mailable
      */
     public function build()
     {
-        return $this->subject('Reservation in Easy Booking Table')->view('Mail.email');
+        return $this->subject('Reservation at Resto Restaurant')->view('Mail.email');
     }
 }
