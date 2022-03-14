@@ -19,5 +19,9 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard' , [dashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/mark' , function(){
+    auth()->user()->unreadNotifications->markAsRead();
+    return redirect()->back();
+    });
 
 require __DIR__.'/auth.php';

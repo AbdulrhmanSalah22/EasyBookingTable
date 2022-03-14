@@ -12,6 +12,8 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.5",
+        "laravel/ui": "^3.4",
+        "pusher/pusher-php-server": "^7.0",
         "spatie/laravel-medialibrary": "^9.0.0",
         "stripe/stripe-php": "^7.116"
     },

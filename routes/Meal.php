@@ -22,6 +22,9 @@ Route::controller(MealController::class)->middleware(['auth','admin'])->prefix('
     Route::delete('/delete/{id}','delete')->name('DeleteMeal');
     Route::get('/edit/{id}','edit')->name('EditMeal');
     Route::post('/update/{id}','update')->name('UpdateMeal');
+    Route::get('/delete/{id}','getOptionOfMeal')->name('delete');
+    Route::post('/delete-option/{id}','deleteOptionFromMeal')->name('deleteOptionMeal');
+
 });
 
 

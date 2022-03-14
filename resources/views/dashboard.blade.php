@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#" class="text-decoration-none">Home</a></li>
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                     </div>
@@ -31,7 +31,7 @@
             </div>
         </section>
         <div class="row">
-            <div class="col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
                 <div class="card-header text-center fs-4">Orders</div>
                 <div class="card-body">
@@ -44,7 +44,6 @@
                   <p class="card-text display-3 text-center">{{$clients - 1}}</p>
                 </div>
               </div>
-
               <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
                 <div class="card-header text-center fs-4">Available Tables</div>
                 <div class="card-body">
@@ -52,16 +51,13 @@
                 </div>
               </div>
             </div>
-            <div class="col-4">
-
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
                 <div class="card-header text-center fs-4">Catrgories</div>
                 <div class="card-body">
                   <p class="card-text display-3 text-center">{{$categories}}</p>
                 </div>
-         
             </div>
-
               <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
                 <div class="card-header text-center fs-4"> Reservations</div>
                 <div class="card-body">
@@ -75,7 +71,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-4">
+            <div class="col-12 col-md-6 col-lg-4">
               <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
                 <div class="card-header text-center fs-4">Meals</div>
                 <div class="card-body">
@@ -88,20 +84,14 @@
                   <p class="card-text display-3 text-center">{{$tables}}</p>
                 </div>
               </div>
-
               <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
                 <div class="card-header text-center fs-4">Today's reservations</div>
                 <div class="card-body">
                   <p class="card-text display-3 text-center">{{$reservation_today}}</p>
                 </div>
               </div>
-
-              
-         
             </div>
-        </div>  
-            
-           
+        </div>   
       </div>
       <!-- /.container-fluid -->
     </div>

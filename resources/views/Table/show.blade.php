@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}" class="text-decoration-none">Home</a></li>
                         <li class="breadcrumb-item active">Tables</li>
                     </ol>
                 </div>

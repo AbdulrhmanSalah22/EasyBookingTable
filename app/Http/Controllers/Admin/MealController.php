@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Meal\DeleteMealOptionRequest;
 use App\Http\Requests\Admin\Meal\MealRequest;
 use App\Models\Category;
 use App\Models\Meal;
+use Illuminate\Support\Facades\DB;
 
 class MealController extends Controller
 {
@@ -16,17 +18,8 @@ class MealController extends Controller
     public function store(MealRequest $request){
 
         $input = $request->all();
-
         $meal = Meal::create($input);
-
         $meal->attachMedia($request->file('meal_img'));
-
-
-//        if($request->hasFile('meal_img') && $request->file('meal_img')->isValid()){
-//            $meal->addMediaFromRequest('meal_img')->toMediaCollection('meal_img');
-//        }
-
-
     return redirect()->route('ShowMeals');
     }
 
@@ -60,12 +53,20 @@ class MealController extends Controller
             'category_id' => $request->category_id
         ]);
         $meal->updateMedia($request->file('meal_img'));
-
-//        if ($request->hasFile('meal_img')) {
-//            $meal->clearMediaCollection('meal_img');
-//            $meal->addMediaFromRequest('meal_img')->toMediaCollection('meal_img'); }
-
             return redirect()->route("ShowMeals");
+        }
+
+        public function getOptionOfMeal($id){
+            $meal = Meal::find($id);
+            $option = Meal::with('option')->get();
+            return view('Meal.deleteOption',compact('meal','option'));
+        }
+
+        public function deleteOptionFromMeal(DeleteMealOptionRequest $request , $id){
+           DB::table('meal_options')->where('meal_id','=',$id)
+          ->where('option_id','=',$request->option_id)
+          ->delete();
+          return redirect()->route("ShowMeals");
         }
 
 }

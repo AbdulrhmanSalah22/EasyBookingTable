@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}" class="text-decoration-none">Home</a></li>
                         <li class="breadcrumb-item active">Meals</li>
                     </ol>
                 </div>
@@ -79,6 +79,9 @@
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger"> Delete </button>
                                             </form>
+                                            ::
+                                            <a class="btn btn-secondary" href="{{route('delete',$meal -> id)}}"> Delete Option </a>
+                                            
                                         </td>
                                     </tr>
                                     @endforeach

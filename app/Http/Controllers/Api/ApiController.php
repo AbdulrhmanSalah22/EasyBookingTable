@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Notifications\AdminNotification;
 use App\Mail\Email;
 use App\Models\Category;
 use App\Models\Favourite;
@@ -15,16 +16,13 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Stripe;
 
 class ApiController extends Controller
 {
     public function getCategories()
     {
-//        $categories = Category::with(['media'])->get();
-//        foreach ($categories as $category) {
-//            $category->media[0]->makeHidden('id','model_type', 'model_id', 'uuid', 'collection_name', 'name', 'file_name', 'mime_type', 'disk', 'conversions_disk', 'size', 'generated_conversions', 'manipulations', 'custom_properties', 'responsive_images', 'order_column', 'created_at', 'updated_at', 'preview_url');
-//        }
         $categories = Category::with('medially')->get();
 
         foreach ($categories as $category) {
@@ -34,10 +32,6 @@ class ApiController extends Controller
     }
 
     public function getMeals(){
-//        $meals = Meal::with(['media','category','option'])->get();
-//             foreach ($meals as $meal){
-//          $meal-> media[0] -> makeHidden('id','model_type','model_id','uuid','collection_name','name','file_name','mime_type','disk','conversions_disk','size','generated_conversions','manipulations','custom_properties','responsive_images','order_column','created_at','updated_at','preview_url');
-//             }
         $meals = Meal::with(['medially','category','option'])->get();
         foreach ($meals as $meal){
             $meal-> medially[0] -> makeHidden('id','medially_type','medially_id','file_name','file_type','size','created_at','updated_at');
@@ -46,8 +40,6 @@ class ApiController extends Controller
     }
 
     public function getMeal($id){
-//       $meal = Meal::with(['media','category','option'])->find($id);
-//        $meal-> media[0] -> makeHidden('id','model_type','model_id','uuid','collection_name','name','file_name','mime_type','disk','conversions_disk','size','generated_conversions','manipulations','custom_properties','responsive_images','order_column','created_at','updated_at','preview_url');
         $meal = Meal::with(['medially','category','option'])->find($id);
         $meal-> medially[0] -> makeHidden('id','medially_type','medially_id','file_name','file_type','size','created_at','updated_at');
         return response()->json($meal);
@@ -184,6 +176,8 @@ class ApiController extends Controller
                  Have a nice day."
             ];
 
+            $admin = User::where('email','=','admin@admin.com')->get();
+            Notification::send($admin, new AdminNotification("New order at $date has been added by " . $user[0]->name));
             Mail::to($user[0]->email)->send(new Email($details));
 
         }catch (Exception $e){
