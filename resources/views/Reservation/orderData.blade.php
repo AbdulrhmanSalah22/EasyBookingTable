@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}" class="text-decoration-none">Home</a></li>
                         <li class="breadcrumb-item active">Order Details</li>
                     </ol>
                 </div>
@@ -41,26 +41,35 @@
                                 <thead>
                                     <tr>
                                          <th scope="col">OrderId</th>
+                                         <th scope="col">Quantity</th>
                                          <th scope="col">Meal With Option</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($details as $detail )
                                     <tr>
-                                         <th scope="row">{{ $details[0]->order_id }}</th>
-
+                                        {{-- @dd($details[0]) --}}
+                                            
+                                        <th scope="row">{{ $detail->order_id }}</th>
+                                        <td>{{ $detail->num }} </td>
+                                        
                                         <td>
-                                                @foreach ($details as $detail)
-                                                    @foreach ($detail->getMeals as $meal)
-                                                        {{$meal  ->name}}
-                                                    @endforeach >>
-                                                    @foreach ($detail->getoption as $option)
-                                                        {{$option->name}}
-                                                    @endforeach
-                                                    |
-                                                @endforeach
-                                            </td>
-
-                                        </tr>
+                                            {{-- @foreach ($details as $detail) --}}
+                                            @foreach ($detail->getMeals as $meal)
+                                           Meals:- {{$meal  ->name}}
+                                            {{-- {{ $details[0]->num }} --}}
+                                            @endforeach >>
+                                            @foreach ($detail->getoption as $option)
+                                            @if ($option->name)
+                                            options:- {{$option->name}} 
+                                            |
+                                            @endif
+                                            @endforeach
+                                            {{-- @endforeach --}}
+                                        </td>
+                                        
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
