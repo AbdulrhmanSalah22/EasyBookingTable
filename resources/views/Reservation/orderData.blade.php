@@ -16,7 +16,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Order Details</h1>
+                    <h1>Details about order number {{ $details[0]->order_id }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -40,7 +40,7 @@
                             <table id="category" class="table table-bordered table-striped text-center">
                                 <thead>
                                     <tr>
-                                         <th scope="col">OrderId</th>
+                                         {{-- <th scope="col">OrderId</th> --}}
                                          <th scope="col">Quantity</th>
                                          <th scope="col">Meal With Option</th>
                                     </tr>
@@ -50,7 +50,7 @@
                                     <tr>
                                         {{-- @dd($details[0]) --}}
                                             
-                                        <th scope="row">{{ $detail->order_id }}</th>
+                                        {{-- <th scope="row">{{ $detail->order_id }}</th> --}}
                                         <td>{{ $detail->num }} </td>
                                         
                                         <td>
