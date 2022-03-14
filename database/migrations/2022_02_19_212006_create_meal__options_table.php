@@ -28,7 +28,6 @@ class CreateMealOptionsTable extends Migration
                 ->on('options')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->integer('num')->default(1);
             $table->primary(['meal_id', 'option_id']);
             $table->timestamps();
         });
