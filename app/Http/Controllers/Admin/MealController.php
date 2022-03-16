@@ -58,9 +58,7 @@ class MealController extends Controller
 
         public function getOptionOfMeal($id){
             $meal = Meal::find($id);
-//            $option = Meal::with('option')->get();
             $options = $meal->option;
-//           return $options;
             return view('Meal.deleteOption',compact('meal','options'));
         }
 

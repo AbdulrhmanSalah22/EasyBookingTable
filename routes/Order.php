@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::controller(OrderController::class)->middleware(['auth','admin'])->prefix('order')->group(function (){
 
     Route::get('/show' ,'showOrders')->name('ShowOrders');
+    Route::delete('/delete-orders' ,'deleteOrders')->name('DeleteOrders');
 });
-
-
 

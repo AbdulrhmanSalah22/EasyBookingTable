@@ -11,4 +11,9 @@ class OrderController extends Controller
         $orders = Order::all();
         return view('Order.show' , compact('orders'));
     }
+
+    public function deleteOrders(){
+        Order::truncate();
+        return redirect(route('ShowOrders'));
+    }
 }

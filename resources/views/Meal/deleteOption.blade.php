@@ -15,9 +15,7 @@
             <select class="form-select " aria-label="Default select example" name="option_id">
                 <option disabled selected> Choose Option</option>
                 @foreach ($options as $option)
-{{--                 @foreach ($options->option as $one)--}}
                  <option value="{{$option->id}}"> {{$option->name}}</option>
-{{--                 @endforeach--}}
                 @endforeach
             </select>
            @error('option_id')

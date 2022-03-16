@@ -56,6 +56,13 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="text-center mb-3">
+                            <form method="post" action="{{ route('DeleteOrders')}}" class="d-inline" >
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" onclick="return confirm('Are you sure to delete all records?')" class="btn btn-danger"> Reset All Orders </button>
+                            </form>
+                        </div>
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
