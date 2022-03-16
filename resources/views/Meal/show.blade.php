@@ -74,7 +74,7 @@
                                         <td>
                                             <a class="btn btn-success" href="{{route('EditMeal',$meal -> id)}}"> Edit </a>
                                             ::
-                                            <form method="post" action="{{ route('DeleteMeal' , $meal -> id) }}" class="d-inline mt-2" >
+                                            <form method="post" action="{{ route('DeleteMeal' , $meal -> id) }}" class=" mt-2" >
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger"> Delete </button>
