@@ -74,13 +74,13 @@
                                         <td>
                                             <a class="btn btn-success" href="{{route('EditMeal',$meal -> id)}}"> Edit </a>
                                             ::
-                                            <form method="post" action="{{ route('DeleteMeal' , $meal -> id) }}" class="d-inline" >
+                                            <form method="post" action="{{ route('DeleteMeal' , $meal -> id) }}" class="d-inline mt-2" >
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger"> Delete </button>
                                             </form>
                                             ::
-                                            <a class="btn btn-secondary" href="{{route('delete',$meal -> id)}}"> Delete Option </a>
+                                            <a class="btn btn-secondary mt-2" href="{{route('delete',$meal -> id)}}"> Delete Option </a>
                                             
                                         </td>
                                     </tr>

@@ -18,7 +18,7 @@ Route::get('/', function () {
     return redirect(route('login'));
 });
 
-Route::get('/dashboard' , [dashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard' , [dashboardController::class, 'index'])->middleware(['auth','admin'])->name('dashboard');
 Route::get('/mark' , function(){
     auth()->user()->unreadNotifications->markAsRead();
     return redirect()->back();

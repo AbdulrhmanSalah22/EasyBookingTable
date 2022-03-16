@@ -10,7 +10,7 @@
                 </i>
             </a>
             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                <div v-if="unreadNotifications.length == 0" class="ps-2">
+                <div v-if="unreadNotifications.length == 0" class="ps-3">
                     No Notifications Now
                 </div>
                 <div v-else>
