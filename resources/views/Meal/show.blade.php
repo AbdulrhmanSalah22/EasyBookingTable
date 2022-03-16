@@ -73,13 +73,13 @@
                                         <td><img src="{{$meal->fetchFirstMedia()->file_url}}"  width="200px" height="80px" ></td>
                                         <td>
                                             <a class="btn btn-success" href="{{route('EditMeal',$meal -> id)}}"> Edit </a>
-                                            ::
+                                            {{-- :: --}}
                                             <form method="post" action="{{ route('DeleteMeal' , $meal -> id) }}" class=" mt-2" >
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger"> Delete </button>
                                             </form>
-                                            ::
+                                            {{-- :: --}}
                                             <a class="btn btn-secondary mt-2" href="{{route('delete',$meal -> id)}}"> Delete Option </a>
                                             
                                         </td>
