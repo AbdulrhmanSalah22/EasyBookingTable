@@ -1,17 +1,17 @@
 
  @extends('_layouts.master')
  @section('title')
-     <title>Order Details</title>
+     <title> Dashboard </title>
  @endsection
- 
- 
+
+
  @section('custom-styles')
      <!-- DataTables -->
      <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
      <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
      <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
  @endsection
- 
+
  @section('content')
     <div class="content-header">
       <div class="container">
@@ -91,7 +91,7 @@
                 </div>
               </div>
             </div>
-        </div>   
+        </div>
       </div>
       <!-- /.container-fluid -->
     </div>
