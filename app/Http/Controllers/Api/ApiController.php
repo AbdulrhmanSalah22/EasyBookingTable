@@ -193,7 +193,7 @@ class ApiController extends Controller
             Stripe\Stripe::setApikey('sk_test_51KX58pBmVrP9kTEPbwfc14iFacE1NwLGg4DTM5Jsv39gOYdmZreLVegaofU3uscXSaZ8F6qR2XTYbgZF8dx9ZsqH00PE1yu6xr');
             Stripe\Charge::create([
              "amount"=> $request->price['price'] * 100,
-             "currency"=>"usd",
+             "currency"=>"EGP",
              "source"=> $request->token,
              "description"=> "Reservation form Resto"
             ]);
