@@ -34134,13 +34134,10 @@ var render = function () {
     _vm._v(" "),
     _c(
       "div",
-      {
-        staticClass: "dropdown-menu dropdown-menu-sm dropdown-menu-right",
-        staticStyle: { width: "250px" },
-      },
+      { staticClass: "dropdown-menu dropdown-menu-sm dropdown-menu-right" },
       [
         _vm.unreadNotifications.length == 0
-          ? _c("div", { staticClass: "ps-2" }, [
+          ? _c("div", { staticClass: "ps-3" }, [
               _vm._v("\n            No Notifications Now\n        "),
             ])
           : _c("div", [
